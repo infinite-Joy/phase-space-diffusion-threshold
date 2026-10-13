@@ -1,6 +1,6 @@
 # phase-space-diffusion-threshold
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23180609.svg)](https://doi.org/10.5281/zenodo.23180609)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23180609.svg)](https://doi.org/10.5281/zenodo.23180609) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/neginyan/phase-space-diffusion-threshold/blob/main/demo/sampler_below_threshold.ipynb)
 [![verify](https://github.com/neginyan/phase-space-diffusion-threshold/actions/workflows/verify.yml/badge.svg)](https://github.com/neginyan/phase-space-diffusion-threshold/actions/workflows/verify.yml)
 
 Verification code for the paper
@@ -58,6 +58,16 @@ The weight is W = G/σ² = 2(rI − Sym B); for a scalar drift it reduces to the
 - A 24-component Gaussian mixture fitted to the data gives exact scores. At equal step counts, the variance shrinkage of the clipped sampler measured with the exact score and with the network differ by 1–14 %; the network's paired KL is 18–27 % above the exact-score value (unresolved).
 - Mechanism: the clipped sampler adds attraction toward high density, which shrinks spread within modes but not between them (two-component mixture with fixed covariance, right panel).
 - Step size (coupled Brownian paths, three noise seeds): from 4000 steps to the extrapolated limit the paired KL changes by −1.9 % to +2.0 % on average (seed spread ≤ 3.5 %), so it is converged to within a few per cent; the changes of the log-variance ratio (−1.1 % to +9.1 %, spread up to 9.8 %) are not distinguishable from zero.
+
+## Demo: clipping vs. the corrected sampler
+
+![frame of the demo movie](demo/demo_frame.png)
+
+Three Gaussian blobs in the four-dimensional phase space, the same Hamiltonian drift (κ = 1.5) and noise grown at r = κ/2, sampled with the **exact** score
+from the same initial noise and the same Brownian increments. The clipped reverse SDE shrinks the spread within each blob by about 13 % (0.131 against 0.151);
+the corrected sampler reproduces it (0.149). The notebook [`demo/sampler_below_threshold.ipynb`](demo/sampler_below_threshold.ipynb) makes the movie
+([`demo/sampler_demo.mp4`](demo/sampler_demo.mp4)) in about a minute on a CPU: [open it in Colab](https://colab.research.google.com/github/neginyan/phase-space-diffusion-threshold/blob/main/demo/sampler_below_threshold.ipynb). Setting `ratio = 1.2` makes the two samplers coincide.
+No claim about sample quality on real data is made; the demo shows where the standard SDE tools stop being exact.
 
 ## Reproduce
 
