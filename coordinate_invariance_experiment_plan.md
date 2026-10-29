@@ -1,7 +1,7 @@
 # Gap 1 experiment plan: Is the threshold coordinate-invariant?
 
 **Priority:** Critical  
-**Status:** Model-specification gate complete; numerical experiment gates pending; no sampling results claimed
+**Status:** Model-specification gate complete; representative forward-feasibility and Gaussian-sampling pilots complete; full numerical experiment gates pending
 **Basis:** The isotropic marginal model and three reverse samplers in `README.md`.
 
 ## 1. Objective and interpretation
@@ -374,6 +374,65 @@ coarse step counts must divide the finest count. Exit status is nonzero
 on failed checks. This representative pilot does not automatically clear
 the full Gaussian gate or its deterministic/forward-feasibility prerequisites.
 
+#### Executable mixture pilot
+
+Run the exact-score mixture verifier against the fixed fitted mixture:
+
+```bash
+OPENBLAS_NUM_THREADS=1 python verification/mixture_sampling.py \
+  --output results/mixture_sampling.json \
+  --log-file results/mixture_sampling.log
+python -m unittest verification.test_mixture_sampling
+```
+
+Timestamped logs stream immediately to the console and append to `--log-file`.
+They identify the active case/rate, calibration, score checks, seed,
+integration progress every 10%, elapsed time, and final outcomes.
+Watch the file from another terminal with `tail -f results/mixture_sampling.log`.
+The JSON report is written only after the full run finishes.
+
+For a smaller primary-rate pilot (not the default grid):
+
+```bash
+OPENBLAS_NUM_THREADS=1 python verification/mixture_sampling.py \
+  --rates 0.9 --steps 1000 2000 4000 --samples 128 256 --seeds 0 1 2 \
+  --output results/mixture_sampling.json \
+  --log-file results/mixture_sampling.log
+```
+
+The default cache is `results/gmm_fit.npz`, produced by
+`gmm_exact.fit_gmm`; use `--mixture PATH` to select another fixed cache.
+Missing or invalid caches fail explicitly rather than triggering a new fit.
+The report records all clean mixture parameters and a SHA-256 checksum.
+
+The pilot uses the 4-D baseline and decisive/recorded re-isotropized
+squeezes, at rates `0.9, 1.5, 1.95`, with exact terminal-mixture draws.
+It checks analytic scores against independent SciPy log-density finite
+differences, score transport, and density Jacobians. All three samplers
+share terminal draws and Brownian increments; coarse grids sum fine
+increments. Full sampler transport uses `A L`, not local re-clipping.
+Arm B has its own recomputed exact score and pulled-back smoothed target.
+
+Defaults are `--steps 1000 2000 4000`, `--samples 512 1024`,
+`--seeds 0 1 2`, and `--calibration-repeats 12`. The JSON records
+pulled-back mean/covariance errors, variance ratios, sliced Wasserstein,
+unbiased MMD squared, component-responsibility masses, and a clearly labeled
+Gaussian-moment KL proxy. Independent target draws calibrate each particle
+count before sampler comparisons, with fixed projections, bandwidths, and
+shared references. Seed-level paired naive-minus-corrected effects and
+standard errors are reported; nested particle prefixes are not replicates.
+
+Acceptance uses declared score/path tolerances and empirical target-control
+bands plus fixed practical margins. ODE/corrected and feasible naive
+finest-grid seed-mean metrics must lie within those bands and show no
+degradation beyond calibration-scale uncertainty. Below-threshold naive
+target bias is measured rather than required to vanish. Stepwise coupled
+endpoint differences and particle refinement are reported separately.
+These are representative smoke-test bands, not formal equivalence
+intervals or proof of asymptotic convergence. Failed checks produce a
+nonzero exit status; this pilot does not clear the full mixture gate,
+deterministic prerequisites, or full transformation grid automatically.
+
 ### Stage 3: Trained-score extension, conditional on Stages 1--2
 
 First wrap a single baseline network with
@@ -727,10 +786,14 @@ instead of pretending floating point determines an exact zero.
 |---|---|---|
 | Model specification | [x] Done (2026-10-17); specification checker passes | Recorded units, coordinate order, covariance convention, initial smoothing, arm definitions, and feasibility scope |
 | Deterministic implementation | [ ] Pending | Closed-form squeeze and propagator checks; generalized threshold via independent routes; score/density transport; inverse/composition tests; deliberate failures detected |
-| Forward feasibility | [ ] Pending | PSD transition covariances above/at threshold and a local negative-direction witness below it |
-| Gaussian sampling | [ ] Pending | Independent moment reference, exact terminal initialization, transported-path equivalence, and step refinement |
+| Forward feasibility | [x] Representative pilot done (2026-10-17); full-grid gate pending | PSD transition covariances above/at threshold and a local negative-direction witness below it; passing pilot evidence: [`results/forward_feasibility.json`](results/forward_feasibility.json) |
+| Gaussian sampling | [x] Representative pilot done (2026-10-17); full gate pending | Independent moment reference, exact terminal initialization, transported-path equivalence, and step refinement; passing pilot evidence: [`results/gaussian_sampling.json`](results/gaussian_sampling.json) |
 | Mixture sampling | [ ] Pending | Independently checked exact scores, paired seeds, target-vs-target calibration, and pulled-back diagnostics |
 | Optional generalization | [ ] Not assessed; optional | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions |
+
+Checked pilot entries record completed representative runs, not clearance
+of the full gates. Full transformation-grid coverage and deterministic
+prerequisite certification remain outstanding.
 
 The final report should include an assumption ledger with one row per
 requirement in Section 9.2: classification as model choice, identity, or
