@@ -1,0 +1,5444 @@
+{
+  "scope": "Forward-feasibility evidence for the recorded representative squeeze only; does not clear the deterministic prerequisite or the full transform grid.",
+  "schedule_policy": "Threshold-centered additive rate sweep on the fixed primary horizon; sweep terminal sigma differs from the primary sigmaT.",
+  "sigma0": 0.01,
+  "horizon": 9.215610711224475,
+  "samples": 20000,
+  "seed": 1729,
+  "numpy_version": "2.5.3",
+  "scipy_version": "1.18.1",
+  "simulation_acceptance": "All reported Gaussian moment errors < 7 standard errors",
+  "roundoff_policy": "Classify before factorization; reject eigenvalues below the reported operand-scaled band; report any bounded negative-eigenvalue correction.",
+  "transport_checks": [
+    {
+      "dimension": 2,
+      "covariance_error": 0.0,
+      "covariance_band": 1.8193441422254107e-16,
+      "witness_error": 0.0,
+      "witness_band": 2.1603432417831828e-16,
+      "transported_witness": [
+        -0.35355339059327373,
+        1.414213562373095
+      ],
+      "passed": true
+    },
+    {
+      "dimension": 4,
+      "covariance_error": 0.0,
+      "covariance_band": 3.6386882844508213e-16,
+      "witness_error": 0.0,
+      "witness_band": 4.3206864835663657e-16,
+      "transported_witness": [
+        -0.35355339059327373,
+        1.414213562373095,
+        0.0,
+        0.0
+      ],
+      "passed": true
+    }
+  ],
+  "cases": [
+    {
+      "regime": "below",
+      "rate": 1.2,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": -5.543117354415298e-08,
+          "covariance": [
+            [
+              2.2167421079218605e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              2.7646769521027846e-07,
+              2.2040030002299553e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.2167421079216575e-07,
+              2.764676952102784e-07
+            ],
+            [
+              2.764676952102784e-07,
+              2.2040030002298796e-07
+            ]
+          ],
+          "psd_roundoff_band": 2.279401428845868e-17,
+          "quadrature_error_estimate": 1.6672807099767857e-20,
+          "formula_quadrature_difference": 2.030254107360323e-20,
+          "formula_quadrature_band": 7.262794675988957e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": -0.005157813415170532,
+          "covariance": [
+            [
+              0.02076752005130679,
+              0.020578457612477643
+            ],
+            [
+              0.020578457612477643,
+              0.01117651525435688
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.0207675200513068,
+              0.020578457612477653
+            ],
+            [
+              0.020578457612477653,
+              0.011176515254356917
+            ]
+          ],
+          "psd_roundoff_band": 2.2185846170972848e-14,
+          "quadrature_error_estimate": 1.252052777936885e-15,
+          "formula_quadrature_difference": 4.0080241827093176e-17,
+          "formula_quadrature_band": 3.738630982144081e-12,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403174.7357840911,
+          "covariance": [
+            [
+              403174.73587873566,
+              -5.56811754807859e-05
+            ],
+            [
+              -5.56811754807859e-05,
+              403174.73581684934
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403174.735878735,
+              -5.568294079738578e-05
+            ],
+            [
+              -5.568294079738578e-05,
+              403174.7358168482
+            ]
+          ],
+          "psd_roundoff_band": 4.5835660801984173e-08,
+          "quadrature_error_estimate": 4.733322047817835e-08,
+          "formula_quadrature_difference": 2.6868622285982574e-09,
+          "formula_quadrature_band": 4.059997535434234e-05,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403166.0768292665,
+          "covariance": [
+            [
+              403168.5916921615,
+              -1.9345933038907086
+            ],
+            [
+              -1.9345933038907086,
+              403167.5650421066
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403168.5916921609,
+              -1.934593305656037
+            ],
+            [
+              -1.934593305656037,
+              403167.56504210545
+            ]
+          ],
+          "psd_roundoff_band": 4.583664521117615e-08,
+          "quadrature_error_estimate": 3.870663934649949e-08,
+          "formula_quadrature_difference": 2.6868738296684496e-09,
+          "formula_quadrature_band": 4.055637783244392e-05,
+          "passed": true
+        }
+      ],
+      "witness": {
+        "direction": [
+          -0.7071067811865476,
+          0.7071067811865476
+        ],
+        "instantaneous_quadratic_form": -6.0000000000000035e-05,
+        "intervals": [
+          {
+            "h": 0.001,
+            "quadratic_form": -6.016096886234235e-08,
+            "quadrature_quadratic_form": -6.016096886233405e-08,
+            "roundoff_band": 2.2798842379351922e-17,
+            "local_derivative_error": 1.609688623423086e-07,
+            "passed": true
+          },
+          {
+            "h": 0.0001,
+            "quadratic_form": -6.001618969546325e-09,
+            "quadrature_quadratic_form": -6.001618969526185e-09,
+            "roundoff_band": 2.2743507472610858e-17,
+            "local_derivative_error": 1.618969546320965e-08,
+            "passed": true
+          },
+          {
+            "h": 1e-05,
+            "quadratic_form": -6.000161989573519e-10,
+            "quadrature_quadratic_form": -6.000161989695927e-10,
+            "roundoff_band": 2.2737981461637034e-17,
+            "local_derivative_error": 1.619895735148339e-09,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "baseline",
+      "B": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -4.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "at",
+      "rate": 1.5,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 2.4525767866097455e-13,
+          "covariance": [
+            [
+              2.771056295940177e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              2.7646769521027846e-07,
+              2.7583171882482717e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.771056295940168e-07,
+              2.764676952102784e-07
+            ],
+            [
+              2.764676952102784e-07,
+              2.7583171882483903e-07
+            ]
+          ],
+          "psd_roundoff_band": 2.2800316111172684e-17,
+          "quadrature_error_estimate": 1.8416509177332596e-20,
+          "formula_quadrature_difference": 1.185868092399903e-20,
+          "formula_quadrature_band": 7.818610897317651e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.00127527186888661,
+          "covariance": [
+            [
+              0.13746249024517104,
+              0.10809978218183385
+            ],
+            [
+              0.10809978218183385,
+              0.08708040870245337
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.13746249024517126,
+              0.10809978218183386
+            ],
+            [
+              0.10809978218183386,
+              0.0870804087024537
+            ]
+          ],
+          "psd_roundoff_band": 1.1976872838253807e-13,
+          "quadrature_error_estimate": 7.457543266162106e-15,
+          "formula_quadrature_difference": 3.347753411378171e-16,
+          "formula_quadrature_band": 2.2483819152587158e-11,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593667.32578236,
+          "covariance": [
+            [
+              101593667.32587701,
+              -5.56811754807859e-05
+            ],
+            [
+              -5.56811754807859e-05,
+              101593667.32581513
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593667.3258767,
+              -5.609581628718274e-05
+            ],
+            [
+              -5.609581628718274e-05,
+              101593667.3258147
+            ]
+          ],
+          "psd_roundoff_band": 1.1549862770851507e-05,
+          "quadrature_error_estimate": 1.0882951488818407e-05,
+          "formula_quadrature_difference": 7.914320162382977e-07,
+          "formula_quadrature_band": 0.010225331352805924,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593529.87073134,
+          "covariance": [
+            [
+              101593569.7916914,
+              -30.70975445726747
+            ],
+            [
+              -30.70975445726747,
+              101593553.49463762
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593569.79169108,
+              -30.709754871908444
+            ],
+            [
+              -30.709754871908444,
+              101593553.49463719
+            ]
+          ],
+          "psd_roundoff_band": 1.1549878397681587e-05,
+          "quadrature_error_estimate": 8.977319795132899e-06,
+          "formula_quadrature_difference": 7.914321838946722e-07,
+          "formula_quadrature_band": 0.010215795818933119,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 0.874959773417555,
+            "covariance_max_standard_errors": 1.1151937838328785,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.402009936384619,
+            "innovation_covariance_standard_errors": 1.5767533126310946,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.6311617899770084,
+            "covariance_max_standard_errors": 0.9672277141574501,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.5309919113717246,
+            "innovation_covariance_standard_errors": 0.7975772826961455,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.6108996487519724,
+            "covariance_max_standard_errors": 1.6041558370644577,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.2818863805297362,
+            "innovation_covariance_standard_errors": 1.1186681256960713,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.881270955606665,
+            "covariance_max_standard_errors": 1.173526464461398,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 2.055904307519454,
+            "innovation_covariance_standard_errors": 0.7684606507041325,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "baseline",
+      "B": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -4.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "above",
+      "rate": 1.8,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 5.5462322597474516e-08,
+          "covariance": [
+            [
+              3.3256770693381355e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              2.7646769521027846e-07,
+              3.3129379616462303e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              3.3256770693381217e-07,
+              2.764676952102784e-07
+            ],
+            [
+              2.764676952102784e-07,
+              3.3129379616463436e-07
+            ]
+          ],
+          "psd_roundoff_band": 2.2806621419358917e-17,
+          "quadrature_error_estimate": 2.0347792342545926e-20,
+          "formula_quadrature_difference": 1.1329286247193541e-20,
+          "formula_quadrature_band": 8.374827843116835e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.16419822529107594,
+          "covariance": [
+            [
+              0.8795972566305132,
+              0.5678541671011548
+            ],
+            [
+              0.5678541671011548,
+              0.6149373805991414
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.8795972566305125,
+              0.5678541671011552
+            ],
+            [
+              0.5678541671011552,
+              0.6149373805991414
+            ]
+          ],
+          "psd_roundoff_band": 6.470573708388004e-13,
+          "quadrature_error_estimate": 4.4752642154271465e-14,
+          "formula_quadrature_difference": 9.786696904398399e-16,
+          "formula_quadrature_band": 1.3390446177546803e-10,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599999999.999813,
+          "covariance": [
+            [
+              25599999999.99991,
+              -5.56811754807859e-05
+            ],
+            [
+              -5.56811754807859e-05,
+              25599999999.999847
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599999999.999767,
+              -0.000141639513373093
+            ],
+            [
+              -0.000141639513373093,
+              25599999999.999714
+            ]
+          ],
+          "psd_roundoff_band": 0.0029103830456733907,
+          "quadrature_error_estimate": 0.0025345261852259444,
+          "formula_quadrature_difference": 0.0002233720429838415,
+          "formula_quadrature_band": 2.5755830139717912,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599997818.03418,
+          "covariance": [
+            [
+              25599998451.739918,
+              -487.4869653115152
+            ],
+            [
+              -487.4869653115152,
+              25599998193.040314
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599998451.739777,
+              -487.4870512698544
+            ],
+            [
+              -487.4870512698544,
+              25599998193.04018
+            ]
+          ],
+          "psd_roundoff_band": 0.002910383293734164,
+          "quadrature_error_estimate": 0.0020693497841735298,
+          "formula_quadrature_difference": 0.00022337204433139587,
+          "formula_quadrature_band": 2.5732570148892013,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 1.151691579599425,
+            "covariance_max_standard_errors": 2.039632161637191,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.4886078313859348,
+            "innovation_covariance_standard_errors": 0.43064622727782936,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.43030907740084995,
+            "covariance_max_standard_errors": 1.710937562088576,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.6470942140413736,
+            "innovation_covariance_standard_errors": 1.5937371137694574,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.222595232637332,
+            "covariance_max_standard_errors": 3.0099388781670577,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.9519053157620901,
+            "innovation_covariance_standard_errors": 1.883833079927117,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.855071232327776,
+            "covariance_max_standard_errors": 1.5140426119000687,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.6965646787846753,
+            "innovation_covariance_standard_errors": 1.155614935025939,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "baseline",
+      "B": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          -4.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "below",
+      "rate": 1.2,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": -2.8423764231191463e-08,
+          "covariance": [
+            [
+              8.866968431687442e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              2.7646769521027846e-07,
+              5.510007500574888e-08
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              8.86696843168663e-07,
+              2.764676952102784e-07
+            ],
+            [
+              2.764676952102784e-07,
+              5.510007500574699e-08
+            ]
+          ],
+          "psd_roundoff_band": 9.10500673866807e-17,
+          "quadrature_error_estimate": 3.232870673620636e-20,
+          "formula_quadrature_difference": 8.120931915225309e-20,
+          "formula_quadrature_band": 1.8823377916092274e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": -0.0021736602071631642,
+          "covariance": [
+            [
+              0.08307008020522716,
+              0.020578457612477643
+            ],
+            [
+              0.020578457612477643,
+              0.00279412881358922
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.0830700802052272,
+              0.020578457612477653
+            ],
+            [
+              0.020578457612477653,
+              0.0027941288135892293
+            ]
+          ],
+          "psd_roundoff_band": 7.712740782673387e-14,
+          "quadrature_error_estimate": 2.9347971656914074e-15,
+          "formula_quadrature_difference": 4.467887268444123e-17,
+          "formula_quadrature_band": 8.89558831625315e-12,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 100793.68395421233,
+          "covariance": [
+            [
+              1612698.9435149427,
+              -5.56811754807859e-05
+            ],
+            [
+              -5.56811754807859e-05,
+              100793.68395421233
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1612698.9435149452,
+              -5.568052537840984e-05
+            ],
+            [
+              -5.568052537840984e-05,
+              100793.68395421252
+            ]
+          ],
+          "psd_roundoff_band": 1.833426431659895e-07,
+          "quadrature_error_estimate": 9.593217057666067e-07,
+          "formula_quadrature_difference": 2.7276293706423226e-09,
+          "formula_quadrature_band": 0.00016624984552349355,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 100791.89125805117,
+          "covariance": [
+            [
+              1612674.366768646,
+              -1.9345933038907086
+            ],
+            [
+              -1.9345933038907086,
+              100791.89126052665
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1612674.3667686486,
+              -1.934593303240618
+            ],
+            [
+              -1.934593303240618,
+              100791.89126052684
+            ]
+          ],
+          "psd_roundoff_band": 1.8334545575939295e-07,
+          "quadrature_error_estimate": 9.403856926760658e-07,
+          "formula_quadrature_difference": 2.7276237332676e-09,
+          "formula_quadrature_band": 0.0001661527105962521,
+          "passed": true
+        }
+      ],
+      "witness": {
+        "direction": [
+          -0.24253562503633297,
+          0.9701425001453319
+        ],
+        "instantaneous_quadratic_form": -2.8235294117647067e-05,
+        "intervals": [
+          {
+            "h": 0.001,
+            "quadratic_form": -2.831104417051403e-08,
+            "quadrature_quadratic_form": -2.8311044170510136e-08,
+            "roundoff_band": 9.105863147434316e-17,
+            "local_derivative_error": 7.575005286696517e-08,
+            "passed": true
+          },
+          {
+            "h": 0.0001,
+            "quadratic_form": -2.8242912797865054e-09,
+            "quadrature_quadratic_form": -2.8242912797770276e-09,
+            "roundoff_band": 9.096038433209763e-17,
+            "local_derivative_error": 7.618680217986193e-09,
+            "passed": true
+          },
+          {
+            "h": 1e-05,
+            "quadratic_form": -2.823605642152244e-10,
+            "quadrature_quadratic_form": -2.823605642209848e-10,
+            "roundoff_band": 9.095056157311785e-17,
+            "local_derivative_error": 7.623038753714977e-10,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "transported",
+      "B": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.25
+        ]
+      ]
+    },
+    {
+      "regime": "at",
+      "rate": 1.5,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 1.1518119217305448e-13,
+          "covariance": [
+            [
+              1.1084225183760708e-06,
+              2.7646769521027846e-07
+            ],
+            [
+              2.7646769521027846e-07,
+              6.895792970620679e-08
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1.1084225183760672e-06,
+              2.764676952102784e-07
+            ],
+            [
+              2.764676952102784e-07,
+              6.895792970620976e-08
+            ]
+          ],
+          "psd_roundoff_band": 9.107527467753672e-17,
+          "quadrature_error_estimate": 3.921464454798026e-20,
+          "formula_quadrature_difference": 3.600316929997323e-21,
+          "formula_quadrature_band": 2.0900938119038488e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.0004985399998111567,
+          "covariance": [
+            [
+              0.5498499609806842,
+              0.10809978218183385
+            ],
+            [
+              0.10809978218183385,
+              0.021770102175613343
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.5498499609806851,
+              0.10809978218183386
+            ],
+            [
+              0.10809978218183386,
+              0.021770102175613426
+            ]
+          ],
+          "psd_roundoff_band": 4.180555411488824e-13,
+          "quadrature_error_estimate": 1.903045561046657e-14,
+          "formula_quadrature_difference": 8.884176208186741e-16,
+          "formula_quadrature_band": 5.7625360134849946e-11,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25398416.83145378,
+          "covariance": [
+            [
+              406374669.30350804,
+              -5.56811754807859e-05
+            ],
+            [
+              -5.56811754807859e-05,
+              25398416.83145378
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              406374669.30350685,
+              -5.609814277462988e-05
+            ],
+            [
+              -5.609814277462988e-05,
+              25398416.831453674
+            ]
+          ],
+          "psd_roundoff_band": 4.619945108336408e-05,
+          "quadrature_error_estimate": 2.536498840977479e-05,
+          "formula_quadrature_difference": 1.3339183767545658e-06,
+          "formula_quadrature_band": 0.040810491323482925,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25398388.373656932,
+          "covariance": [
+            [
+              406374279.1667656,
+              -30.70975445726747
+            ],
+            [
+              -30.70975445726747,
+              25398388.373659406
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              406374279.1667644,
+              -30.70975487423493
+            ],
+            [
+              -30.70975487423493,
+              25398388.373659298
+            ]
+          ],
+          "psd_roundoff_band": 4.619949573111027e-05,
+          "quadrature_error_estimate": 2.0722385090108302e-05,
+          "formula_quadrature_difference": 1.3339184800305552e-06,
+          "formula_quadrature_band": 0.040787239337858334,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0004,
+            0.0
+          ],
+          [
+            0.0,
+            2.5e-05
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 0.8850367415632737,
+            "covariance_max_standard_errors": 1.5392510420199863,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.18214327640616426,
+            "innovation_covariance_standard_errors": 0.36861036966802063,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.4067238373400916,
+            "covariance_max_standard_errors": 1.5962073126612326,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.7566786414618287,
+            "innovation_covariance_standard_errors": 0.5614758000658289,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.9669439959796822,
+            "covariance_max_standard_errors": 1.9730232160578438,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.9175401596022859,
+            "innovation_covariance_standard_errors": 0.6164568490428972,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.2069368113884804,
+            "covariance_max_standard_errors": 1.342962256473741,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.1814202644254193,
+            "innovation_covariance_standard_errors": 1.3026852577677326,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "transported",
+      "B": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.25
+        ]
+      ]
+    },
+    {
+      "regime": "above",
+      "rate": 1.8,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 2.4296724575521546e-08,
+          "covariance": [
+            [
+              1.3302708277352542e-06,
+              2.7646769521027846e-07
+            ],
+            [
+              2.7646769521027846e-07,
+              8.282344904115576e-08
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1.3302708277352487e-06,
+              2.764676952102784e-07
+            ],
+            [
+              2.764676952102784e-07,
+              8.282344904115859e-08
+            ]
+          ],
+          "psd_roundoff_band": 9.110049591028166e-17,
+          "quadrature_error_estimate": 4.6263330645341524e-20,
+          "formula_quadrature_difference": 5.506050267789483e-21,
+          "formula_quadrature_band": 2.302115677835967e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.060481882978772133,
+          "covariance": [
+            [
+              3.518389026522053,
+              0.5678541671011548
+            ],
+            [
+              0.5678541671011548,
+              0.15373434514978535
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              3.51838902652205,
+              0.5678541671011552
+            ],
+            [
+              0.5678541671011552,
+              0.15373434514978535
+            ]
+          ],
+          "psd_roundoff_band": 2.2676913270218564e-12,
+          "quadrature_error_estimate": 1.2035236744516228e-13,
+          "formula_quadrature_difference": 3.1708213586513258e-15,
+          "formula_quadrature_band": 3.640336020335539e-10,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 6399999999.999962,
+          "covariance": [
+            [
+              102399999999.99963,
+              -5.56811754807859e-05
+            ],
+            [
+              -5.56811754807859e-05,
+              6399999999.999962
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              102399999999.99907,
+              -0.0001421759551760715
+            ],
+            [
+              -0.0001421759551760715,
+              6399999999.999929
+            ]
+          ],
+          "psd_roundoff_band": 0.011641532182693521,
+          "quadrature_error_estimate": 0.006179165774200508,
+          "formula_quadrature_difference": 0.0005782809109788979,
+          "formula_quadrature_band": 10.282537361053604,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 6399999548.2600765,
+          "covariance": [
+            [
+              102399993806.95967,
+              -487.4869653115152
+            ],
+            [
+              -487.4869653115152,
+              6399999548.260078
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              102399993806.9591,
+              -487.4870518062962
+            ],
+            [
+              -487.4870518062962,
+              6399999548.260046
+            ]
+          ],
+          "psd_roundoff_band": 0.011641532891432922,
+          "quadrature_error_estimate": 0.0050221483327627875,
+          "formula_quadrature_difference": 0.0005782809113959069,
+          "formula_quadrature_band": 10.276751655251157,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0004,
+            0.0
+          ],
+          [
+            0.0,
+            2.5e-05
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 0.7547338331422476,
+            "covariance_max_standard_errors": 1.9501828374914074,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.98146628396812,
+            "innovation_covariance_standard_errors": 1.4419071691197345,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.8311430814432736,
+            "covariance_max_standard_errors": 2.522752412287198,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.6439330990778382,
+            "innovation_covariance_standard_errors": 2.6153203793681024,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.498707669075494,
+            "covariance_max_standard_errors": 1.1072901097451588,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.4674043554605496,
+            "innovation_covariance_standard_errors": 0.38681938253583525,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.8984127330119243,
+            "covariance_max_standard_errors": 1.0465344757130532,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.8451536760275917,
+            "innovation_covariance_standard_errors": 0.6259149764548545,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "transported",
+      "B": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.25
+        ]
+      ]
+    },
+    {
+      "regime": "below",
+      "rate": 1.2,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": -5.5431173544152925e-08,
+          "covariance": [
+            [
+              2.2040030002299553e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              -2.764676952102784e-07,
+              2.2167421079218605e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.2040030002298796e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              -2.764676952102784e-07,
+              2.2167421079216572e-07
+            ]
+          ],
+          "psd_roundoff_band": 2.279401428845868e-17,
+          "quadrature_error_estimate": 1.6672807099767857e-20,
+          "formula_quadrature_difference": 2.0328790734103208e-20,
+          "formula_quadrature_band": 7.262794675988957e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": -0.005157813415170541,
+          "covariance": [
+            [
+              0.01117651525435688,
+              -0.02057845761247765
+            ],
+            [
+              -0.02057845761247765,
+              0.02076752005130679
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.011176515254356917,
+              -0.020578457612477653
+            ],
+            [
+              -0.020578457612477653,
+              0.020767520051306797
+            ]
+          ],
+          "psd_roundoff_band": 2.218584617097285e-14,
+          "quadrature_error_estimate": 1.252052777936885e-15,
+          "formula_quadrature_difference": 3.68318649855122e-17,
+          "formula_quadrature_band": 3.738630982144079e-12,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403174.7357840911,
+          "covariance": [
+            [
+              403174.73581684934,
+              5.568117548078593e-05
+            ],
+            [
+              5.568117548078593e-05,
+              403174.73587873566
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403174.73581684823,
+              5.5682946782043e-05
+            ],
+            [
+              5.5682946782043e-05,
+              403174.735878735
+            ]
+          ],
+          "psd_roundoff_band": 4.5835660801984173e-08,
+          "quadrature_error_estimate": 4.735897934898608e-08,
+          "formula_quadrature_difference": 2.659652977080694e-09,
+          "formula_quadrature_band": 4.0600104148696385e-05,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403166.0768292665,
+          "covariance": [
+            [
+              403167.5650421066,
+              1.9345933038907086
+            ],
+            [
+              1.9345933038907086,
+              403168.5916921615
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403167.5650421055,
+              1.9345933056620197
+            ],
+            [
+              1.9345933056620197,
+              403168.5916921609
+            ]
+          ],
+          "psd_roundoff_band": 4.583664521117615e-08,
+          "quadrature_error_estimate": 3.870665739312152e-08,
+          "formula_quadrature_difference": 2.659662733886626e-09,
+          "formula_quadrature_band": 4.055637792267703e-05,
+          "passed": true
+        }
+      ],
+      "witness": {
+        "direction": [
+          0.7071067811865476,
+          0.7071067811865476
+        ],
+        "instantaneous_quadratic_form": -6.0000000000000035e-05,
+        "intervals": [
+          {
+            "h": 0.001,
+            "quadratic_form": -6.016096886234227e-08,
+            "quadrature_quadratic_form": -6.016096886233404e-08,
+            "roundoff_band": 2.2798842379351922e-17,
+            "local_derivative_error": 1.6096886234223407e-07,
+            "passed": true
+          },
+          {
+            "h": 0.0001,
+            "quadratic_form": -6.0016189695463266e-09,
+            "quadrature_quadratic_form": -6.0016189695261905e-09,
+            "roundoff_band": 2.2743507472610858e-17,
+            "local_derivative_error": 1.6189695463229977e-08,
+            "passed": true
+          },
+          {
+            "h": 1e-05,
+            "quadratic_form": -6.000161989573519e-10,
+            "quadrature_quadratic_form": -6.000161989695925e-10,
+            "roundoff_band": 2.2737981461637034e-17,
+            "local_derivative_error": 1.619895735148339e-09,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "reisotropized",
+      "B": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "at",
+      "rate": 1.5,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 2.452576786874443e-13,
+          "covariance": [
+            [
+              2.7583171882482717e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              -2.764676952102784e-07,
+              2.771056295940177e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.7583171882483903e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              -2.764676952102784e-07,
+              2.7710562959401674e-07
+            ]
+          ],
+          "psd_roundoff_band": 2.2800316111172684e-17,
+          "quadrature_error_estimate": 1.8416509177332593e-20,
+          "formula_quadrature_difference": 1.1858461261560205e-20,
+          "formula_quadrature_band": 7.818610897317651e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.001275271868886603,
+          "covariance": [
+            [
+              0.08708040870245337,
+              -0.10809978218183386
+            ],
+            [
+              -0.10809978218183386,
+              0.13746249024517104
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.0870804087024537,
+              -0.10809978218183385
+            ],
+            [
+              -0.10809978218183385,
+              0.13746249024517126
+            ]
+          ],
+          "psd_roundoff_band": 1.197687283825381e-13,
+          "quadrature_error_estimate": 7.457543266162106e-15,
+          "formula_quadrature_difference": 3.3477534113781707e-16,
+          "formula_quadrature_band": 2.2483819152587165e-11,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593667.32578236,
+          "covariance": [
+            [
+              101593667.32581513,
+              5.568117548078593e-05
+            ],
+            [
+              5.568117548078593e-05,
+              101593667.32587701
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593667.3258147,
+              5.609679219631403e-05
+            ],
+            [
+              5.609679219631403e-05,
+              101593667.3258767
+            ]
+          ],
+          "psd_roundoff_band": 1.1549862770851507e-05,
+          "quadrature_error_estimate": 1.0893413875454704e-05,
+          "formula_quadrature_difference": 7.923980188238978e-07,
+          "formula_quadrature_band": 0.010225383664739105,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593529.87073134,
+          "covariance": [
+            [
+              101593553.49463762,
+              30.70975445726747
+            ],
+            [
+              30.70975445726747,
+              101593569.7916914
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593553.49463719,
+              30.709754872884332
+            ],
+            [
+              30.709754872884332,
+              101593569.79169108
+            ]
+          ],
+          "psd_roundoff_band": 1.1549878397681587e-05,
+          "quadrature_error_estimate": 8.977319200617575e-06,
+          "formula_quadrature_difference": 7.923981653878678e-07,
+          "formula_quadrature_band": 0.010215795815960542,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 0.7867418227459457,
+            "covariance_max_standard_errors": 1.0902046946232788,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.98420980537422,
+            "innovation_covariance_standard_errors": 0.1009591619702356,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.890690350800969,
+            "covariance_max_standard_errors": 2.4918495356937735,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 2.1681537750141553,
+            "innovation_covariance_standard_errors": 1.492166423433884,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.77991772120129,
+            "covariance_max_standard_errors": 1.9920873750058103,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.2490057901996099,
+            "innovation_covariance_standard_errors": 1.815518173258338,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.5141855644164839,
+            "covariance_max_standard_errors": 0.5164179595172179,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.2902867536190727,
+            "innovation_covariance_standard_errors": 0.3752959380022945,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "reisotropized",
+      "B": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "above",
+      "rate": 1.8,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 5.546232259747457e-08,
+          "covariance": [
+            [
+              3.3129379616462303e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              -2.764676952102784e-07,
+              3.3256770693381355e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              3.312937961646344e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              -2.764676952102784e-07,
+              3.3256770693381217e-07
+            ]
+          ],
+          "psd_roundoff_band": 2.2806621419358914e-17,
+          "quadrature_error_estimate": 2.0347792342545926e-20,
+          "formula_quadrature_difference": 1.1382005228729661e-20,
+          "formula_quadrature_band": 8.374827843116834e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.1641982252910759,
+          "covariance": [
+            [
+              0.6149373805991414,
+              -0.5678541671011549
+            ],
+            [
+              -0.5678541671011549,
+              0.8795972566305132
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.6149373805991414,
+              -0.5678541671011551
+            ],
+            [
+              -0.5678541671011551,
+              0.8795972566305126
+            ]
+          ],
+          "psd_roundoff_band": 6.470573708388004e-13,
+          "quadrature_error_estimate": 4.4752642154271465e-14,
+          "formula_quadrature_difference": 7.33363511636219e-16,
+          "formula_quadrature_band": 1.33904461775468e-10,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599999999.999813,
+          "covariance": [
+            [
+              25599999999.999847,
+              5.568117548078593e-05
+            ],
+            [
+              5.568117548078593e-05,
+              25599999999.99991
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599999999.999718,
+              0.00014372911050486437
+            ],
+            [
+              0.00014372911050486437,
+              25599999999.999767
+            ]
+          ],
+          "psd_roundoff_band": 0.0029103830456733907,
+          "quadrature_error_estimate": 0.0025309666053239988,
+          "formula_quadrature_difference": 0.0002236554237774323,
+          "formula_quadrature_band": 2.575565216072283,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599997818.03418,
+          "covariance": [
+            [
+              25599998193.040314,
+              487.4869653115152
+            ],
+            [
+              487.4869653115152,
+              25599998451.739918
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599998193.040184,
+              487.48705335945124
+            ],
+            [
+              487.48705335945124,
+              25599998451.739777
+            ]
+          ],
+          "psd_roundoff_band": 0.002910383293734164,
+          "quadrature_error_estimate": 0.0020693497149664453,
+          "formula_quadrature_difference": 0.00022365542481149288,
+          "formula_quadrature_band": 2.5732570145431666,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 0.3981166376085507,
+            "covariance_max_standard_errors": 1.465079176648441,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.9656371171695584,
+            "innovation_covariance_standard_errors": 0.943356823928687,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.7858632238525831,
+            "covariance_max_standard_errors": 1.2403860354795422,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.6362124863003566,
+            "innovation_covariance_standard_errors": 0.7669634112513688,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.0042873852760223,
+            "covariance_max_standard_errors": 0.9456099346814314,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.83888642421561,
+            "innovation_covariance_standard_errors": 0.7725185831741325,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.1133420255961977,
+            "covariance_max_standard_errors": 1.1572385538067702,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.9549885069306875,
+            "innovation_covariance_standard_errors": 0.6994017125246765,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 2,
+      "arm": "reisotropized",
+      "B": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "below",
+      "rate": 1.2,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": -5.543117354415298e-08,
+          "covariance": [
+            [
+              2.2167421079218605e-07,
+              2.7646769521027846e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.7646769521027846e-07,
+              2.2040030002299553e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.2167421079218605e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.7646769521027846e-07,
+              2.2040030002299553e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.2167421079216575e-07,
+              2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.764676952102784e-07,
+              2.2040030002298796e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.2167421079216575e-07,
+              2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.764676952102784e-07,
+              2.2040030002298796e-07
+            ]
+          ],
+          "psd_roundoff_band": 4.5588028576917356e-17,
+          "quadrature_error_estimate": 2.3578909923322137e-20,
+          "formula_quadrature_difference": 2.0302541073603233e-20,
+          "formula_quadrature_band": 9.545649156246602e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": -0.005157813415170532,
+          "covariance": [
+            [
+              0.02076752005130679,
+              0.020578457612477643,
+              0.0,
+              0.0
+            ],
+            [
+              0.020578457612477643,
+              0.01117651525435688,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.02076752005130679,
+              0.020578457612477643
+            ],
+            [
+              0.0,
+              0.0,
+              0.020578457612477643,
+              0.01117651525435688
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.0207675200513068,
+              0.020578457612477653,
+              0.0,
+              0.0
+            ],
+            [
+              0.020578457612477653,
+              0.011176515254356917,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0207675200513068,
+              0.020578457612477653
+            ],
+            [
+              0.0,
+              0.0,
+              0.020578457612477653,
+              0.011176515254356917
+            ]
+          ],
+          "psd_roundoff_band": 4.4371692341945696e-14,
+          "quadrature_error_estimate": 1.770670019365252e-15,
+          "formula_quadrature_difference": 4.0080241827093176e-17,
+          "formula_quadrature_band": 3.763409914522195e-12,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403174.7357840911,
+          "covariance": [
+            [
+              403174.73587873566,
+              -5.56811754807859e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.56811754807859e-05,
+              403174.73581684934,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403174.73587873566,
+              -5.56811754807859e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.56811754807859e-05,
+              403174.73581684934
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403174.735878735,
+              -5.568294079738578e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.568294079738578e-05,
+              403174.7358168482,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403174.735878735,
+              -5.568294079738578e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.568294079738578e-05,
+              403174.7358168482
+            ]
+          ],
+          "psd_roundoff_band": 9.167132160396835e-08,
+          "quadrature_error_estimate": 6.703030314337175e-08,
+          "formula_quadrature_difference": 2.6868622285982574e-09,
+          "formula_quadrature_band": 4.074429642847029e-05,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403166.0768292665,
+          "covariance": [
+            [
+              403168.5916921615,
+              -1.9345933038907086,
+              0.0,
+              0.0
+            ],
+            [
+              -1.9345933038907086,
+              403167.5650421066,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403168.5916921615,
+              -1.9345933038907086
+            ],
+            [
+              0.0,
+              0.0,
+              -1.9345933038907086,
+              403167.5650421066
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403168.5916921609,
+              -1.934593305656037,
+              0.0,
+              0.0
+            ],
+            [
+              -1.934593305656037,
+              403167.56504210545,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403168.5916921609,
+              -1.934593305656037
+            ],
+            [
+              0.0,
+              0.0,
+              -1.934593305656037,
+              403167.56504210545
+            ]
+          ],
+          "psd_roundoff_band": 9.16732904223523e-08,
+          "quadrature_error_estimate": 5.473945311286361e-08,
+          "formula_quadrature_difference": 2.68687382966845e-09,
+          "formula_quadrature_band": 4.068237854648691e-05,
+          "passed": true
+        }
+      ],
+      "witness": {
+        "direction": [
+          -0.7071067811865476,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        "instantaneous_quadratic_form": -6.0000000000000035e-05,
+        "intervals": [
+          {
+            "h": 0.001,
+            "quadratic_form": -6.016096886234233e-08,
+            "quadrature_quadratic_form": -6.016096886233404e-08,
+            "roundoff_band": 4.5597684758703844e-17,
+            "local_derivative_error": 1.6096886234229506e-07,
+            "passed": true
+          },
+          {
+            "h": 0.0001,
+            "quadratic_form": -6.0016189695463266e-09,
+            "quadrature_quadratic_form": -6.001618969526185e-09,
+            "roundoff_band": 4.5487014945221716e-17,
+            "local_derivative_error": 1.6189695463229977e-08,
+            "passed": true
+          },
+          {
+            "h": 1e-05,
+            "quadratic_form": -6.000161989573519e-10,
+            "quadrature_quadratic_form": -6.000161989695927e-10,
+            "roundoff_band": 4.547596292327407e-17,
+            "local_derivative_error": 1.619895735148339e-09,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "baseline",
+      "B": [
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          -4.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "at",
+      "rate": 1.5,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 2.4525767866097455e-13,
+          "covariance": [
+            [
+              2.771056295940177e-07,
+              2.7646769521027846e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.7646769521027846e-07,
+              2.7583171882482717e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.771056295940177e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.7646769521027846e-07,
+              2.7583171882482717e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.771056295940168e-07,
+              2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.764676952102784e-07,
+              2.7583171882483903e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.771056295940168e-07,
+              2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.764676952102784e-07,
+              2.7583171882483903e-07
+            ]
+          ],
+          "psd_roundoff_band": 4.560063222234536e-17,
+          "quadrature_error_estimate": 2.6044877050152326e-20,
+          "formula_quadrature_difference": 1.185868092399903e-20,
+          "formula_quadrature_band": 1.0102456692371327e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.00127527186888661,
+          "covariance": [
+            [
+              0.13746249024517104,
+              0.10809978218183385,
+              0.0,
+              0.0
+            ],
+            [
+              0.10809978218183385,
+              0.08708040870245337,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.13746249024517104,
+              0.10809978218183385
+            ],
+            [
+              0.0,
+              0.0,
+              0.10809978218183385,
+              0.08708040870245337
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.13746249024517126,
+              0.10809978218183386,
+              0.0,
+              0.0
+            ],
+            [
+              0.10809978218183386,
+              0.0870804087024537,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.13746249024517126,
+              0.10809978218183386
+            ],
+            [
+              0.0,
+              0.0,
+              0.10809978218183386,
+              0.0870804087024537
+            ]
+          ],
+          "psd_roundoff_band": 2.3953745676507614e-13,
+          "quadrature_error_estimate": 1.0546558828990598e-14,
+          "formula_quadrature_difference": 3.3477534113781707e-16,
+          "formula_quadrature_band": 2.2619032958783832e-11,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593667.32578236,
+          "covariance": [
+            [
+              101593667.32587701,
+              -5.56811754807859e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.56811754807859e-05,
+              101593667.32581513,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593667.32587701,
+              -5.56811754807859e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.56811754807859e-05,
+              101593667.32581513
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593667.3258767,
+              -5.609581628718274e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.609581628718274e-05,
+              101593667.3258147,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593667.3258767,
+              -5.609581628718274e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.609581628718274e-05,
+              101593667.3258147
+            ]
+          ],
+          "psd_roundoff_band": 2.3099725541703015e-05,
+          "quadrature_error_estimate": 1.5434703291064957e-05,
+          "formula_quadrature_difference": 7.914320162382977e-07,
+          "formula_quadrature_band": 0.010259639974588008,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593529.87073134,
+          "covariance": [
+            [
+              101593569.7916914,
+              -30.70975445726747,
+              0.0,
+              0.0
+            ],
+            [
+              -30.70975445726747,
+              101593553.49463762,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593569.7916914,
+              -30.70975445726747
+            ],
+            [
+              0.0,
+              0.0,
+              -30.70975445726747,
+              101593553.49463762
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593569.79169108,
+              -30.709754871908444,
+              0.0,
+              0.0
+            ],
+            [
+              -30.709754871908444,
+              101593553.49463719,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593569.79169108,
+              -30.709754871908444
+            ],
+            [
+              0.0,
+              0.0,
+              -30.709754871908444,
+              101593553.49463719
+            ]
+          ],
+          "psd_roundoff_band": 2.3099756795363173e-05,
+          "quadrature_error_estimate": 1.2695850869713382e-05,
+          "formula_quadrature_difference": 7.914321838946721e-07,
+          "formula_quadrature_band": 0.010245938352703703,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          -0.003333333333333333,
+          0.003333333333333334,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.00013333333333333334,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.00016666666666666666,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 1.3888189289227235,
+            "covariance_max_standard_errors": 1.9924296804399297,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.9123503308510248,
+            "innovation_covariance_standard_errors": 0.5475876452486926,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.396172792015572,
+            "covariance_max_standard_errors": 2.2917876907240755,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.6125225680615665,
+            "innovation_covariance_standard_errors": 1.0268422078210362,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.6919192261583053,
+            "covariance_max_standard_errors": 1.4717852891289465,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.5039285546270645,
+            "innovation_covariance_standard_errors": 0.8148202071335805,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.6926603663100552,
+            "covariance_max_standard_errors": 1.3791236136418945,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.807981411248954,
+            "innovation_covariance_standard_errors": 0.7859279793673748,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "baseline",
+      "B": [
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          -4.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "above",
+      "rate": 1.8,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 5.5462322597474516e-08,
+          "covariance": [
+            [
+              3.3256770693381355e-07,
+              2.7646769521027846e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.7646769521027846e-07,
+              3.3129379616462303e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.3256770693381355e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.7646769521027846e-07,
+              3.3129379616462303e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              3.3256770693381217e-07,
+              2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.764676952102784e-07,
+              3.3129379616463436e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.3256770693381217e-07,
+              2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.764676952102784e-07,
+              3.3129379616463436e-07
+            ]
+          ],
+          "psd_roundoff_band": 4.561324283871783e-17,
+          "quadrature_error_estimate": 2.877612389517986e-20,
+          "formula_quadrature_difference": 1.132928624719354e-20,
+          "formula_quadrature_band": 1.0659704150829043e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.16419822529107594,
+          "covariance": [
+            [
+              0.8795972566305132,
+              0.5678541671011548,
+              0.0,
+              0.0
+            ],
+            [
+              0.5678541671011548,
+              0.6149373805991414,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.8795972566305132,
+              0.5678541671011548
+            ],
+            [
+              0.0,
+              0.0,
+              0.5678541671011548,
+              0.6149373805991414
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.8795972566305125,
+              0.5678541671011552,
+              0.0,
+              0.0
+            ],
+            [
+              0.5678541671011552,
+              0.6149373805991414,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.8795972566305125,
+              0.5678541671011552
+            ],
+            [
+              0.0,
+              0.0,
+              0.5678541671011552,
+              0.6149373805991414
+            ]
+          ],
+          "psd_roundoff_band": 1.2941147416776009e-12,
+          "quadrature_error_estimate": 6.328979348660059e-14,
+          "formula_quadrature_difference": 9.786696904398399e-16,
+          "formula_quadrature_band": 1.3464420490296849e-10,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599999999.999813,
+          "covariance": [
+            [
+              25599999999.99991,
+              -5.56811754807859e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.56811754807859e-05,
+              25599999999.999847,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599999999.99991,
+              -5.56811754807859e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.56811754807859e-05,
+              25599999999.999847
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599999999.999767,
+              -0.000141639513373093,
+              0.0,
+              0.0
+            ],
+            [
+              -0.000141639513373093,
+              25599999999.999714,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599999999.999767,
+              -0.000141639513373093
+            ],
+            [
+              0.0,
+              0.0,
+              -0.000141639513373093,
+              25599999999.999714
+            ]
+          ],
+          "psd_roundoff_band": 0.0058207660913467815,
+          "quadrature_error_estimate": 0.0035784371932680867,
+          "formula_quadrature_difference": 0.00022337204298384145,
+          "formula_quadrature_band": 2.583712952057664,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599997818.03418,
+          "covariance": [
+            [
+              25599998451.739918,
+              -487.4869653115152,
+              0.0,
+              0.0
+            ],
+            [
+              -487.4869653115152,
+              25599998193.040314,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599998451.739918,
+              -487.4869653115152
+            ],
+            [
+              0.0,
+              0.0,
+              -487.4869653115152,
+              25599998193.040314
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599998451.739777,
+              -487.4870512698544,
+              0.0,
+              0.0
+            ],
+            [
+              -487.4870512698544,
+              25599998193.04018,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599998451.739777,
+              -487.4870512698544
+            ],
+            [
+              0.0,
+              0.0,
+              -487.4870512698544,
+              25599998193.04018
+            ]
+          ],
+          "psd_roundoff_band": 0.005820766587468328,
+          "quadrature_error_estimate": 0.0029265028529889877,
+          "formula_quadrature_difference": 0.0002233720443313959,
+          "formula_quadrature_band": 2.5804531635270127,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          -0.003333333333333333,
+          0.003333333333333334,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.00013333333333333334,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.00016666666666666666,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 1.4199198766672754,
+            "covariance_max_standard_errors": 2.204978589039383,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.8517059021058284,
+            "innovation_covariance_standard_errors": 1.3171256598053673,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.616856573994352,
+            "covariance_max_standard_errors": 1.9554210108395933,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.2021938837015587,
+            "innovation_covariance_standard_errors": 0.7335096262831319,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.6732174416040326,
+            "covariance_max_standard_errors": 1.9242203240060283,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.0682889902003434,
+            "innovation_covariance_standard_errors": 1.166581606024294,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.6620068733113988,
+            "covariance_max_standard_errors": 1.8922515072638861,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.0526474369727765,
+            "innovation_covariance_standard_errors": 1.1036128809051975,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "baseline",
+      "B": [
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          -4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          0.0,
+          -4.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "below",
+      "rate": 1.2,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": -2.8423764231191463e-08,
+          "covariance": [
+            [
+              8.866968431687442e-07,
+              2.7646769521027846e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.7646769521027846e-07,
+              5.510007500574888e-08,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.866968431687442e-07,
+              2.7646769521027846e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.7646769521027846e-07,
+              5.510007500574888e-08
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              8.86696843168663e-07,
+              2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.764676952102784e-07,
+              5.510007500574699e-08,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              8.86696843168663e-07,
+              2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.764676952102784e-07,
+              5.510007500574699e-08
+            ]
+          ],
+          "psd_roundoff_band": 1.821001347733614e-16,
+          "quadrature_error_estimate": 4.571969552032547e-20,
+          "formula_quadrature_difference": 8.120931915225309e-20,
+          "formula_quadrature_band": 2.7935080149152406e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": -0.0021736602071631642,
+          "covariance": [
+            [
+              0.08307008020522716,
+              0.020578457612477643,
+              0.0,
+              0.0
+            ],
+            [
+              0.020578457612477643,
+              0.00279412881358922,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.08307008020522716,
+              0.020578457612477643
+            ],
+            [
+              0.0,
+              0.0,
+              0.020578457612477643,
+              0.00279412881358922
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.0830700802052272,
+              0.020578457612477653,
+              0.0,
+              0.0
+            ],
+            [
+              0.020578457612477653,
+              0.0027941288135892293,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0830700802052272,
+              0.020578457612477653
+            ],
+            [
+              0.0,
+              0.0,
+              0.020578457612477653,
+              0.0027941288135892293
+            ]
+          ],
+          "psd_roundoff_band": 1.5425481565346773e-13,
+          "quadrature_error_estimate": 4.150429954534909e-15,
+          "formula_quadrature_difference": 4.467887268444123e-17,
+          "formula_quadrature_band": 8.978793888024101e-12,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 100793.68395421233,
+          "covariance": [
+            [
+              1612698.9435149427,
+              -5.56811754807859e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.56811754807859e-05,
+              100793.68395421233,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1612698.9435149427,
+              -5.56811754807859e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.56811754807859e-05,
+              100793.68395421233
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1612698.9435149452,
+              -5.568052537840984e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.568052537840984e-05,
+              100793.68395421252,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1612698.9435149452,
+              -5.568052537840984e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.568052537840984e-05,
+              100793.68395421252
+            ]
+          ],
+          "psd_roundoff_band": 3.66685286331979e-07,
+          "quadrature_error_estimate": 1.356713571281531e-06,
+          "formula_quadrature_difference": 2.727629370642322e-09,
+          "formula_quadrature_band": 0.00016842014749423416,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 100791.89125805117,
+          "covariance": [
+            [
+              1612674.366768646,
+              -1.9345933038907086,
+              0.0,
+              0.0
+            ],
+            [
+              -1.9345933038907086,
+              100791.89126052665,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1612674.366768646,
+              -1.9345933038907086
+            ],
+            [
+              0.0,
+              0.0,
+              -1.9345933038907086,
+              100791.89126052665
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1612674.3667686486,
+              -1.934593303240618,
+              0.0,
+              0.0
+            ],
+            [
+              -1.934593303240618,
+              100791.89126052684,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1612674.3667686486,
+              -1.934593303240618
+            ],
+            [
+              0.0,
+              0.0,
+              -1.934593303240618,
+              100791.89126052684
+            ]
+          ],
+          "psd_roundoff_band": 3.666909115187859e-07,
+          "quadrature_error_estimate": 1.329906198539906e-06,
+          "formula_quadrature_difference": 2.7276237332676e-09,
+          "formula_quadrature_band": 0.00016828365858133075,
+          "passed": true
+        }
+      ],
+      "witness": {
+        "direction": [
+          -0.24253562503633297,
+          0.9701425001453319,
+          0.0,
+          0.0
+        ],
+        "instantaneous_quadratic_form": -2.8235294117647067e-05,
+        "intervals": [
+          {
+            "h": 0.001,
+            "quadratic_form": -2.8311044170514034e-08,
+            "quadrature_quadratic_form": -2.8311044170510136e-08,
+            "roundoff_band": 1.8211726294868632e-16,
+            "local_derivative_error": 7.575005286696856e-08,
+            "passed": true
+          },
+          {
+            "h": 0.0001,
+            "quadratic_form": -2.8242912797865054e-09,
+            "quadrature_quadratic_form": -2.8242912797770276e-09,
+            "roundoff_band": 1.8192076866419527e-16,
+            "local_derivative_error": 7.618680217986193e-09,
+            "passed": true
+          },
+          {
+            "h": 1e-05,
+            "quadratic_form": -2.823605642152244e-10,
+            "quadrature_quadratic_form": -2.823605642209848e-10,
+            "roundoff_band": 1.819011231462357e-16,
+            "local_derivative_error": 7.623038753714977e-10,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "transported",
+      "B": [
+        [
+          0.0,
+          4.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          4.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.25
+        ]
+      ]
+    },
+    {
+      "regime": "at",
+      "rate": 1.5,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 1.1518119217305448e-13,
+          "covariance": [
+            [
+              1.1084225183760708e-06,
+              2.7646769521027846e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.7646769521027846e-07,
+              6.895792970620679e-08,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.1084225183760708e-06,
+              2.7646769521027846e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.7646769521027846e-07,
+              6.895792970620679e-08
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1.1084225183760672e-06,
+              2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.764676952102784e-07,
+              6.895792970620976e-08,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.1084225183760672e-06,
+              2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.764676952102784e-07,
+              6.895792970620976e-08
+            ]
+          ],
+          "psd_roundoff_band": 1.8215054935507343e-16,
+          "quadrature_error_estimate": 5.545788216339384e-20,
+          "formula_quadrature_difference": 3.600316929997322e-21,
+          "formula_quadrature_band": 3.0016587205599867e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.0004985399998111567,
+          "covariance": [
+            [
+              0.5498499609806842,
+              0.10809978218183385,
+              0.0,
+              0.0
+            ],
+            [
+              0.10809978218183385,
+              0.021770102175613343,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.5498499609806842,
+              0.10809978218183385
+            ],
+            [
+              0.0,
+              0.0,
+              0.10809978218183385,
+              0.021770102175613343
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.5498499609806851,
+              0.10809978218183386,
+              0.0,
+              0.0
+            ],
+            [
+              0.10809978218183386,
+              0.021770102175613426,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.5498499609806851,
+              0.10809978218183386
+            ],
+            [
+              0.0,
+              0.0,
+              0.10809978218183386,
+              0.021770102175613426
+            ]
+          ],
+          "psd_roundoff_band": 8.361110822977648e-13,
+          "quadrature_error_estimate": 2.6913128422460982e-14,
+          "formula_quadrature_difference": 8.884176208186741e-16,
+          "formula_quadrature_band": 5.8082829040058786e-11,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25398416.83145378,
+          "covariance": [
+            [
+              406374669.30350804,
+              -5.56811754807859e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.56811754807859e-05,
+              25398416.83145378,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              406374669.30350804,
+              -5.56811754807859e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.56811754807859e-05,
+              25398416.83145378
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              406374669.30350685,
+              -5.609814277462988e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.609814277462988e-05,
+              25398416.831453674,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              406374669.30350685,
+              -5.609814277462988e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.609814277462988e-05,
+              25398416.831453674
+            ]
+          ],
+          "psd_roundoff_band": 9.239890216672816e-05,
+          "quadrature_error_estimate": 3.5906419555767425e-05,
+          "formula_quadrature_difference": 1.3339183767545655e-06,
+          "formula_quadrature_band": 0.04090939793029626,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25398388.373656932,
+          "covariance": [
+            [
+              406374279.1667656,
+              -30.70975445726747,
+              0.0,
+              0.0
+            ],
+            [
+              -30.70975445726747,
+              25398388.373659406,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              406374279.1667656,
+              -30.70975445726747
+            ],
+            [
+              0.0,
+              0.0,
+              -30.70975445726747,
+              25398388.373659406
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              406374279.1667644,
+              -30.70975487423493,
+              0.0,
+              0.0
+            ],
+            [
+              -30.70975487423493,
+              25398388.373659298,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              406374279.1667644,
+              -30.70975487423493
+            ],
+            [
+              0.0,
+              0.0,
+              -30.70975487423493,
+              25398388.373659298
+            ]
+          ],
+          "psd_roundoff_band": 9.239899146222054e-05,
+          "quadrature_error_estimate": 2.9305876105642452e-05,
+          "formula_quadrature_difference": 1.3339184800305552e-06,
+          "formula_quadrature_band": 0.040876356288667114,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          -0.003333333333333333,
+          0.003333333333333334,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.00013333333333333334,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.00016666666666666666,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0004,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            2.5e-05,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0004,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            2.5e-05
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 1.8409817896782252,
+            "covariance_max_standard_errors": 2.6287544387738344,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.5940949025899782,
+            "innovation_covariance_standard_errors": 1.4111973044417796,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.6898391739307348,
+            "covariance_max_standard_errors": 1.45862896694103,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.582309172419262,
+            "innovation_covariance_standard_errors": 0.6698987990899622,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.3807985168858337,
+            "covariance_max_standard_errors": 2.108780429051692,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.7698942939502829,
+            "innovation_covariance_standard_errors": 0.46208605667661695,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.5277446243127093,
+            "covariance_max_standard_errors": 1.895536595408531,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.110311881817449,
+            "innovation_covariance_standard_errors": 1.05243236140685,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "transported",
+      "B": [
+        [
+          0.0,
+          4.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          4.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.25
+        ]
+      ]
+    },
+    {
+      "regime": "above",
+      "rate": 1.8,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 2.4296724575521546e-08,
+          "covariance": [
+            [
+              1.3302708277352542e-06,
+              2.7646769521027846e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.7646769521027846e-07,
+              8.282344904115576e-08,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.3302708277352542e-06,
+              2.7646769521027846e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.7646769521027846e-07,
+              8.282344904115576e-08
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              1.3302708277352487e-06,
+              2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              2.764676952102784e-07,
+              8.282344904115859e-08,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.3302708277352487e-06,
+              2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              2.764676952102784e-07,
+              8.282344904115859e-08
+            ]
+          ],
+          "psd_roundoff_band": 1.8220099182056327e-16,
+          "quadrature_error_estimate": 6.542622963919282e-20,
+          "formula_quadrature_difference": 5.5060502677894824e-21,
+          "formula_quadrature_band": 3.2140787818884756e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.060481882978772133,
+          "covariance": [
+            [
+              3.518389026522053,
+              0.5678541671011548,
+              0.0,
+              0.0
+            ],
+            [
+              0.5678541671011548,
+              0.15373434514978535,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.518389026522053,
+              0.5678541671011548
+            ],
+            [
+              0.0,
+              0.0,
+              0.5678541671011548,
+              0.15373434514978535
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              3.51838902652205,
+              0.5678541671011552,
+              0.0,
+              0.0
+            ],
+            [
+              0.5678541671011552,
+              0.15373434514978535,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.51838902652205,
+              0.5678541671011552
+            ],
+            [
+              0.0,
+              0.0,
+              0.5678541671011552,
+              0.15373434514978535
+            ]
+          ],
+          "psd_roundoff_band": 4.535382654043713e-12,
+          "quadrature_error_estimate": 1.7020395030465867e-13,
+          "formula_quadrature_difference": 3.1708213586513258e-15,
+          "formula_quadrature_band": 3.6655055127487326e-10,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 6399999999.999962,
+          "covariance": [
+            [
+              102399999999.99963,
+              -5.56811754807859e-05,
+              0.0,
+              0.0
+            ],
+            [
+              -5.56811754807859e-05,
+              6399999999.999962,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              102399999999.99963,
+              -5.56811754807859e-05
+            ],
+            [
+              0.0,
+              0.0,
+              -5.56811754807859e-05,
+              6399999999.999962
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              102399999999.99907,
+              -0.0001421759551760715,
+              0.0,
+              0.0
+            ],
+            [
+              -0.0001421759551760715,
+              6399999999.999929,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              102399999999.99907,
+              -0.0001421759551760715
+            ],
+            [
+              0.0,
+              0.0,
+              -0.0001421759551760715,
+              6399999999.999929
+            ]
+          ],
+          "psd_roundoff_band": 0.023283064365387043,
+          "quadrature_error_estimate": 0.008752042227866703,
+          "formula_quadrature_difference": 0.0005782809109788978,
+          "formula_quadrature_band": 10.307043275504629,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 6399999548.2600765,
+          "covariance": [
+            [
+              102399993806.95967,
+              -487.4869653115152,
+              0.0,
+              0.0
+            ],
+            [
+              -487.4869653115152,
+              6399999548.260078,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              102399993806.95967,
+              -487.4869653115152
+            ],
+            [
+              0.0,
+              0.0,
+              -487.4869653115152,
+              6399999548.260078
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              102399993806.9591,
+              -487.4870518062962,
+              0.0,
+              0.0
+            ],
+            [
+              -487.4870518062962,
+              6399999548.260046,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              102399993806.9591,
+              -487.4870518062962
+            ],
+            [
+              0.0,
+              0.0,
+              -487.4870518062962,
+              6399999548.260046
+            ]
+          ],
+          "psd_roundoff_band": 0.023283065782865844,
+          "quadrature_error_estimate": 0.007102390307921296,
+          "formula_quadrature_difference": 0.0005782809113959068,
+          "formula_quadrature_band": 10.298794398018384,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          -0.003333333333333333,
+          0.003333333333333334,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.00013333333333333334,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.00016666666666666666,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0004,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            2.5e-05,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0004,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            2.5e-05
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 1.0527038362810808,
+            "covariance_max_standard_errors": 2.1044923598700325,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.4558012332795516,
+            "innovation_covariance_standard_errors": 0.7867165169239253,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.7061729610286203,
+            "covariance_max_standard_errors": 1.1823426815505755,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.8166836234980317,
+            "innovation_covariance_standard_errors": 0.814391220058277,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.8603957003843117,
+            "covariance_max_standard_errors": 1.3439229199434595,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.7181625009929717,
+            "innovation_covariance_standard_errors": 0.9628093465347757,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 0.6103967473092105,
+            "covariance_max_standard_errors": 1.9497274688126283,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.36795067849731655,
+            "innovation_covariance_standard_errors": 1.5319506801521876,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "transported",
+      "B": [
+        [
+          0.0,
+          4.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.25,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          4.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.25
+        ]
+      ]
+    },
+    {
+      "regime": "below",
+      "rate": 1.2,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": -5.5431173544152925e-08,
+          "covariance": [
+            [
+              2.2040030002299553e-07,
+              -2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              -2.764676952102784e-07,
+              2.2167421079218605e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.2040030002299553e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              -2.764676952102784e-07,
+              2.2167421079218605e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.2040030002298796e-07,
+              -2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              -2.764676952102784e-07,
+              2.2167421079216572e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.2040030002298796e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              -2.764676952102784e-07,
+              2.2167421079216572e-07
+            ]
+          ],
+          "psd_roundoff_band": 4.558802857691736e-17,
+          "quadrature_error_estimate": 2.3578909923322137e-20,
+          "formula_quadrature_difference": 2.0328790734103208e-20,
+          "formula_quadrature_band": 9.545649156246602e-17,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": -0.005157813415170541,
+          "covariance": [
+            [
+              0.01117651525435688,
+              -0.02057845761247765,
+              0.0,
+              0.0
+            ],
+            [
+              -0.02057845761247765,
+              0.02076752005130679,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.01117651525435688,
+              -0.02057845761247765
+            ],
+            [
+              0.0,
+              0.0,
+              -0.02057845761247765,
+              0.02076752005130679
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.011176515254356917,
+              -0.020578457612477653,
+              0.0,
+              0.0
+            ],
+            [
+              -0.020578457612477653,
+              0.020767520051306797,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.011176515254356917,
+              -0.020578457612477653
+            ],
+            [
+              0.0,
+              0.0,
+              -0.020578457612477653,
+              0.020767520051306797
+            ]
+          ],
+          "psd_roundoff_band": 4.43716923419457e-14,
+          "quadrature_error_estimate": 1.770670019365252e-15,
+          "formula_quadrature_difference": 3.68318649855122e-17,
+          "formula_quadrature_band": 3.7634099145221944e-12,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403174.7357840911,
+          "covariance": [
+            [
+              403174.73581684934,
+              5.568117548078593e-05,
+              0.0,
+              0.0
+            ],
+            [
+              5.568117548078593e-05,
+              403174.73587873566,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403174.73581684934,
+              5.568117548078593e-05
+            ],
+            [
+              0.0,
+              0.0,
+              5.568117548078593e-05,
+              403174.73587873566
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403174.73581684823,
+              5.5682946782043e-05,
+              0.0,
+              0.0
+            ],
+            [
+              5.5682946782043e-05,
+              403174.735878735,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403174.73581684823,
+              5.5682946782043e-05
+            ],
+            [
+              0.0,
+              0.0,
+              5.5682946782043e-05,
+              403174.735878735
+            ]
+          ],
+          "psd_roundoff_band": 9.167132160396835e-08,
+          "quadrature_error_estimate": 6.70268035562351e-08,
+          "formula_quadrature_difference": 2.6596529770806944e-09,
+          "formula_quadrature_band": 4.074427893053461e-05,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 403166.0768292665,
+          "covariance": [
+            [
+              403167.5650421066,
+              1.9345933038907086,
+              0.0,
+              0.0
+            ],
+            [
+              1.9345933038907086,
+              403168.5916921615,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403167.5650421066,
+              1.9345933038907086
+            ],
+            [
+              0.0,
+              0.0,
+              1.9345933038907086,
+              403168.5916921615
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              403167.5650421055,
+              1.9345933056620197,
+              0.0,
+              0.0
+            ],
+            [
+              1.9345933056620197,
+              403168.5916921609,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              403167.5650421055,
+              1.9345933056620197
+            ],
+            [
+              0.0,
+              0.0,
+              1.9345933056620197,
+              403168.5916921609
+            ]
+          ],
+          "psd_roundoff_band": 9.16732904223523e-08,
+          "quadrature_error_estimate": 5.473947546129134e-08,
+          "formula_quadrature_difference": 2.6596627338866254e-09,
+          "formula_quadrature_band": 4.068237865822907e-05,
+          "passed": true
+        }
+      ],
+      "witness": {
+        "direction": [
+          0.7071067811865476,
+          0.7071067811865476,
+          0.0,
+          0.0
+        ],
+        "instantaneous_quadratic_form": -6.0000000000000035e-05,
+        "intervals": [
+          {
+            "h": 0.001,
+            "quadratic_form": -6.016096886234228e-08,
+            "quadrature_quadratic_form": -6.016096886233404e-08,
+            "roundoff_band": 4.5597684758703844e-17,
+            "local_derivative_error": 1.6096886234224763e-07,
+            "passed": true
+          },
+          {
+            "h": 0.0001,
+            "quadratic_form": -6.001618969546326e-09,
+            "quadrature_quadratic_form": -6.0016189695261905e-09,
+            "roundoff_band": 4.5487014945221716e-17,
+            "local_derivative_error": 1.6189695463216425e-08,
+            "passed": true
+          },
+          {
+            "h": 1e-05,
+            "quadratic_form": -6.000161989573519e-10,
+            "quadrature_quadratic_form": -6.000161989695925e-10,
+            "roundoff_band": 4.547596292327407e-17,
+            "local_derivative_error": 1.619895735148339e-09,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "reisotropized",
+      "B": [
+        [
+          0.0,
+          4.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "at",
+      "rate": 1.5,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 2.452576786874443e-13,
+          "covariance": [
+            [
+              2.7583171882482717e-07,
+              -2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              -2.764676952102784e-07,
+              2.771056295940177e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.7583171882482717e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              -2.764676952102784e-07,
+              2.771056295940177e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              2.7583171882483903e-07,
+              -2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              -2.764676952102784e-07,
+              2.7710562959401674e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              2.7583171882483903e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              -2.764676952102784e-07,
+              2.7710562959401674e-07
+            ]
+          ],
+          "psd_roundoff_band": 4.560063222234537e-17,
+          "quadrature_error_estimate": 2.6044877050152326e-20,
+          "formula_quadrature_difference": 1.1858461261560205e-20,
+          "formula_quadrature_band": 1.0102456692371329e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.001275271868886603,
+          "covariance": [
+            [
+              0.08708040870245337,
+              -0.10809978218183386,
+              0.0,
+              0.0
+            ],
+            [
+              -0.10809978218183386,
+              0.13746249024517104,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.08708040870245337,
+              -0.10809978218183386
+            ],
+            [
+              0.0,
+              0.0,
+              -0.10809978218183386,
+              0.13746249024517104
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.0870804087024537,
+              -0.10809978218183385,
+              0.0,
+              0.0
+            ],
+            [
+              -0.10809978218183385,
+              0.13746249024517126,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0870804087024537,
+              -0.10809978218183385
+            ],
+            [
+              0.0,
+              0.0,
+              -0.10809978218183385,
+              0.13746249024517126
+            ]
+          ],
+          "psd_roundoff_band": 2.395374567650762e-13,
+          "quadrature_error_estimate": 1.0546558828990598e-14,
+          "formula_quadrature_difference": 3.3477534113781716e-16,
+          "formula_quadrature_band": 2.261903295878384e-11,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593667.32578236,
+          "covariance": [
+            [
+              101593667.32581513,
+              5.568117548078593e-05,
+              0.0,
+              0.0
+            ],
+            [
+              5.568117548078593e-05,
+              101593667.32587701,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593667.32581513,
+              5.568117548078593e-05
+            ],
+            [
+              0.0,
+              0.0,
+              5.568117548078593e-05,
+              101593667.32587701
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593667.3258147,
+              5.609679219631403e-05,
+              0.0,
+              0.0
+            ],
+            [
+              5.609679219631403e-05,
+              101593667.3258767,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593667.3258147,
+              5.609679219631403e-05
+            ],
+            [
+              0.0,
+              0.0,
+              5.609679219631403e-05,
+              101593667.3258767
+            ]
+          ],
+          "psd_roundoff_band": 2.3099725541703015e-05,
+          "quadrature_error_estimate": 1.5426042332633615e-05,
+          "formula_quadrature_difference": 7.923980188238977e-07,
+          "formula_quadrature_band": 0.010259596669795852,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 101593529.87073134,
+          "covariance": [
+            [
+              101593553.49463762,
+              30.70975445726747,
+              0.0,
+              0.0
+            ],
+            [
+              30.70975445726747,
+              101593569.7916914,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593553.49463762,
+              30.70975445726747
+            ],
+            [
+              0.0,
+              0.0,
+              30.70975445726747,
+              101593569.7916914
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              101593553.49463719,
+              30.709754872884332,
+              0.0,
+              0.0
+            ],
+            [
+              30.709754872884332,
+              101593569.79169108,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              101593553.49463719,
+              30.709754872884332
+            ],
+            [
+              0.0,
+              0.0,
+              30.709754872884332,
+              101593569.79169108
+            ]
+          ],
+          "psd_roundoff_band": 2.3099756795363173e-05,
+          "quadrature_error_estimate": 1.2695844444930801e-05,
+          "formula_quadrature_difference": 7.923981653878678e-07,
+          "formula_quadrature_band": 0.01024593832057979,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          -0.003333333333333333,
+          0.003333333333333334,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.00013333333333333334,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.00016666666666666666,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 0.7804780485913774,
+            "covariance_max_standard_errors": 2.714710639060451,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.3753875841575964,
+            "innovation_covariance_standard_errors": 0.9558526147167015,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.567346711038702,
+            "covariance_max_standard_errors": 1.7802136794076808,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.8070647666882875,
+            "innovation_covariance_standard_errors": 1.0361390487211828,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.1314020898564792,
+            "covariance_max_standard_errors": 3.3416540428544432,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.7296361454758308,
+            "innovation_covariance_standard_errors": 1.6244331587545573,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.309915693070047,
+            "covariance_max_standard_errors": 2.002708528150473,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.5189839288949338,
+            "innovation_covariance_standard_errors": 0.9829796883538823,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "reisotropized",
+      "B": [
+        [
+          0.0,
+          4.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "regime": "above",
+      "rate": 1.8,
+      "threshold": 1.5,
+      "threshold_eigenpair_relative_residual": 0.0,
+      "transitions": [
+        {
+          "s": 0.0,
+          "t": 0.0009215610711224476,
+          "minimum_eigenvalue": 5.546232259747457e-08,
+          "covariance": [
+            [
+              3.3129379616462303e-07,
+              -2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              -2.764676952102784e-07,
+              3.3256770693381355e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.3129379616462303e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              -2.764676952102784e-07,
+              3.3256770693381355e-07
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              3.312937961646344e-07,
+              -2.764676952102784e-07,
+              0.0,
+              0.0
+            ],
+            [
+              -2.764676952102784e-07,
+              3.3256770693381217e-07,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              3.312937961646344e-07,
+              -2.764676952102784e-07
+            ],
+            [
+              0.0,
+              0.0,
+              -2.764676952102784e-07,
+              3.3256770693381217e-07
+            ]
+          ],
+          "psd_roundoff_band": 4.561324283871783e-17,
+          "quadrature_error_estimate": 2.877612389517986e-20,
+          "formula_quadrature_difference": 1.1382005228729661e-20,
+          "formula_quadrature_band": 1.0659704150829043e-16,
+          "passed": true
+        },
+        {
+          "s": 2.7646832133673422,
+          "t": 2.856839320479587,
+          "minimum_eigenvalue": 0.1641982252910759,
+          "covariance": [
+            [
+              0.6149373805991414,
+              -0.5678541671011549,
+              0.0,
+              0.0
+            ],
+            [
+              -0.5678541671011549,
+              0.8795972566305132,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.6149373805991414,
+              -0.5678541671011549
+            ],
+            [
+              0.0,
+              0.0,
+              -0.5678541671011549,
+              0.8795972566305132
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              0.6149373805991414,
+              -0.5678541671011551,
+              0.0,
+              0.0
+            ],
+            [
+              -0.5678541671011551,
+              0.8795972566305126,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.6149373805991414,
+              -0.5678541671011551
+            ],
+            [
+              0.0,
+              0.0,
+              -0.5678541671011551,
+              0.8795972566305126
+            ]
+          ],
+          "psd_roundoff_band": 1.2941147416776009e-12,
+          "quadrature_error_estimate": 6.328979348660059e-14,
+          "formula_quadrature_difference": 7.333635116362191e-16,
+          "formula_quadrature_band": 1.3464420490296849e-10,
+          "passed": true
+        },
+        {
+          "s": 0.0,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599999999.999813,
+          "covariance": [
+            [
+              25599999999.999847,
+              5.568117548078593e-05,
+              0.0,
+              0.0
+            ],
+            [
+              5.568117548078593e-05,
+              25599999999.99991,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599999999.999847,
+              5.568117548078593e-05
+            ],
+            [
+              0.0,
+              0.0,
+              5.568117548078593e-05,
+              25599999999.99991
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599999999.999718,
+              0.00014372911050486437,
+              0.0,
+              0.0
+            ],
+            [
+              0.00014372911050486437,
+              25599999999.999767,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599999999.999718,
+              0.00014372911050486437
+            ],
+            [
+              0.0,
+              0.0,
+              0.00014372911050486437,
+              25599999999.999767
+            ]
+          ],
+          "psd_roundoff_band": 0.0058207660913467815,
+          "quadrature_error_estimate": 0.0035794006692866096,
+          "formula_quadrature_difference": 0.0002236554237774323,
+          "formula_quadrature_band": 2.5837177694377567,
+          "passed": true
+        },
+        {
+          "s": 4.607805355612237,
+          "t": 9.215610711224475,
+          "minimum_eigenvalue": 25599997818.03418,
+          "covariance": [
+            [
+              25599998193.040314,
+              487.4869653115152,
+              0.0,
+              0.0
+            ],
+            [
+              487.4869653115152,
+              25599998451.739918,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599998193.040314,
+              487.4869653115152
+            ],
+            [
+              0.0,
+              0.0,
+              487.4869653115152,
+              25599998451.739918
+            ]
+          ],
+          "quadrature_covariance": [
+            [
+              25599998193.040184,
+              487.48705335945124,
+              0.0,
+              0.0
+            ],
+            [
+              487.48705335945124,
+              25599998451.739777,
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              25599998193.040184,
+              487.48705335945124
+            ],
+            [
+              0.0,
+              0.0,
+              487.48705335945124,
+              25599998451.739777
+            ]
+          ],
+          "psd_roundoff_band": 0.005820766587468328,
+          "quadrature_error_estimate": 0.002926503335546537,
+          "formula_quadrature_difference": 0.00022365542481149283,
+          "formula_quadrature_band": 2.580453165939802,
+          "passed": true
+        }
+      ],
+      "simulation": {
+        "clean_mean": [
+          -0.01,
+          -0.003333333333333333,
+          0.003333333333333334,
+          0.01
+        ],
+        "clean_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.00013333333333333334,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.00016666666666666666,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0002
+          ]
+        ],
+        "initial_smoothing_covariance": [
+          [
+            0.0001,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0001,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0001,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            0.0001
+          ]
+        ],
+        "steps": [
+          {
+            "mean_max_standard_errors": 1.9434339813392874,
+            "covariance_max_standard_errors": 1.8337970670377677,
+            "s": 0.0,
+            "t": 0.09215610711224474,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.424847654978687,
+            "innovation_covariance_standard_errors": 0.689385331975399,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.4110284398191495,
+            "covariance_max_standard_errors": 2.3363217848784372,
+            "s": 0.09215610711224474,
+            "t": 0.9215610711224476,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 0.8498373963426878,
+            "innovation_covariance_standard_errors": 0.9652962912520914,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 2.839197979561733,
+            "covariance_max_standard_errors": 1.342784712571306,
+            "s": 0.9215610711224476,
+            "t": 4.607805355612237,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.7475872040120881,
+            "innovation_covariance_standard_errors": 0.7220300057319778,
+            "passed": true
+          },
+          {
+            "mean_max_standard_errors": 1.914661642322038,
+            "covariance_max_standard_errors": 2.1338559162120982,
+            "s": 4.607805355612237,
+            "t": 9.215610711224475,
+            "roundoff_eigenvalue_correction": -0.0,
+            "innovation_mean_standard_errors": 1.0393603150846937,
+            "innovation_covariance_standard_errors": 1.0789923863095239,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "passed": true,
+      "dimension": 4,
+      "arm": "reisotropized",
+      "B": [
+        [
+          0.0,
+          4.0,
+          0.0,
+          0.0
+        ],
+        [
+          -1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          4.0
+        ],
+        [
+          0.0,
+          0.0,
+          -1.0,
+          0.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "passed": true,
+  "specification_path": "/home/colligo/phase-space-diffusion-threshold/coordinate_invariance_model_spec.json"
+}

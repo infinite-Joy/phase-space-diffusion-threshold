@@ -337,6 +337,43 @@ At `t = 0`, compare to the actual smoothed target
 `Z_clean + sigma0 * epsilon`, transported appropriately, rather than silently
 treating finite `sigma0 = 0.01` as zero.
 
+#### Executable Gaussian pilot
+
+```bash
+python verification/gaussian_sampling.py --output results/gaussian_sampling.json
+python -m unittest verification.test_gaussian_sampling
+```
+
+The pilot records its nondegenerate Gaussian clean law and runs the ODE,
+naive clipped, and corrected samplers with exact scores and terminal draws.
+It uses an independently implemented adaptive reverse-moment ODE as the
+continuous reference. Exact moments of the discrete affine updates separate
+integration bias from Monte Carlo error; those updates are regression-tested
+against `psdt.sample` in the isotropic case.
+Defaults cover 2-D and 4-D, absolute rates `0.9, 1.5, 1.95`, step counts
+`1000, 2000, 4000, 8000`, particle counts `2000, 4000`, and seeds `0, 1, 2`.
+Each rate has its own horizon ending at `sigmaT = 40`, shared across arms.
+
+Baseline paths are compared with fully transported paths for the identity,
+the decisive `a = sqrt(2)` squeeze, and the recorded `a = 2` squeeze.
+The latter attains the largest condition number in the listed primary
+controls. Arm B is sampled with its own isotropic covariance and locally
+computed clipping for both nonidentity squeezes; its complete sampler is
+also checked against its pullback. Transport uses `A L`, not local
+re-clipping. Path comparisons track up to 32 particles at every step.
+Fine Brownian increments are summed for coarse paths, and terminal draws
+are reused across step counts. Particle refinement uses nested prefixes;
+only seeds count as independent experimental replicates.
+
+The JSON records declared acceptance bands, exact target and reference
+moments, sampled moments, integration errors, target KL, path residuals,
+and seed-level particle-refinement results. Below-threshold naive bias is
+measured, not treated as an automatic failure. `--steps`, `--samples`,
+`--seeds`, `--dimensions`, and `--rates` can reduce or extend the pilot;
+coarse step counts must divide the finest count. Exit status is nonzero
+on failed checks. This representative pilot does not automatically clear
+the full Gaussian gate or its deterministic/forward-feasibility prerequisites.
+
 ### Stage 3: Trained-score extension, conditional on Stages 1--2
 
 First wrap a single baseline network with
