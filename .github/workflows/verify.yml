@@ -9,4 +9,5 @@ jobs:
         with:
           python-version: '3.13'
       - run: pip install -r requirements.txt
+      - run: python -m unittest verification.test_model_specification verification.test_forward_feasibility
       - run: python verification/run_all.py

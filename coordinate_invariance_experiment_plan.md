@@ -536,6 +536,26 @@ Do not confuse it with the latent clean state in the marginal construction.
 All scheduled one-time marginals still exist below threshold, even though
 these forward transitions cannot realize them with the specified drift.
 
+Run the representative forward-feasibility verifier with:
+
+```bash
+python verification/forward_feasibility.py --output results/forward_feasibility.json
+python -m unittest verification.test_forward_feasibility
+```
+
+It validates the recorded model specification, then checks the baseline,
+transported, and re-isotropized arms in 2-D and 4-D for the recorded squeeze.
+Each arm uses rates `kappa_Q - 0.3`, `kappa_Q`, and `kappa_Q + 0.3` on the
+fixed primary horizon; these rate-sweep endpoints need not equal `sigmaT`.
+The JSON records matrices, quadrature comparisons, scale-aware roundoff
+bands, local witnesses, witness transport, and seeded Gaussian forward-path
+moment checks starting from an explicitly recorded smoothed initial law.
+Only bounded roundoff negatives may be neutralized when factoring an
+already-classified PSD covariance, and their correction is reported.
+Exit status is nonzero on failed checks. This representative verifier does
+not establish the full transformation grid, clear the deterministic
+prerequisite, or automatically mark the Section 9.8 gate complete.
+
 **Dynamics by a closed-form oracle.** For the oscillator, compare against
 
 $$
