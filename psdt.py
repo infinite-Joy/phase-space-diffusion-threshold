@@ -114,7 +114,8 @@ class ScoreModel:
         t = np.broadcast_to(np.asarray(t, float), (z.shape[0],))
         return self.net.forward(self.features(z, t))
     def score(self, z, t):
-        return -self.eps(z, t) / self.p.sigma(t)
+        t = np.broadcast_to(np.asarray(t, float), (z.shape[0],))
+        return -self.eps(z, t) / self.p.sigma(t)[:, None]
 
 def batch_M(proc, t):
     """expm(B t) for a vector of times: exact on a fine grid (works for non-diagonalisable B,

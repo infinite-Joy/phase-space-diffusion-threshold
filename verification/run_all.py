@@ -13,6 +13,24 @@ def check(name, ok, info=''):
     results.append(ok)
     print(f"[{'PASS' if ok else 'FAIL'}] {name} {info}")
 
+# Fixed-shape extension identities; no training or sampling grid runs here.
+from verification.generalization import noise_shapes
+from verification.forward_feasibility import threshold
+_B = hamiltonian_B(2.0)
+_A = np.eye(4)
+_A[0, 2], _A[3, 1] = 0.3, -0.3
+_A[0] *= 1.5
+for _name, _shape in noise_shapes().items():
+    _Q = np.array(_shape['Q'])
+    _kappa = threshold(_B, _Q)[0]
+    _transported_B = _A @ _B @ np.linalg.inv(_A)
+    _transported_Q = _A @ _Q @ _A.T
+    check(f'generalization: {_name} threshold transport and positive scaling',
+          abs(threshold(_transported_B, _transported_Q)[0] - _kappa) < 1e-10
+          and abs(threshold(_B, 3 * _Q)[0] - _kappa) < 1e-10)
+    if _name.startswith('energy'):
+        check(f'generalization: {_name} has zero threshold', abs(_kappa) < 1e-12)
+
 # Numerical stability of the score network's activation and gradient.
 for dtype in [np.float32, np.float64]:
     limit = np.finfo(dtype).max
