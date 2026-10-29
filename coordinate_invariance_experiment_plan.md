@@ -1,7 +1,7 @@
 # Gap 1 experiment plan: Is the threshold coordinate-invariant?
 
 **Priority:** Critical  
-**Status:** Proposed experiment; no new results claimed  
+**Status:** Model-specification gate complete; numerical experiment gates pending; no sampling results claimed
 **Basis:** The isotropic marginal model and three reverse samplers in `README.md`.
 
 ## 1. Objective and interpretation
@@ -25,6 +25,157 @@ Here, conditional covariance means covariance of the additive forward
 perturbation given the clean initial state, not the total data covariance.
 Transform the initial data in **both** arms. Never use an isotropic threshold
 calculated for Arm B to classify Arm A.
+
+### 1.1 Recorded model specification
+
+This subsection records the model-specification gate in Section 9.8.
+These are synthetic modeling conventions, not experimentally identified
+physical units or new numerical results. Subsequent runners and output
+metadata must implement this specification explicitly; recording it here
+does not establish that an implementation satisfies it.
+
+#### Units, scales, and coordinates
+
+Use dimensionless variables throughout. Define reference length `L_ref`,
+time `t_ref`, and mass `m_ref`; choose their numerical values as one in
+arbitrary reference units, without assigning meters, seconds, or kilograms.
+The corresponding velocity and momentum scales are
+`V_ref = L_ref / t_ref` and `p_ref = m_ref L_ref / t_ref`.
+Thus `x = x_physical / L_ref`, `t = t_physical / t_ref`,
+`v = v_physical / V_ref`, and `p = p_physical / p_ref`.
+Take the dimensionless particle mass to be one, so `p = v`.
+The same reference scales remain fixed across all transforms and arms.
+The coordinate map `A` acts on these already nondimensional variables;
+it does not redefine the reference scales.
+
+| Quantity | Recorded convention |
+|---|---|
+| Primary state | Column vector `z = (x1, v1, x2, v2)^T`, dimension four |
+| Matrix-check pilot | Column vector `z = (x1, v1)^T`, dimension two |
+| Canonical interpretation | Unit mass, hence `vi = pi` in dimensionless coordinates |
+| Canonical matrix | `J = diag(J2, J2)` in four dimensions, `J = J2` in two, with `J2 = [[0, 1], [-1, 0]]` |
+| Baseline drift | `B = diag(B2, B2)`, with `B2 = [[0, 1], [-omega^2, 0]]`; use `B2` alone in two dimensions |
+| Primary frequency | `omega = 2`, measured per reference time; the baseline threshold is `1.5` |
+| Scalar noise amplitude | `sigma(t)` is dimensionless; isotropy refers to the declared dimensionless coordinates, not equal physical position and momentum units |
+| Primary schedule | `sigma(t) = 0.01 exp(0.9 t)`, ending at `sigmaT = 40` |
+| Primary horizon | `T = log(40 / 0.01) / 0.9`; use this same horizon in every primary arm and transform |
+| Separate rate sweeps | Replace `r = 0.9` by the declared positive rate and set `T = log(40 / 0.01) / r`; retain the same rate and horizon within each coordinate comparison |
+
+For arrays storing samples in rows, the column-vector map `y = A z`
+is implemented as `Y = Z @ A.T`. Record the actual matrix `A` in every
+transformed run rather than relying only on its family name.
+
+#### Covariance convention and initial smoothing
+
+Let `X` denote the latent clean state, distinct from the noisy process state
+`Z_0`. For a fixed symmetric positive-definite shape `Q`, the prescribed
+one-time marginal construction is
+
+$$
+Z_t=M(t)X+\sigma(t)L_Q\epsilon,\qquad
+M(t)=e^{Bt},\quad L_QL_Q^\top=Q,\quad
+\epsilon\sim N(0,I),\quad \epsilon\ \text{independent of }X.
+$$
+
+This construction specifies individual marginals; independent perturbations
+at different times do not themselves define the intended SDE transitions.
+The covariance convention and endpoint laws are:
+
+| Object | Definition |
+|---|---|
+| Conditional perturbation covariance | `C(t) = Cov(Z_t given X) = sigma(t)^2 Q` |
+| Total state covariance | `Cov(Z_t) = M(t) Cov(X) M(t)^T + sigma(t)^2 Q` |
+| Initial process law / reverse target | `Z_0 = X + 0.01 L_Q epsilon`; do not substitute the clean law |
+| Initial conditional covariance | `C(0) = 0.0001 Q` |
+| Primary reverse initialization | Exact terminal marginal: draw `X` from the declared clean law and independent `epsilon`, then form `M(T) X + 40 L_Q epsilon` |
+| Approximate-prior control | The moment-matched Gaussian terminal prior is a separately labeled optional experiment, not the primary initialization |
+| Clean reference laws | A declared nondegenerate Gaussian for the pilot; one fixed fitted 24-component mixture for the main study, with its parameters recorded and reused |
+
+No Gaussian pilot mean/covariance or mixture fit is selected by this gate.
+Record those concrete parameters before the corresponding sampling gate.
+For either clean law, target samples must include the specified initial
+smoothing, independently of sampler noise.
+
+#### Exact definitions of the experimental arms
+
+Write `M(t) = exp(B t)` for the baseline propagator. In the table below,
+`epsilon` is standard Gaussian and independent of `X`. Each row defines
+both the dynamics and the noise geometry; changing only the drift is not
+an implementation of Arm A.
+
+| Arm | Clean law | Drift and propagator | Covariance shape | Time-zero target | Exact terminal draw |
+|---|---|---|---|---|---|
+| Baseline | `X` | `B`, `M(t)` | `I` | `X + 0.01 epsilon` | `M(T) X + 40 epsilon` |
+| A: transported | `A X` | `B_Y = A B A^{-1}`, `M_Y(t) = A M(t) A^{-1}` | `A A^T` | `A X + 0.01 A epsilon` | `A M(T) X + 40 A epsilon` |
+| B: re-isotropized | `A X` | Same `B_Y` and `M_Y(t)` as Arm A | `I` | `A X + 0.01 epsilon` | `A M(T) X + 40 epsilon` |
+
+Arm A is precisely the pushforward of the baseline law. Arm B is a
+different model: after pullback, its conditional covariance shape is
+`A^{-1} A^{-T}` and its time-zero target is
+`X + 0.01 A^{-1} epsilon`. Therefore, Arm B quality metrics must use
+that pulled-back target, not automatically the baseline smoothed target.
+When comparing fully transported sampler paths, also transport the chosen
+diffusion factors and reuse the same Brownian increments as specified in
+Stage 2; marginal arm definitions alone do not establish pathwise coupling.
+
+#### Feasibility scope and gate outcome
+
+Here "feasible" means that the specified one-time marginals can be realized
+by a forward linear SDE
+
+$$
+dZ_t=BZ_t\,dt+L(t)\,dW_t,\qquad
+L(t)L(t)^\top=G(t)=\dot C(t)-BC(t)-C(t)B^\top,
+$$
+
+with real, state-independent diffusion and initial law equal to the smoothed
+`Z_0` law above. For the fixed-shape exponential schedule,
+`G(t) = 2 sigma(t)^2 (r Q - (B Q + Q B^T)/2)`, so feasibility is
+`G(t)` positive semidefinite, equivalently `r >= kappa_Q`.
+The equality case permits rank-deficient diffusion and is not required
+to be positive definite.
+
+Below threshold, the scheduled one-time marginals still exist, but this
+specified forward SDE does not. This is not a claim that all stochastic
+dynamics are impossible, that a corrected reverse sampler cannot exist,
+or that a preferred physical metric has been identified.
+
+**Gate record: DONE (2026-10-17).** The units, ordering, covariance convention,
+smoothing, arms, and feasibility scope are specified above as model choices.
+`python verification/model_specification.py` passes all six categories against
+`coordinate_invariance_model_spec.json`.
+Implementation conformance, deterministic identities, and empirical sampling
+accuracy remain unassessed until their respective checks are run. Each future
+run must record its dimension, actual matrices, schedule, clean-law parameters,
+target and terminal-prior policies, and any explicit departure from this
+specification.
+
+#### Executable specification check
+
+The machine-readable primary specification is
+`coordinate_invariance_model_spec.json`. Check it with:
+
+```bash
+python verification/model_specification.py
+```
+
+The checker reports each of the six specification categories and exits
+nonzero for missing fields, changed conventions, or inconsistent recorded
+matrices. It independently constructs the expected drift, canonical matrix,
+transported noise geometry, initial conditional covariance, and pulled-back
+noise geometry for a representative four-dimensional squeeze
+`A = diag(2, 1/2, 2, 1/2)`. This example checks the arm definitions; it does
+not replace the transformation grid or the deterministic-implementation gate.
+An alternative file can be checked with
+`python verification/model_specification.py path/to/spec.json`; it must
+conform to the same primary specification, not an arbitrary rate-sweep model.
+
+Run the checker's regression tests, including deliberately incorrect records,
+with `python -m unittest verification.test_model_specification`.
+Passing certifies only this structured record against Section 1.1's contract:
+the checker does not parse the prose, verify physical units against data,
+or inspect a future runner. Concrete clean-law parameters and runner
+conformance remain separate prerequisites before sampling.
 
 ## 2. Analytical predictions to establish first
 
@@ -515,14 +666,14 @@ instead of pretending floating point determines an exact zero.
 
 ### 9.8 Minimum evidence and execution gates
 
-| Gate | Required evidence before proceeding |
-|---|---|
-| Model specification | Recorded units, coordinate order, covariance convention, initial smoothing, arm definitions, and feasibility scope |
-| Deterministic implementation | Closed-form squeeze and propagator checks; generalized threshold via independent routes; score/density transport; inverse/composition tests; deliberate failures detected |
-| Forward feasibility | PSD transition covariances above/at threshold and a local negative-direction witness below it |
-| Gaussian sampling | Independent moment reference, exact terminal initialization, transported-path equivalence, and step refinement |
-| Mixture sampling | Independently checked exact scores, paired seeds, target-vs-target calibration, and pulled-back diagnostics |
-| Optional generalization | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions |
+| Gate | Status | Required evidence before proceeding |
+|---|---|---|
+| Model specification | [x] Done (2026-10-17); specification checker passes | Recorded units, coordinate order, covariance convention, initial smoothing, arm definitions, and feasibility scope |
+| Deterministic implementation | [ ] Pending | Closed-form squeeze and propagator checks; generalized threshold via independent routes; score/density transport; inverse/composition tests; deliberate failures detected |
+| Forward feasibility | [ ] Pending | PSD transition covariances above/at threshold and a local negative-direction witness below it |
+| Gaussian sampling | [ ] Pending | Independent moment reference, exact terminal initialization, transported-path equivalence, and step refinement |
+| Mixture sampling | [ ] Pending | Independently checked exact scores, paired seeds, target-vs-target calibration, and pulled-back diagnostics |
+| Optional generalization | [ ] Not assessed; optional | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions |
 
 The final report should include an assumption ledger with one row per
 requirement in Section 9.2: classification as model choice, identity, or
@@ -535,8 +686,9 @@ not evidence that it is physically true.
 ## 10. Experiment inventory and execution order
 
 The table below consolidates the experiments and validation suites into an
-execution sequence. Before starting, complete the model-specification gate
-in Section 9.8. "Core" identifies the main evidence sequence; "supporting"
+execution sequence. The prerequisite model-specification gate in Section 9.8
+is complete; none of the 27 suites below is marked complete by that check.
+"Core" identifies the main evidence sequence; "supporting"
 identifies complementary validation routes, not additional mandatory large
 sampling grids. Optional extensions are not prerequisites for resolving the
 core coordinate-invariance question.
