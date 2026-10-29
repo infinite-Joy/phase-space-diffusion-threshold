@@ -789,7 +789,7 @@ instead of pretending floating point determines an exact zero.
 | Forward feasibility | [x] Representative pilot done (2026-10-17); full-grid gate pending | PSD transition covariances above/at threshold and a local negative-direction witness below it; passing pilot evidence: [`results/forward_feasibility.json`](results/forward_feasibility.json) |
 | Gaussian sampling | [x] Representative pilot done (2026-10-17); full gate pending | Independent moment reference, exact terminal initialization, transported-path equivalence, and step refinement; passing pilot evidence: [`results/gaussian_sampling.json`](results/gaussian_sampling.json) |
 | Mixture sampling | [ ] Pending | Independently checked exact scores, paired seeds, target-vs-target calibration, and pulled-back diagnostics |
-| Optional generalization | [ ] Not assessed; optional | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions |
+| Optional generalization | [ ] Runner implemented; main study not assessed; optional | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions; commands and implementation plan in Section 11 |
 
 Checked pilot entries record completed representative runs, not clearance
 of the full gates. Full transformation-grid coverage and deterministic
@@ -861,3 +861,342 @@ request to run every optional extension or every Cartesian combination.
 After the core runs and selected controls are complete, produce the analysis,
 figures, results report, README interpretation, and assumption ledger described
 in Sections 7 and 9. These are deliverables, not separate experiments.
+
+## 11. Implementation plan: optional generalization
+
+**Status:** Runner and small-fixture regression coverage implemented; full
+empirical matrix not assessed. This section specifies work for inventory
+items 17--23; it does not mark any main-study experiment as passed.
+Implement cheap infrastructure and unit tests first, but accept empirical
+generalization results only after the relevant core gates in Section 9.8 pass.
+The current representative pilots do not clear those full gates.
+
+Here "priors" means **reverse-time terminal initialization**, distinct from
+the clean data law. Alternative clean distributions are covered under data.
+The finite matrix below covers each requested axis, not every possible
+distribution or every Cartesian combination. Non-exponential schedules,
+time-dependent shapes, nonlinear coordinates, and physical identification
+remain separate follow-on work under inventory items 24--27.
+
+#### Executable runner
+
+`verification/generalization.py` consolidates the case specification, geometry,
+data, priors, training, and orchestration responsibilities proposed below.
+It reuses the existing samplers and metrics rather than introducing separate
+implementations for each axis. `generalization_analyze.py` produces coverage,
+paired comparisons, nested training/sampler uncertainty summaries, and figures.
+Neither runner certifies the outstanding core prerequisite gates.
+
+Inspect the generated full matrix without executing it:
+
+```bash
+python verification/generalization.py --profile full \
+  --write-spec /tmp/generalization-full.json
+python verification/generalization.py --spec /tmp/generalization-full.json \
+  --dry-run --axis noise
+```
+
+Start with a small smoke subset in its own output directory:
+
+```bash
+OPENBLAS_NUM_THREADS=1 python verification/generalization.py \
+  --profile smoke --axis noise --max-cases 3 \
+  --output results/coordinate_invariance/generalization-smoke
+python generalization_analyze.py \
+  --input results/coordinate_invariance/generalization-smoke
+```
+
+Smoke defaults use two sampler seeds, 64/128 particles, 128/256 steps,
+and only 20 training updates; they exercise the pipeline, not main-study
+accuracy. A coarse smoke case can legitimately fail quality checks, retain
+its evidence, and exit nonzero. Do not widen acceptance bands to make it pass.
+Use a custom manifest to refine a problematic case in a **new** output
+directory. To make a bounded runtime estimate, select one case with
+`--case CASE_ID` from `--dry-run` output.
+
+After checking prerequisites, budgets, and pilot calibration, execute selected
+full-profile axes or cases:
+
+```bash
+OPENBLAS_NUM_THREADS=1 python verification/generalization.py \
+  --spec /tmp/generalization-full.json --axis noise data prior \
+  --output results/coordinate_invariance/generalization-full --resume
+OPENBLAS_NUM_THREADS=1 python verification/generalization.py \
+  --spec /tmp/generalization-full.json --axis score trained interaction \
+  --output results/coordinate_invariance/generalization-full --resume
+python generalization_analyze.py \
+  --input results/coordinate_invariance/generalization-full
+python -m unittest verification.test_generalization
+```
+
+The full manifest is deliberately expensive: it includes 8000 particles,
+8000-step refinement, five sampler seeds, and three training seeds with
+12000 updates each. It is never executed by CI. Review the manifest rather
+than treating these commands as a request to launch the whole grid immediately.
+Use `--mixture PATH` when generating a manifest to select the frozen fitted
+mixture; missing caches fail explicitly without fitting new data.
+
+Outputs include `manifest.json`, `progress.log`, immutable `cases/*.json`,
+`failures/*.json`, `checkpoints/*-{best,last}.npz`, and incremental
+`summary.json`. Completed cases are reused only with `--resume` and matching
+manifest, source/environment, input, and checkpoint fingerprints.
+Training resumes from the last optimizer state but samples with the checkpoint
+selected by held-out validation loss. Each case records target controls,
+terminal discrepancy, pulled-back endpoint metrics, coupled refinement,
+analytic score checks, Gaussian reverse-moment references where applicable,
+time-binned score error, timing, and process peak RSS.
+The analyzer writes `analysis/analysis.json`, `analysis/report.md`, separate
+`analysis/{noise,data,prior,score,trained,interaction}-summary.json` files,
+`analysis/assumption-ledger.json`, and plots
+for quality, positions, refinement, thresholds, prior discrepancy, score error,
+particle-count refinement, and training variability. It also exposes
+held-out raw-data metrics, velocity moments, component responsibility masses,
+paired baseline-arm effects, missing cases, measured compute cost, and
+full-profile operation-count ratios. Analysis rejects changed checkpoints.
+Raw-data held-out metrics and signed `e^T G e` remain explicitly
+labeled; descriptive seed intervals are not formal equivalence certificates.
+The analyzer's `study_acceptance` remains `not assessed`: completing a
+smoke/custom manifest, even with all implementation checks passing, does not
+clear the prerequisite gates or the full-budget study.
+
+The smoke generator covers both Gaussian and frozen fitted-mixture noise
+controls and all six trained-data families. Its default single training seed
+is only an interface smoke check; nested training-variability evidence
+requires a separately frozen manifest with at least three training seeds.
+The full generator currently contains 4224 cases. Review its compute budget
+before execution; its Cartesian training coverage is much larger than the
+bounded smoke matrix.
+
+### 11.1 Shared infrastructure and implementation sequence
+
+Keep the existing primary specification and baseline outputs unchanged.
+Store the extension specification in a proposed
+`coordinate_invariance_generalization_spec.json`, with explicit matrices,
+distribution parameters, case IDs, seeds, and acceptance margins. Validate
+it separately rather than weakening `model_specification.validate` to permit
+unrecorded departures from the primary model.
+
+| Step | Proposed implementation | Depends on | Completion evidence |
+|---|---|---|---|
+| G1: case specification | Add `verification/generalization_specification.py` and focused tests for the extension manifest, dimensions, finite values, SPD shapes, normalization, prior policies, and score sources. | Recorded primary specification | Valid manifest accepted; malformed and incompatible cases rejected with case-specific errors |
+| G2: reusable exact-score execution | Extract only needed reusable model, marginal, metric, and coupled-integration helpers from `gaussian_sampling.py` and `mixture_sampling.py`; add explicit clean-law, terminal-initializer, and callable score inputs. | G1 | Existing pilot results preserved; Gaussian and mixture regressions pass; arbitrary-time scores evaluated correctly at both Heun stages |
+| G3: noise geometry | Add `verification/noise_geometry.py` and tests using the generalized threshold and independent Gaussian moment reference. | G2 and deterministic/forward gates | Shape-specific algebra, forward covariance, and reverse sampling reports |
+| G4: data families | Add `verification/generalization_data.py` and tests for exact synthetic laws and a frozen empirical-data oracle. | G2; G3 before non-isotropic data runs | Independently checked scores, density transport, target draws, and per-family calibration |
+| G5: terminal priors | Add `verification/terminal_priors.py` and tests for exact, moment-Gaussian, noise-only, and controlled-mismatch initialization. | G3--G4 exact-initialization references | Initial and final discrepancy reports with unchanged score and model |
+| G6: score errors and training | Add `verification/trained_scores.py` and tests; adapt the existing NumPy `MLP`/`ScoreModel` only where required for covariance-aware training and checkpoints. | G3--G4; exact-prior reference from G5 | Analytic score-error controls, transported-network checks, held-out errors, and seeded training comparisons |
+| G7: orchestration and reporting | Add `verification/generalization.py` and `generalization_analyze.py`; integrate cheap tests into CI and independent deterministic checks into `verification/run_all.py`. | Relevant G1--G6 tests | Validated run manifest, resumable case artifacts, separate axis summaries, and an assumption ledger |
+
+The per-responsibility module names in the table are architectural proposals;
+the executable implementation currently consolidates them in
+`verification/generalization.py` with `verification/test_generalization.py`.
+Do not create duplicate implementations solely to match the proposed filenames.
+Reuse `GaussianModel`, `Mixture`, `marginal`, `draw_marginal`, `threshold`,
+the coupled Brownian construction, and calibrated metrics where applicable.
+Do not duplicate the samplers for each axis or require a new training framework.
+Preserve existing command-line defaults, reports, and isotropic behavior.
+
+### 11.2 Noise-shape cases and checks
+
+Start with fixed SPD shapes in the recorded four-dimensional coordinates:
+
+| Case | Shape before amplitude matching | Purpose |
+|---|---|---|
+| Isotropic control | `Q = I` | Reproduce the baseline |
+| Energy-aligned | `Q = H^{-1}`, `H = diag(4, 1, 4, 1)` | Isotropy in oscillator energy coordinates; `B Q + Q B^T = 0`, hence threshold zero |
+| Coordinate anisotropy | `Q = diag(4, 1, 0.25, 1)` | Unequal position/momentum and cross-pair scales |
+| Correlated, cross-pair | `Q = L L^T`, with unit diagonal lower-triangular `L` and `L[1,0]=0.5`, `L[2,0]=0.3`, `L[3,1]=-0.4` (zero-based indices) | Off-diagonal covariance and indexing coverage |
+
+For each nonbaseline shape, run two separately labeled normalization policies:
+`Q_trace = d Q / tr(Q)` and
+`Q_det = Q / det(Q)^(1/d)`. Compute determinant normalization through
+`slogdet`; record the raw shape, normalized shape, eigenvalues, condition
+number, trace, determinant, and policy. Normalization is defined in the
+baseline coordinates and then transported, never reapplied in Arm A.
+Include a cheap `Q -> c Q` threshold identity test.
+
+Generalize the baseline to the chosen `Q`. Arm A must use
+`Q_Y = A Q A^T`; Arm B continues to mean reimposing `Q_Y = I`, not silently
+reusing the alternative baseline shape. Use each arm's own smoothed target
+and exact terminal law. Recompute the generalized threshold for every model;
+do not reuse the isotropic value `1.5` for classification.
+
+Before sampling, compare generalized eigensolution and whitening, covariance
+balance, finite-time transitions, and transported negative-direction witnesses.
+Use PSD-compatible factors at threshold. Check exact Gaussian reverse moments
+and fully transported paths, keeping local clipping distinct from transporting
+the baseline clipped factor. Energy alignment supplies a known zero-threshold
+control; correlated shapes supply noncommuting transport controls.
+
+### 11.3 Data families and independent references
+
+Record complete generator parameters and freeze them before collecting main
+results. Use the existing Gaussian fixture and fitted 24-component cache as
+controls; never silently refit a cache during a sampling run.
+
+| Family | Initial concrete cases | Score/reference strategy |
+|---|---|---|
+| Single Gaussian | Existing pilot; add a fixed correlated SPD covariance | Closed-form marginal score and independent moment ODE |
+| Separated mixture | Two equal-weight components with means `+/- (2,0,0,0)` and covariance `0.1 I` | Exact propagated mixture; finite-difference log-density validation |
+| Overlapping mixture | Same weights/covariance, means `+/- (0.3,0,0,0)` | Exact mixture; overlap-sensitive responsibility diagnostics |
+| Imbalanced mixture | Separated case with weights `0.9, 0.1` | Exact mixture; minority-component mass and uncertainty |
+| Fitted two-moons mixture | Existing fixed fit and its checksum | Existing exact-score mixture oracle; conclusions concern the fitted law |
+| Raw two-moons data | Freeze 2048 training and 2048 held-out points from independent `two_moons` streams | Smoothed finite empirical-mixture oracle for training points; held-out generalization reported separately |
+
+For the empirical law, each clean training point is a point mass; at time
+`t` the marginal has component mean `M(t) x_i` and shared SPD covariance
+`sigma(t)^2 Q`. Implement its score with stable log-sum-exp and chunked
+component accumulation, not by supplying singular clean covariances to
+`Mixture`, which currently requires SPD components. Exact terminal and target
+draws select a point uniformly and add the declared Gaussian perturbation.
+Check this score against an independently evaluated density on a small fixture.
+Label its exactness as relative to the frozen empirical law, not an unknown
+population density. Measure held-out smoothed-data quality separately; it is
+not an exact-target equivalence check.
+
+Validate marginal moments, finite-difference scores, score/density transport,
+and initial smoothing for every oracle. Calibrate metrics separately by data
+law and shape. Add component-mass diagnostics for mixtures and position-space
+plots plus velocity moments for moons; do not call moment KL the true KL.
+Use the same declared data scaling across arms and record any preprocessing.
+
+### 11.4 Terminal-prior comparison
+
+Hold the data law, score, schedule, and sampler fixed while changing only the
+terminal initializer:
+
+| Initializer | Definition | Interpretation |
+|---|---|---|
+| Exact terminal control | `M(T) X + sigmaT L_Q epsilon` | Reference for every model/arm |
+| Oracle moment Gaussian | Mean `M(T) m_X`, covariance `M(T) S_X M(T)^T + sigmaT^2 Q` | Isolates loss of non-Gaussian terminal structure |
+| Repository-style estimated moment Gaussian | Same formula using one frozen clean-data sample's empirical moments | Separates moment-estimation error from Gaussian approximation |
+| Noise-only Gaussian | Zero mean, covariance `sigmaT^2 Q` | Measures omission of propagated clean signal |
+| Controlled mismatch | Oracle moment prior with mean shifted by `0.5` along a declared unit baseline direction, or covariance multiplied by `0.8` or `1.2` | Positive controls for prior-sensitivity diagnostics |
+
+Use analytic moments when available; keep estimated moments labeled as
+estimated rather than "exact." Arm A priors, including deliberate shifts,
+must be pushforwards of baseline priors, with transported sampling factors.
+Recompute Arm B moments for its own model. Share base standard normals where
+possible, but do not claim non-Gaussian and Gaussian terminal draws are equal.
+
+Measure discrepancy from the exact terminal law **before integration** and
+from the correct smoothed target **after integration**. Report approximate-
+minus-exact prior effects paired by run seed, separately for every sampler.
+A Gaussian clean law makes the oracle moment prior exactly correct and
+provides a mandatory null control. Do not require prior mismatch to vanish
+under step refinement or attribute its residual to threshold failure.
+
+### 11.5 Controlled errors and trained-score experiments
+
+First inject score errors into exact Gaussian/mixture scores: zero error,
+a fixed vector bias, multiplicative scale error, and a smooth bounded
+time-dependent error, at amplitudes `0.05, 0.1, 0.2` relative to a frozen
+reference score RMS. Record the normalization metric and calibration sample.
+Transport the complete erroneous score in Arm A; contrast with separately
+generated transformed-coordinate errors as a different intervention.
+Use exact initialization first so prior and score errors are not confounded.
+
+Then implement the following training sequence:
+
+1. Verify the existing isotropic training/inference interface, including
+   batched-time broadcasting in `ScoreModel.score`, checkpoint round trips,
+   finite gradients, and deterministic seeded smoke runs. For general `Q`,
+   train on `z_t = M(t) x + sigma(t) L_Q epsilon`; a whitened epsilon predictor
+   returns the score `-L_Q^{-T} epsilon_theta / sigma(t)`. The row-array form
+   is `-epsilon_theta @ L_Q^{-1} / sigma(t)[:, None]`. Test both forms against
+   the analytic conditional score, and use covariance-aware input scaling.
+   Record whether loss is epsilon MSE or a specified score-space quadratic;
+   never carry over an isotropic score weighting without deriving it.
+2. Train one baseline network per selected data/noise case. Start with a
+   Gaussian, separated mixture, and fitted moons mixture, then run the
+   overlapping, imbalanced, and raw-data cases after timing. Use the existing
+   width 128, depth 3, batch 512, and 12000-update setup as the initial budget.
+   Freeze configuration after pilot tuning; choose checkpoints by validation
+   loss, not final sampler quality. Save model parameters, normalization,
+   optimizer state, step, seed, configuration, and data/specification hashes.
+3. Wrap that same network for Arm A:
+   `s_Y(y,t) = A^{-T} s_Z(A^{-1} y,t)`. Compare scores and coupled paths after
+   pullback before any retraining. This identity must hold even for an
+   inaccurate network; sample quality need not match the exact-score oracle.
+4. Train separate Arm B models with their own perturbation geometry and
+   smoothed targets. Separately retrain Arm A models to measure conditioning
+   and optimization sensitivity, not coordinate-invariance validity.
+   Match architecture, data splits, update budget, and checkpoint policy;
+   record elapsed time and any tuning departures.
+5. Evaluate held-out denoising loss and exact-score error where an oracle
+   exists, stratified by time/noise level, plus endpoint sampling quality.
+   Report `e^T Q e` as a nonnegative transported score-error norm.
+   If reporting `e^T G e`, preserve its sign and label it as a signed
+   quadratic when `G` is indefinite, not a nonnegative loss.
+
+Use disjoint training, validation, metric-calibration, and final evaluation
+streams. For empirical moons, report error relative to the training empirical
+oracle separately from quality on unseen data. No failed training run may be
+silently replaced by an exact score or a different seed.
+
+### 11.6 Run matrix, acceptance, and resource controls
+
+Use identity, the decisive symplectic squeeze, and one recorded moderate-
+condition cross-pair map initially; include the recorded non-unit-determinant
+map for density-Jacobian checks. Keep `sigma0 = 0.01`, `sigmaT = 40`, and the
+same absolute rate/horizon within every coordinate comparison.
+Start with rates `0.9` and `1.95`. Add `0.9*kappa_Q`, `kappa_Q`, and
+`1.1*kappa_Q` only for positive thresholds, as separate rate settings; use
+positive absolute rates for zero/negative thresholds.
+
+Run one-axis-at-a-time comparisons before interactions:
+noise shapes with the Gaussian and fixed fitted mixture; data families with
+`Q = I` and exact priors; priors with exact scores; then trained scores with
+exact priors. Finally cross the correlated trace-matched shape, imbalanced
+mixture, moment-Gaussian prior, and learned score in selected cases to expose
+interactions. Label interaction results separately, not as isolated effects.
+Ensure every family/policy above has a completed case or an explicit blocked/
+not-assessed record; a small pilot is not completion of the planned matrix.
+
+Use `N = 256, 512`, seeds `0,1`, and `K = 1000,2000` for timing/smoke pilots.
+For accepted exact-score comparisons use `N = 8000`, seeds `0..4`, and
+`K = 4000`, with selected `1000,2000,4000,8000` coupled refinement and a
+separate particle refinement. Use at least three independent training seeds,
+each evaluated with the same five sampler seeds; report between-training
+variation and within-checkpoint sampler variation separately. Do not count
+the fifteen nested runs as fifteen independent training replicates.
+
+Before the main runs, freeze primary metrics, practical margins, and
+uncertainty procedures using independent pilot/target controls for each
+law/shape. Five sampler seeds and three training seeds are limited evidence;
+report raw effects and intervals, and leave equivalence unresolved if
+intervals do not fit inside declared margins.
+
+| Evidence class | Acceptance / interpretation |
+|---|---|
+| Algebra and transport | Scaled residuals satisfy declared condition-aware tolerances; injected wrong covariance/score transforms, factors, and density Jacobians are detected |
+| Exact Gaussian reference | Corrected/ODE moments match their exact-initialization target with refinement; prior-mismatched cases match an independently initialized reverse-moment ODE instead |
+| Exact-score non-Gaussian quality | Corrected/ODE exact-prior endpoints meet frozen target-control bands with refinement; feasible naive cases use the same standard, below-threshold naive bias is measured rather than required |
+| Prior controls | Gaussian exact/moment null agrees; deliberately mismatched priors are distinguished at initialization; final impact is measured, not presumed universally nonzero |
+| Learned-score controls | Transported-network scores and paths agree; held-out error and quality shifts have seeded uncertainty; retraining differences are not theorem counterexamples |
+| Generalization conclusions | State which tested cases meet criteria, fail, remain numerically unresolved, or were not assessed; never infer universal robustness from this finite grid |
+
+Estimate time and peak memory before expanding the grid, especially for the
+empirical oracle and quadratic-cost MMD. Batch score evaluation and metric
+work without changing the declared estimator. Persist immutable per-case/
+seed artifacts and explicit failure records under
+`results/coordinate_invariance/generalization/`; resume only when code,
+specification, checkpoint, and input hashes match. Invalid inputs or failed
+required checks exit nonzero, while expected quality degradation in a
+labeled mismatch experiment is a measured outcome, not a harness error.
+
+Every artifact records matrices, normalization, generalized threshold,
+feasibility classification, target/prior definition, score source, data and
+checkpoint hashes, all RNG seeds, time grid, tolerances, environment, code
+revision and dirty status, elapsed time, and outcome. Keep expensive training
+and sampling outside routine CI; CI covers tiny deterministic fixtures,
+deliberate failures, checkpoint reloads, and CLI success/failure behavior.
+
+### 11.7 Completion and reporting
+
+Produce separate noise-shape, data-family, prior, and trained-score summaries,
+plus a clearly labeled interaction appendix. Plot pulled-back sample quality,
+threshold/shape comparisons, terminal-versus-endpoint prior discrepancy,
+time-binned score error, training-seed variability, and numerical refinement.
+Record coverage against the manifest, missing cases, compute cost, and the
+assumption ledger from Section 9.8. Only then update the optional-generalization
+gate with links to actual evidence; keep core gate statuses independent.
