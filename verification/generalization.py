@@ -575,15 +575,22 @@ def training_batch(law, model, size, seed):
 
 def train_network(law, model, spec, seed, directory, code_identity, resume):
     config = spec["training"]
+    specification_hash = digest(spec)
+    data_hash = digest(law.record())
     identity = digest({"law": law.record(), "B": model.B.tolist(), "Q": model.Q.tolist(),
                        "rate": model.rate, "sigma0": model.sigma0, "horizon": model.horizon,
-                       "training": config, "seed": seed, "code": code_identity})
+                       "training": config, "seed": seed, "code": code_identity,
+                       "specification": specification_hash})
     network = NetworkScore(model, config, seed)
     best_path = directory / f"{identity}-best.npz"
     last_path = directory / f"{identity}-last.npz"
     validation = training_batch(law, model, config["validation_size"], [1301, seed])
     metadata = {"identity": identity, "best_validation_loss": None, "validation": [],
                 "training_seed": seed, "config": config, "normalization": "Cholesky-whitened",
+                "normalization_matrix": network.inverse.tolist(), "input_scale_squared_offset": 4.,
+                "data_hash": data_hash, "specification_hash": specification_hash,
+                "model": {"B": model.B.tolist(), "Q": model.Q.tolist(), "rate": model.rate,
+                          "sigma0": model.sigma0, "horizon": model.horizon},
                 "loss": "epsilon MSE", "completed": False, "elapsed_seconds": 0.}
     if last_path.exists():
         metadata = network.load(last_path, identity)
@@ -876,6 +883,21 @@ def run_case(spec, case, output, code_identity, resume=False):
     runs = []
     nmax = spec["particles"][-1]
     for seed in spec["seeds"]:
+        seed_path = output / "seeds" / f"{case['id']}-{seed}.json"
+        seed_fingerprint = digest({
+            "spec": spec, "case": case, "seed": seed, "data": original.record(),
+            "code": code_identity,
+            "checkpoint": training["checkpoint_sha256"] if training else None,
+        })
+        if seed_path.exists():
+            if not resume:
+                raise FileExistsError(f"Sampler seed exists; use --resume: {seed_path}")
+            stored = json.loads(seed_path.read_text())
+            if stored["fingerprint"] != seed_fingerprint:
+                raise ValueError(f"Sampler seed fingerprint mismatch: {seed_path}")
+            runs.append(stored["run"])
+            LOG.info("Reusing sampler seed=%s for %s", seed, case["id"])
+            continue
         terminal = terminal_prior(source_law, source_model, case["prior"], nmax, seed,
                                    spec["estimated_moment_points"])
         if case["arm"] == "transported":
@@ -922,6 +944,13 @@ def run_case(spec, case, output, code_identity, resume=False):
                 mode: observed_metrics(levels[spec["steps"][-1]]["states"][mode] @ pullback.T,
                                        heldout_reference, heldout_target, projections,
                                        bandwidth, True) for mode in MODES}
+        write_json(seed_path, {
+            "case": case, "seed": seed, "fingerprint": seed_fingerprint,
+            "manifest_hash": digest(spec), "data_hash": digest(original.record()),
+            "code_identity": code_identity,
+            "checkpoint_sha256": training["checkpoint_sha256"] if training else None,
+            "run": record,
+        })
         runs.append(record)
     refined, paired = {}, {}
     for mode in MODES:
@@ -1063,7 +1092,8 @@ def environment():
 def run_manifest(spec, output, axes=None, case_ids=None, resume=False, max_cases=None):
     validate_spec(spec)
     env = environment()
-    code_identity = digest({key: env[key] for key in ("revision", "source_hashes", "python", "numpy", "scipy")})
+    code_identity = digest({key: env[key] for key in (
+        "revision", "source_hashes", "python", "numpy", "scipy", "platform")})
     mixture = Path(spec["mixture_path"])
     input_hash = (hashlib.sha256(mixture.read_bytes()).hexdigest()
                   if mixture.exists() and any(c["data"] == "fitted_moons" for c in spec["cases"])
@@ -1106,7 +1136,8 @@ def run_manifest(spec, output, axes=None, case_ids=None, resume=False, max_cases
                     raise ValueError(f"Result fingerprint mismatch: {case['id']}")
                 if result.get("status") == "completed":
                     if result.get("training"):
-                        checkpoint = Path(result["training"]["checkpoint"])
+                        checkpoint = output / "checkpoints" / Path(
+                            result["training"]["checkpoint"]).name
                         if (hashlib.sha256(checkpoint.read_bytes()).hexdigest()
                                 != result["training"]["checkpoint_sha256"]):
                             raise ValueError(f"Checkpoint changed: {checkpoint}")

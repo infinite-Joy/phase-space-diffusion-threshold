@@ -789,7 +789,7 @@ instead of pretending floating point determines an exact zero.
 | Forward feasibility | [x] Representative pilot done (2026-10-17); full-grid gate pending | PSD transition covariances above/at threshold and a local negative-direction witness below it; passing pilot evidence: [`results/forward_feasibility.json`](results/forward_feasibility.json) |
 | Gaussian sampling | [x] Representative pilot done (2026-10-17); full gate pending | Independent moment reference, exact terminal initialization, transported-path equivalence, and step refinement; passing pilot evidence: [`results/gaussian_sampling.json`](results/gaussian_sampling.json) |
 | Mixture sampling | [ ] Pending | Independently checked exact scores, paired seeds, target-vs-target calibration, and pulled-back diagnostics |
-| Optional generalization | [ ] Runner implemented; main study not assessed; optional | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions; commands and implementation plan in Section 11 |
+| Optional generalization | [ ] Runner implemented; bounded all-axis analysis done (2026-10-21); full study not assessed; optional | Sensitivity to other noise shapes, priors, data, and trained scores reported separately from core conclusions; evidence and implementation details in Section 11 |
 
 Checked pilot entries record completed representative runs, not clearance
 of the full gates. Full transformation-grid coverage and deterministic
@@ -864,8 +864,9 @@ in Sections 7 and 9. These are deliverables, not separate experiments.
 
 ## 11. Implementation plan: optional generalization
 
-**Status:** Runner and small-fixture regression coverage implemented; full
-empirical matrix not assessed. This section specifies work for inventory
+**Status:** Runner, regression coverage, and bounded all-axis analysis
+implemented/executed (2026-10-21); full empirical matrix not assessed.
+This section specifies work for inventory
 items 17--23; it does not mark any main-study experiment as passed.
 Implement cheap infrastructure and unit tests first, but accept empirical
 generalization results only after the relevant core gates in Section 9.8 pass.
@@ -937,9 +938,12 @@ Use `--mixture PATH` when generating a manifest to select the frozen fitted
 mixture; missing caches fail explicitly without fitting new data.
 
 Outputs include `manifest.json`, `progress.log`, immutable `cases/*.json`,
-`failures/*.json`, `checkpoints/*-{best,last}.npz`, and incremental
+`seeds/*-SEED.json`, `failures/*.json`, `checkpoints/*-{best,last}.npz`, and incremental
 `summary.json`. Completed cases are reused only with `--resume` and matching
 manifest, source/environment, input, and checkpoint fingerprints.
+Completed sampler seeds are also persisted before proceeding to the next seed,
+so interrupted cases can resume without repeating their completed integrations;
+seed-level reuse requires the same manifest, data, code, and selected checkpoint.
 Training resumes from the last optimizer state but samples with the checkpoint
 selected by held-out validation loss. Each case records target controls,
 terminal discrepancy, pulled-back endpoint metrics, coupled refinement,
@@ -966,6 +970,81 @@ requires a separately frozen manifest with at least three training seeds.
 The full generator currently contains 4224 cases. Review its compute budget
 before execution; its Cartesian training coverage is much larger than the
 bounded smoke matrix.
+
+#### Bounded execution evidence (2026-10-21)
+
+The frozen [all-axis manifest](results/coordinate_invariance/generalization-all-axes/manifest.json)
+completed 213 cases at 64/128 particles, 128/256 steps, two sampler seeds,
+and three training seeds with 20 updates each. This is pipeline and numerical
+pilot evidence, not the full empirical study. See the
+[analysis report](results/coordinate_invariance/generalization-all-axes/analysis/report.md),
+[machine-readable analysis](results/coordinate_invariance/generalization-all-axes/analysis/analysis.json),
+and [assumption ledger](results/coordinate_invariance/generalization-all-axes/analysis/assumption-ledger.json).
+
+| Axis | Supported implementation/declared controls | Violated quality controls | Not assessed |
+|---|---:|---:|---:|
+| Noise shape | 0 | 42 | 0 |
+| Data family | 2 | 16 | 0 |
+| Terminal prior | 36 | 6 | 0 |
+| Controlled score errors | 12 | 3 | 0 |
+| Trained scores | 72 | 0 | 0 |
+| Selected interactions | 22 | 2 | 0 |
+
+All 213 cases passed their algebra, independent score/density, quadratic
+score-error, and coupled-path implementation checks. The 69 `violated`
+outcomes are retained coarse-grid quality failures, not harness exceptions;
+the runner correctly returned nonzero. Acceptance bands were not widened.
+`supported` learned-score or approximate-prior cases mean their applicable
+implementation/control requirements passed, not that their samples match
+the exact-score target or that 20 updates establish learned-score accuracy.
+There are 150 within-axis paired comparisons, 148 baseline-arm comparisons,
+30 nested training groups, and 29 figures. Across the 128 paired sampler
+runs eligible for the full-transport identity (excluding independent errors),
+the maximum pulled-back endpoint preview residual was `1.25e-13`.
+Case execution totaled 416.5 seconds with 133.9 MiB process peak RSS;
+the latter is a process-wide high-water mark, not per-case memory.
+
+The [refinement pilot](results/coordinate_invariance/generalization-refinement/analysis/report.md)
+uses 256/512 particles and 1000/2000 steps for Gaussian and frozen fitted-mixture
+controls at rates `0.9` and `1.95`, with all three arms and two sampler seeds.
+Its original process was interrupted after 11 of 12 completed cases;
+those 11 immutable records remain valid under their original source/revision
+fingerprint and are not silently merged with a different execution identity.
+The missing fitted-mixture Arm B case was subsequently completed in its own
+[one-case execution](results/coordinate_invariance/generalization-refinement-completion/analysis/report.md)
+and was supported. Thus every case in the 12-case pilot has evidence, but the
+original interrupted manifest correctly retains one `not assessed` entry.
+One completed Gaussian Arm B case at `r = 0.9` still violated the covariance
+band at 2000 steps, despite passing its independent moment and transport checks.
+
+That case was separately refined at 1000/2000/4000/8000 steps and
+512/2000 particles, with unchanged acceptance policy. The
+[fine Gaussian report](results/coordinate_invariance/generalization-gaussian-fine/analysis/report.md)
+records a supported outcome. Within its coupled 2000-particle runs, the
+naive/corrected covariance error decreased from `0.3680` at 1000 steps to
+`0.1160` at 8000 steps, below the independently calibrated band `0.1937`.
+The ODE covariance error at 8000 steps was `0.1057`; all three samplers
+passed their independent Gaussian-reference controls. This is evidence of
+numerical refinement in this case, not clearance of the full Gaussian gate.
+
+After adding immutable per-seed integration records and explicit checkpoint
+data/specification hashes and normalization matrices, a separate
+[six-case trained-score run](results/coordinate_invariance/generalization-checkpoint-resume/analysis/report.md)
+verified the final code path for Gaussian baseline/transported networks at
+three training seeds and two sampler seeds. All six applicable control
+outcomes were supported, all 12 sampler-seed records were saved, and a CLI
+`--resume` reused the completed cases without repeating sampling.
+These 20-update networks are still training-interface evidence, not accepted
+learned-score accuracy.
+
+The [full-profile manifest](results/coordinate_invariance/generalization-full-spec.json)
+is frozen for inspection but was not executed. Relative to this bounded
+profile, one full-profile case has about 6104 times the sampler
+particle-step exposure and 11719 times the calibration particle-pair
+exposure; empirical oracles also have 32 times as many components. These
+are operation-count ratios, not wall-clock estimates. The outstanding
+Section 9.8 core gates, full-budget runs, and accepted empirical conclusions
+remain separate, uncompleted work.
 
 ### 11.1 Shared infrastructure and implementation sequence
 

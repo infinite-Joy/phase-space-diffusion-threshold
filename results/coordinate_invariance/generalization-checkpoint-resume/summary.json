@@ -1,0 +1,58 @@
+{
+  "scope": "Selected optional generalization cases; not core-gate certification",
+  "profile": "custom",
+  "manifest_hash": "9f9a0f0ad5a3b580da409e075e386b099f923fc49fc9e4770255dbe618ad7007",
+  "run_identity": "e3d2326b1053c1197bc85d333fd7070fd8769a643a40d6c22f8f1a2b37d6bc9e",
+  "environment": {
+    "revision": "65985098c9aaa5e6bc45167ffe268b321e205795",
+    "dirty": true,
+    "git_status": "M README.md\n M coordinate_invariance_experiment_plan.md\n M generalization_analyze.py\n M verification/generalization.py\n M verification/test_generalization.py\n?? __pycache__/\n?? results/coordinate_invariance/\n?? verification/__pycache__/",
+    "source_hashes": {
+      "psdt.py": "08eb7efbecad4a60479d23b5f5d139dc3a8960c1e23a85836a4ac378c868132b",
+      "coordinate_invariance_model_spec.json": "c006937158cc6c48723d38252498566d53d5ad100d7ed2e9b20d0becf52c82cc",
+      "verification/generalization.py": "3b3d1cd50233319926897ae1c449ff2ebb47fb2f6ff1c8e406c52ea21028f9cd",
+      "verification/gaussian_sampling.py": "78d23b066746e10c689615e6c2eea838b3165c0724571831be27916455651132",
+      "verification/mixture_sampling.py": "d76f9b198fe4794149c8cf472deba822e21622b878dd92a306625395da7adf0c",
+      "verification/forward_feasibility.py": "dfde1a07ab23395f2743d97387cb8aed69890ef91366f34969a3cf3a18412191",
+      "verification/model_specification.py": "0c1943a43b6669c413888fa7305ad4d2c92a7b7d9abe72b1ac4176f2ee1da8a6"
+    },
+    "python": "3.13.16",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.68-92.122.amzn2023.x86_64-x86_64-with-glibc2.35"
+  },
+  "coverage": {
+    "trained-gaussian-cf18e9ca247e": "supported",
+    "trained-gaussian-913cb90e2147": "supported",
+    "trained-gaussian-b26f4b559726": "supported",
+    "trained-gaussian-933037d2de48": "supported",
+    "trained-gaussian-e8ddea818e52": "supported",
+    "trained-gaussian-1673d0f2af95": "supported"
+  },
+  "selected": [
+    "trained-gaussian-cf18e9ca247e",
+    "trained-gaussian-913cb90e2147",
+    "trained-gaussian-b26f4b559726",
+    "trained-gaussian-933037d2de48",
+    "trained-gaussian-e8ddea818e52",
+    "trained-gaussian-1673d0f2af95"
+  ],
+  "finished": [
+    "trained-gaussian-cf18e9ca247e",
+    "trained-gaussian-913cb90e2147",
+    "trained-gaussian-b26f4b559726",
+    "trained-gaussian-933037d2de48",
+    "trained-gaussian-e8ddea818e52",
+    "trained-gaussian-1673d0f2af95"
+  ],
+  "passed": true,
+  "full_manifest_completed": true,
+  "full_manifest_passed": true,
+  "limitations": [
+    "Smoke settings are not main-study acceptance.",
+    "Core prerequisite gates are not certified by this runner.",
+    "Empirical target exactness is relative to frozen training data.",
+    "Calibration bands are not formal equivalence intervals.",
+    "Training seeds, not nested sampler seeds, are training replicates."
+  ]
+}

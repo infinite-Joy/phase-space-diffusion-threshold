@@ -1,0 +1,75 @@
+{
+  "scope": "Selected optional generalization cases; not core-gate certification",
+  "profile": "custom",
+  "manifest_hash": "ed3d338b5d30410db333612440dfa52229ba207f79249a4eb7e3961e5b77c1c4",
+  "run_identity": "45d563543cf6d11df033cbf3c03cf1794838cad8885fb2e8d13c7889afb2bbc5",
+  "environment": {
+    "revision": "550a09b9123e50b1f7cb856d19f3ac4661c7a0fb",
+    "dirty": true,
+    "git_status": "M .github/workflows/verify.yml\n M README.md\n M coordinate_invariance_experiment_plan.md\nAM generalization_analyze.py\n M psdt.py\nAM verification/generalization.py\n M verification/run_all.py\nAM verification/test_generalization.py\n?? __pycache__/\n?? results/coordinate_invariance/\n?? verification/__pycache__/",
+    "source_hashes": {
+      "psdt.py": "08eb7efbecad4a60479d23b5f5d139dc3a8960c1e23a85836a4ac378c868132b",
+      "coordinate_invariance_model_spec.json": "c006937158cc6c48723d38252498566d53d5ad100d7ed2e9b20d0becf52c82cc",
+      "verification/generalization.py": "8caa8ede5b5f3b083bab7667b84778812da6784e0625550e7460d3ec8b19ac16",
+      "verification/gaussian_sampling.py": "78d23b066746e10c689615e6c2eea838b3165c0724571831be27916455651132",
+      "verification/mixture_sampling.py": "d76f9b198fe4794149c8cf472deba822e21622b878dd92a306625395da7adf0c",
+      "verification/forward_feasibility.py": "dfde1a07ab23395f2743d97387cb8aed69890ef91366f34969a3cf3a18412191",
+      "verification/model_specification.py": "0c1943a43b6669c413888fa7305ad4d2c92a7b7d9abe72b1ac4176f2ee1da8a6"
+    },
+    "python": "3.13.16",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "platform": "Linux-6.12.68-92.122.amzn2023.x86_64-x86_64-with-glibc2.35"
+  },
+  "coverage": {
+    "noise-gaussian-ad97ecfba788": "supported",
+    "noise-gaussian-bfe48df4d676": "supported",
+    "noise-gaussian-8b8838bef671": "violated",
+    "noise-fitted_moons-ac9de838c28b": "supported",
+    "noise-fitted_moons-25f43580f336": "supported",
+    "noise-fitted_moons-19eccd69a45c": "supported",
+    "noise-gaussian-83f69783998b": "supported",
+    "noise-gaussian-0a94ee169ddb": "supported",
+    "noise-gaussian-a43c2e55ad27": "supported",
+    "noise-fitted_moons-d1aad3a4047f": "supported",
+    "noise-fitted_moons-bff19319d0d3": "supported",
+    "noise-fitted_moons-563efd157763": "not assessed"
+  },
+  "selected": [
+    "noise-gaussian-ad97ecfba788",
+    "noise-gaussian-bfe48df4d676",
+    "noise-gaussian-8b8838bef671",
+    "noise-fitted_moons-ac9de838c28b",
+    "noise-fitted_moons-25f43580f336",
+    "noise-fitted_moons-19eccd69a45c",
+    "noise-gaussian-83f69783998b",
+    "noise-gaussian-0a94ee169ddb",
+    "noise-gaussian-a43c2e55ad27",
+    "noise-fitted_moons-d1aad3a4047f",
+    "noise-fitted_moons-bff19319d0d3",
+    "noise-fitted_moons-563efd157763"
+  ],
+  "finished": [
+    "noise-gaussian-ad97ecfba788",
+    "noise-gaussian-bfe48df4d676",
+    "noise-gaussian-8b8838bef671",
+    "noise-fitted_moons-ac9de838c28b",
+    "noise-fitted_moons-25f43580f336",
+    "noise-fitted_moons-19eccd69a45c",
+    "noise-gaussian-83f69783998b",
+    "noise-gaussian-0a94ee169ddb",
+    "noise-gaussian-a43c2e55ad27",
+    "noise-fitted_moons-d1aad3a4047f",
+    "noise-fitted_moons-bff19319d0d3"
+  ],
+  "passed": false,
+  "full_manifest_completed": false,
+  "full_manifest_passed": false,
+  "limitations": [
+    "Smoke settings are not main-study acceptance.",
+    "Core prerequisite gates are not certified by this runner.",
+    "Empirical target exactness is relative to frozen training data.",
+    "Calibration bands are not formal equivalence intervals.",
+    "Training seeds, not nested sampler seeds, are training replicates."
+  ]
+}

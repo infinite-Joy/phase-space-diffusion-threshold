@@ -43,9 +43,10 @@ def analyze(directory):
                          "error": "Evidence belongs to a different code/input fingerprint"})
             continue
         training = record.get("training")
-        if training and hashlib.sha256(Path(training["checkpoint"]).read_bytes()).hexdigest() != (
-                training["checkpoint_sha256"]):
-            raise ValueError(f"Checkpoint changed: {training['checkpoint']}")
+        if training:
+            checkpoint = directory / "checkpoints" / Path(training["checkpoint"]).name
+            if hashlib.sha256(checkpoint.read_bytes()).hexdigest() != training["checkpoint_sha256"]:
+                raise ValueError(f"Checkpoint changed: {checkpoint}")
         completed.append(record)
         rows.append({
             "case": case, "status": record["outcome"], "elapsed_seconds": record["elapsed_seconds"],
@@ -139,9 +140,27 @@ def analyze(directory):
         paired = [(run, control_runs[run["seed"]]) for run in record["runs"]
                   if run["seed"] in control_runs]
         keys = record["calibration"][str(spec["particles"][-1])]["bands"]
+        endpoint_transport = None
+        if case["arm"] == "transported" and case["score"] != "independent_bias":
+            residuals = {
+                mode: summary([
+                    float(np.max(np.abs(np.array(run["sample_preview"][mode])
+                                        - np.array(reference["sample_preview"][mode])))
+                          / max(1., np.max(np.abs(reference["sample_preview"][mode]))))
+                    for run, reference in paired])
+                for mode in ("ode", "naive", "fixed")}
+            endpoint_transport = {
+                "scope": "Stored endpoint preview; full-path checks remain in each case artifact",
+                "scaled_residuals": residuals,
+                "tolerance": spec["acceptance"]["path_residual"],
+                "passed": len(paired) == len(spec["seeds"]) and all(
+                    value <= spec["acceptance"]["path_residual"]
+                    for statistic in residuals.values() for value in statistic["values"]),
+            }
         arm_comparisons.append({
             "axis": case["axis"], "case_id": case["id"], "control_id": control["case"]["id"],
             "arm": case["arm"], "score": case["score"],
+            "endpoint_transport_check": endpoint_transport,
             "interpretation": ("Transported complete model; independent_bias is a separate intervention"
                                if case["arm"] == "transported" else
                                "Changed noise geometry or independently retrained network"),
@@ -181,6 +200,8 @@ def analyze(directory):
     return {
         "scope": "Optional generalization; descriptive intervals, not equivalence certification",
         "profile": spec["profile"], "manifest_hash": digest(spec),
+        "run_identity": run_summary["run_identity"], "environment": run_summary["environment"],
+        "analyzer_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "coverage": {axis: {
             status: sum(row["case"]["axis"] == axis and row["status"] == status for row in rows)
             for status in ("supported", "violated", "not assessed", "numerically unresolved")}
@@ -461,6 +482,16 @@ def write_reports(report, output):
         json.dumps(report["full_profile_budget"], indent=2), "```", "",
         "## Unmet checks", "",
     ]
+    transport = [row["endpoint_transport_check"] for row in report["arm_comparisons"]
+                 if row["endpoint_transport_check"] is not None]
+    if transport:
+        maximum = max(value for check in transport for statistic in check["scaled_residuals"].values()
+                      for value in statistic["values"])
+        lines[lines.index("## Expansion budget"):lines.index("## Expansion budget")] = [
+            f"Cross-arm endpoint transport: {sum(check['passed'] for check in transport)}/"
+            f"{len(transport)} paired configurations passed, maximum scaled residual "
+            f"`{maximum:.3g}`. This excludes intentionally independent coordinate errors.", "",
+        ]
     for row in report["cases"]:
         if row["status"] == "violated":
             failed = []

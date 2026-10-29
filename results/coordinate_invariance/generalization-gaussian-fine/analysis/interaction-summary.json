@@ -1,0 +1,16 @@
+{
+  "scope": "Interaction appendix",
+  "coverage": {
+    "supported": 0,
+    "violated": 0,
+    "not assessed": 0,
+    "numerically unresolved": 0
+  },
+  "tested_data": [],
+  "tested_shapes": [],
+  "tested_priors": [],
+  "cases": [],
+  "paired_comparisons": [],
+  "arm_comparisons": [],
+  "training_groups": []
+}

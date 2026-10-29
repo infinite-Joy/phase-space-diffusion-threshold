@@ -188,6 +188,14 @@ class GeneralizationTests(unittest.TestCase):
             self.assertEqual(metadata["checkpoint_sha256"], resumed["checkpoint_sha256"])
             self.assertTrue(resumed["completed"])
             self.assertEqual(len(resumed["validation"]), 2)
+            self.assertIn("data_hash", resumed)
+            self.assertIn("specification_hash", resumed)
+            np.testing.assert_allclose(resumed["normalization_matrix"], np.eye(4))
+            changed = copy.deepcopy(self.spec)
+            changed["particles"] = [16, 64]
+            _, different = train_network(self.law, self.model, changed, 0,
+                                          directory, "code", False)
+            self.assertNotEqual(metadata["identity"], different["identity"])
 
     def test_calibration_bias_and_gaussian_prior_null(self):
         target = marginal_law(self.law, self.model, 0.)
@@ -254,6 +262,23 @@ class GeneralizationTests(unittest.TestCase):
         self.assertIn("gaussian_reverse_reference", result["refinement"]["fixed"])
         self.assertIn("endpoint_moments", result["runs"][0])
         json.dumps(result, allow_nan=False)
+
+    def test_completed_sampler_seeds_resume_an_interrupted_case(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            first = run_case(self.spec, self.case, output, "code")
+            seeds = list((output / "seeds").glob("*.json"))
+            self.assertEqual(len(seeds), len(self.spec["seeds"]))
+            with patch("verification.generalization.integrate",
+                       side_effect=AssertionError("Completed seed must not be integrated again")):
+                resumed = run_case(self.spec, self.case, output, "code", resume=True)
+            self.assertEqual(first["runs"], resumed["runs"])
+            changed = copy.deepcopy(self.spec)
+            changed["particles"] = [16, 64]
+            with self.assertRaisesRegex(ValueError, "Sampler seed fingerprint mismatch"):
+                run_case(changed, self.case, output, "code", resume=True)
+            with self.assertRaisesRegex(FileExistsError, "Sampler seed exists"):
+                run_case(self.spec, self.case, output, "code")
 
     def test_empirical_and_learned_cases_end_to_end(self):
         for data, score, arm in (("raw_moons", "exact", "reisotropized"),
@@ -326,8 +351,9 @@ class GeneralizationTests(unittest.TestCase):
         spec["training_seeds"] = [0, 1, 2]
         spec["cases"] = [dict(self.case, id=f"training-{seed}", axis="trained",
                               score="learned", training_seed=seed) for seed in range(3)]
+        spec["cases"].append(dict(spec["cases"][0], id="transported-network", arm="transported"))
         with tempfile.TemporaryDirectory() as tmp:
-            output = Path(tmp)
+            output = Path(tmp) / "original"
             self.assertTrue(run_manifest(spec, output))
             report, _ = analyze(output)
             group = report["training_groups"][0]
@@ -336,10 +362,15 @@ class GeneralizationTests(unittest.TestCase):
             self.assertEqual(len(statistic["values"]), 3)
             self.assertEqual(len(group["within_checkpoint_sampler_variability"]), 3)
             self.assertEqual(report["missing_case_ids"], [])
-            checkpoint = next((output / "checkpoints").glob("*-best.npz"))
+            self.assertTrue(report["arm_comparisons"][0]["endpoint_transport_check"]["passed"])
+            relocated = Path(tmp) / "relocated"
+            output.rename(relocated)
+            moved_report, _ = analyze(relocated)
+            self.assertTrue(moved_report["full_manifest_completed"])
+            checkpoint = next((relocated / "checkpoints").glob("*-best.npz"))
             checkpoint.write_bytes(b"deliberately corrupted")
             with self.assertRaisesRegex(ValueError, "Checkpoint changed"):
-                analyze(output)
+                analyze(relocated)
 
     def test_cli_execution_resume_and_analysis(self):
         script = Path(__file__).with_name("generalization.py").resolve()

@@ -1,0 +1,428 @@
+[
+  {
+    "case_id": "trained-gaussian-cf18e9ca247e",
+    "requirement": "Fixed-shape covariance transport and generalized threshold",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-cf18e9ca247e.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not establish a physical noise model"
+  },
+  {
+    "case_id": "trained-gaussian-cf18e9ca247e",
+    "requirement": "Exact oracle score, density Jacobian, and score transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-cf18e9ca247e.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Exact relative to the recorded clean law"
+  },
+  {
+    "case_id": "trained-gaussian-cf18e9ca247e",
+    "requirement": "Fully coupled sampler transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-cf18e9ca247e.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Local re-clipping is a different intervention"
+  },
+  {
+    "case_id": "trained-gaussian-cf18e9ca247e",
+    "requirement": "Quadratic score-error transport including signed e^T G e",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-cf18e9ca247e.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not equate independently introduced score errors"
+  },
+  {
+    "case_id": "trained-gaussian-cf18e9ca247e",
+    "requirement": "Declared exact-target and Gaussian-reference controls",
+    "classification": "empirical requirement",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-cf18e9ca247e.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not require approximate-prior or learned-score bias to vanish"
+  },
+  {
+    "case_id": "trained-gaussian-913cb90e2147",
+    "requirement": "Fixed-shape covariance transport and generalized threshold",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-913cb90e2147.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not establish a physical noise model"
+  },
+  {
+    "case_id": "trained-gaussian-913cb90e2147",
+    "requirement": "Exact oracle score, density Jacobian, and score transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-913cb90e2147.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Exact relative to the recorded clean law"
+  },
+  {
+    "case_id": "trained-gaussian-913cb90e2147",
+    "requirement": "Fully coupled sampler transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-913cb90e2147.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Local re-clipping is a different intervention"
+  },
+  {
+    "case_id": "trained-gaussian-913cb90e2147",
+    "requirement": "Quadratic score-error transport including signed e^T G e",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-913cb90e2147.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not equate independently introduced score errors"
+  },
+  {
+    "case_id": "trained-gaussian-913cb90e2147",
+    "requirement": "Declared exact-target and Gaussian-reference controls",
+    "classification": "empirical requirement",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-913cb90e2147.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not require approximate-prior or learned-score bias to vanish"
+  },
+  {
+    "case_id": "trained-gaussian-b26f4b559726",
+    "requirement": "Fixed-shape covariance transport and generalized threshold",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-b26f4b559726.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not establish a physical noise model"
+  },
+  {
+    "case_id": "trained-gaussian-b26f4b559726",
+    "requirement": "Exact oracle score, density Jacobian, and score transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-b26f4b559726.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Exact relative to the recorded clean law"
+  },
+  {
+    "case_id": "trained-gaussian-b26f4b559726",
+    "requirement": "Fully coupled sampler transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-b26f4b559726.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Local re-clipping is a different intervention"
+  },
+  {
+    "case_id": "trained-gaussian-b26f4b559726",
+    "requirement": "Quadratic score-error transport including signed e^T G e",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-b26f4b559726.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not equate independently introduced score errors"
+  },
+  {
+    "case_id": "trained-gaussian-b26f4b559726",
+    "requirement": "Declared exact-target and Gaussian-reference controls",
+    "classification": "empirical requirement",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-b26f4b559726.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not require approximate-prior or learned-score bias to vanish"
+  },
+  {
+    "case_id": "trained-gaussian-933037d2de48",
+    "requirement": "Fixed-shape covariance transport and generalized threshold",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-933037d2de48.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not establish a physical noise model"
+  },
+  {
+    "case_id": "trained-gaussian-933037d2de48",
+    "requirement": "Exact oracle score, density Jacobian, and score transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-933037d2de48.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Exact relative to the recorded clean law"
+  },
+  {
+    "case_id": "trained-gaussian-933037d2de48",
+    "requirement": "Fully coupled sampler transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-933037d2de48.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Local re-clipping is a different intervention"
+  },
+  {
+    "case_id": "trained-gaussian-933037d2de48",
+    "requirement": "Quadratic score-error transport including signed e^T G e",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-933037d2de48.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not equate independently introduced score errors"
+  },
+  {
+    "case_id": "trained-gaussian-933037d2de48",
+    "requirement": "Declared exact-target and Gaussian-reference controls",
+    "classification": "empirical requirement",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-933037d2de48.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not require approximate-prior or learned-score bias to vanish"
+  },
+  {
+    "case_id": "trained-gaussian-e8ddea818e52",
+    "requirement": "Fixed-shape covariance transport and generalized threshold",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-e8ddea818e52.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not establish a physical noise model"
+  },
+  {
+    "case_id": "trained-gaussian-e8ddea818e52",
+    "requirement": "Exact oracle score, density Jacobian, and score transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-e8ddea818e52.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Exact relative to the recorded clean law"
+  },
+  {
+    "case_id": "trained-gaussian-e8ddea818e52",
+    "requirement": "Fully coupled sampler transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-e8ddea818e52.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Local re-clipping is a different intervention"
+  },
+  {
+    "case_id": "trained-gaussian-e8ddea818e52",
+    "requirement": "Quadratic score-error transport including signed e^T G e",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-e8ddea818e52.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not equate independently introduced score errors"
+  },
+  {
+    "case_id": "trained-gaussian-e8ddea818e52",
+    "requirement": "Declared exact-target and Gaussian-reference controls",
+    "classification": "empirical requirement",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-e8ddea818e52.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not require approximate-prior or learned-score bias to vanish"
+  },
+  {
+    "case_id": "trained-gaussian-1673d0f2af95",
+    "requirement": "Fixed-shape covariance transport and generalized threshold",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-1673d0f2af95.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not establish a physical noise model"
+  },
+  {
+    "case_id": "trained-gaussian-1673d0f2af95",
+    "requirement": "Exact oracle score, density Jacobian, and score transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-1673d0f2af95.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Exact relative to the recorded clean law"
+  },
+  {
+    "case_id": "trained-gaussian-1673d0f2af95",
+    "requirement": "Fully coupled sampler transport",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-1673d0f2af95.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Local re-clipping is a different intervention"
+  },
+  {
+    "case_id": "trained-gaussian-1673d0f2af95",
+    "requirement": "Quadratic score-error transport including signed e^T G e",
+    "classification": "identity",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-1673d0f2af95.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not equate independently introduced score errors"
+  },
+  {
+    "case_id": "trained-gaussian-1673d0f2af95",
+    "requirement": "Declared exact-target and Gaussian-reference controls",
+    "classification": "empirical requirement",
+    "outcome": "supported",
+    "evidence": "cases/trained-gaussian-1673d0f2af95.json",
+    "tolerance_or_uncertainty": {
+      "score_residual": 2e-05,
+      "path_residual": 1e-08,
+      "geometry": "Condition-aware residual and eigenvalue bands in the case artifact",
+      "quality": "Frozen target calibration bands and independent Gaussian-reference limits in the case artifact; seed intervals are descriptive"
+    },
+    "limitation": "Does not require approximate-prior or learned-score bias to vanish"
+  },
+  {
+    "requirement": "Physical relevance and outstanding core-gate certification",
+    "classification": "model choice",
+    "outcome": "not assessed",
+    "limitation": "Optional synthetic experiments cannot establish physical validity"
+  }
+]

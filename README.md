@@ -124,6 +124,11 @@ core gates or establishes full empirical generalization. The 4224-case full prof
 is deliberately excluded from CI and requires prerequisite evidence and a compute
 budget before execution.
 
+The [213-case bounded analysis](results/coordinate_invariance/generalization-all-axes/analysis/report.md)
+completed all axes with three independent training seeds. All implementation
+checks passed, while 69 coarse-grid quality outcomes were `violated` and retained;
+these failures must not be interpreted as full-study generalization conclusions.
+
 ## How to cite
 
 If you use this code, please cite the paper,

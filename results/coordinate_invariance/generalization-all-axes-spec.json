@@ -1,0 +1,3955 @@
+{
+  "version": 1,
+  "profile": "custom",
+  "primary_spec": {
+    "units": {
+      "system": "dimensionless",
+      "reference_length": 1.0,
+      "reference_time": 1.0,
+      "reference_mass": 1.0,
+      "dimensionless_mass": 1.0,
+      "momentum_equals_velocity": true,
+      "reference_scales_fixed_across_arms": true,
+      "transform_acts_after_nondimensionalization": true,
+      "physical_calibration": "not established"
+    },
+    "coordinates": {
+      "dimension": 4,
+      "order": [
+        "x1",
+        "v1",
+        "x2",
+        "v2"
+      ],
+      "matrix_pilot_order": [
+        "x1",
+        "v1"
+      ],
+      "row_sample_transform": "Y = Z @ A.T",
+      "omega": 2.0,
+      "B": [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          -4,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          -4,
+          0
+        ]
+      ],
+      "J": [
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          -1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          -1,
+          0
+        ]
+      ]
+    },
+    "covariance": {
+      "Q_policy": "fixed symmetric positive definite",
+      "conditional": "C(t) = sigma(t)^2 Q",
+      "total": "M(t) Cov(X) M(t)^T + C(t)",
+      "propagator": "M(t) = exp(B t)",
+      "noise_independent_of_clean_state": true,
+      "marginals_alone_define_sde_transitions": false
+    },
+    "initial_smoothing": {
+      "schedule": "sigma(t) = sigma0 exp(r t)",
+      "sigma0": 0.01,
+      "r": 0.9,
+      "sigmaT": 40.0,
+      "horizon_policy": "T = log(sigmaT / sigma0) / r",
+      "shared_rate_and_horizon_within_comparison": true,
+      "target": "X + sigma0 L_Q epsilon",
+      "target_is_clean_law": false,
+      "terminal_initialization": "exact marginal",
+      "terminal_draw": "M(T) X + sigmaT L_Q epsilon",
+      "approximate_prior": "separately labeled control only",
+      "target_noise_independent_of_sampler_noise": true,
+      "clean_law_parameters": "must be recorded before sampling"
+    },
+    "arms": {
+      "example_scope": "representative nonorthogonal squeeze; not the full transform grid",
+      "A": [
+        [
+          2,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0.5,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0.5
+        ]
+      ],
+      "baseline": {
+        "clean_transform": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "B": [
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            -4,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            -4,
+            0
+          ]
+        ],
+        "Q": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "noise_factor": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "initial_conditional_covariance": [
+          [
+            0.0001,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.0001,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.0001,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0.0001
+          ]
+        ],
+        "pulled_back_Q": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "transported": {
+        "clean_transform": [
+          [
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.5,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0.5
+          ]
+        ],
+        "B": [
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "Q": [
+          [
+            4,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.25,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            4,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0.25
+          ]
+        ],
+        "noise_factor": [
+          [
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.5,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0.5
+          ]
+        ],
+        "initial_conditional_covariance": [
+          [
+            0.0004,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2.5e-05,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.0004,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2.5e-05
+          ]
+        ],
+        "pulled_back_Q": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ]
+      },
+      "reisotropized": {
+        "clean_transform": [
+          [
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.5,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0.5
+          ]
+        ],
+        "B": [
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            -1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            -1,
+            0
+          ]
+        ],
+        "Q": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "noise_factor": [
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ]
+        ],
+        "initial_conditional_covariance": [
+          [
+            0.0001,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0.0001,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.0001,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0.0001
+          ]
+        ],
+        "pulled_back_Q": [
+          [
+            0.25,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0.25,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            4
+          ]
+        ]
+      }
+    },
+    "feasibility_scope": {
+      "drift": "B z",
+      "diffusion": "real state-independent",
+      "initial_law": "smoothed Z_0",
+      "G_definition": "dC/dt - B C - C B^T",
+      "exponential_G": "2 sigma(t)^2 (r Q - (B Q + Q B^T)/2)",
+      "criterion": "G(t) positive semidefinite iff r >= kappa_Q",
+      "threshold": "kappa_Q = lambda_max((B Q + Q B^T)/2, Q)",
+      "singular_psd_allowed": true,
+      "below_threshold_marginals_exist": true,
+      "rules_out_all_stochastic_dynamics": false,
+      "establishes_physical_validity": false
+    }
+  },
+  "shapes": {
+    "isotropic": {
+      "raw": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "normalization": "none"
+    },
+    "energy_trace": {
+      "raw": [
+        [
+          0.25,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "Q": [
+        [
+          0.4,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.6,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.4,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.6
+        ]
+      ],
+      "normalization": "trace"
+    },
+    "energy_det": {
+      "raw": [
+        [
+          0.25,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "Q": [
+        [
+          0.5,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.5,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          2.0
+        ]
+      ],
+      "normalization": "det"
+    },
+    "anisotropic_trace": {
+      "raw": [
+        [
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "Q": [
+        [
+          2.56,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.64,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.16,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.64
+        ]
+      ],
+      "normalization": "trace"
+    },
+    "anisotropic_det": {
+      "raw": [
+        [
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "Q": [
+        [
+          4.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.25,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "normalization": "det"
+    },
+    "correlated_trace": {
+      "raw": [
+        [
+          1.0,
+          0.5,
+          0.3,
+          0.0
+        ],
+        [
+          0.5,
+          1.25,
+          0.15,
+          -0.4
+        ],
+        [
+          0.3,
+          0.15,
+          1.09,
+          0.0
+        ],
+        [
+          0.0,
+          -0.4,
+          0.0,
+          1.1600000000000001
+        ]
+      ],
+      "Q": [
+        [
+          0.8888888888888888,
+          0.4444444444444444,
+          0.26666666666666666,
+          0.0
+        ],
+        [
+          0.4444444444444444,
+          1.1111111111111112,
+          0.13333333333333333,
+          -0.35555555555555557
+        ],
+        [
+          0.26666666666666666,
+          0.13333333333333333,
+          0.9688888888888889,
+          0.0
+        ],
+        [
+          0.0,
+          -0.35555555555555557,
+          0.0,
+          1.031111111111111
+        ]
+      ],
+      "normalization": "trace"
+    },
+    "correlated_det": {
+      "raw": [
+        [
+          1.0,
+          0.5,
+          0.3,
+          0.0
+        ],
+        [
+          0.5,
+          1.25,
+          0.15,
+          -0.4
+        ],
+        [
+          0.3,
+          0.15,
+          1.09,
+          0.0
+        ],
+        [
+          0.0,
+          -0.4,
+          0.0,
+          1.1600000000000001
+        ]
+      ],
+      "Q": [
+        [
+          1.0,
+          0.5,
+          0.3,
+          0.0
+        ],
+        [
+          0.5,
+          1.25,
+          0.15,
+          -0.4
+        ],
+        [
+          0.3,
+          0.15,
+          1.09,
+          0.0
+        ],
+        [
+          0.0,
+          -0.4,
+          0.0,
+          1.1600000000000001
+        ]
+      ],
+      "normalization": "det"
+    }
+  },
+  "transforms": {
+    "identity": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "decisive": [
+      [
+        1.4142135623730951,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.7071067811865475,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.4142135623730951,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        0.7071067811865475
+      ]
+    ],
+    "cross_pair": [
+      [
+        1.0,
+        0.0,
+        0.3,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3,
+        0.0,
+        1.0
+      ]
+    ],
+    "recorded": [
+      [
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0.5,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0.5
+      ]
+    ],
+    "jacobian": [
+      [
+        1.5,
+        0.0,
+        0.44999999999999996,
+        0.0
+      ],
+      [
+        0.0,
+        1.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        0.0
+      ],
+      [
+        0.0,
+        -0.3,
+        0.0,
+        1.0
+      ]
+    ]
+  },
+  "mixture_path": "/home/colligo/phase-space-diffusion-threshold/results/gmm_fit.npz",
+  "steps": [
+    128,
+    256
+  ],
+  "particles": [
+    64,
+    128
+  ],
+  "seeds": [
+    0,
+    1
+  ],
+  "training_seeds": [
+    0,
+    1,
+    2
+  ],
+  "calibration_repeats": 4,
+  "empirical_points": 64,
+  "estimated_moment_points": 512,
+  "training": {
+    "updates": 20,
+    "width": 16,
+    "depth": 1,
+    "batch": 32,
+    "learning_rate": 0.002,
+    "validation_size": 32,
+    "validate_every": 10
+  },
+  "acceptance": {
+    "score_residual": 2e-05,
+    "path_residual": 1e-08,
+    "metric_margins": {
+      "mean": 0.02,
+      "covariance": 0.05,
+      "sliced_w2": 0.05,
+      "mmd2": 0.005,
+      "component_mass_max_error": 0.01
+    },
+    "gaussian_moment_margin": 0.05
+  },
+  "cases": [
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-83f69783998b"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-0a94ee169ddb"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-a43c2e55ad27"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-d1aad3a4047f"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-bff19319d0d3"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-563efd157763"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "energy_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-8e12380d8c70"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "energy_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-2dd2493dd5ef"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "energy_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-9f072d4c1138"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "energy_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-aaa59f0bf618"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "energy_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-f6b72e4d7078"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "energy_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-d89568b81df9"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "energy_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-ea9a5a165a7a"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "energy_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-b609b647de24"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "energy_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-e508b343b81f"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "energy_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-5ec2924082c0"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "energy_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-7ad39cf363ef"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "energy_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-3cc9177b3d74"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "anisotropic_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-e5ef11b5c21f"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "anisotropic_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-98b26d89cace"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "anisotropic_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-eb6526228257"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "anisotropic_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-9c49ba1a7526"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "anisotropic_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-7fbd3230d719"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "anisotropic_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-73ce3520def7"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "anisotropic_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-253f27b9fc27"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "anisotropic_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-cde549a61078"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "anisotropic_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-2f9d44fdd8ca"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "anisotropic_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-4486d1cf143a"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "anisotropic_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-595ec692aed0"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "anisotropic_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-fb51999a906e"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-4fb435654f22"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-f2ec146950cd"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-fbf319f4a9b5"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-f2ca1a4b1cb7"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-e1c75ee57476"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-a2fab51458ce"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "correlated_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-e9a01508ef77"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "correlated_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-0837a3530d97"
+    },
+    {
+      "axis": "noise",
+      "data": "gaussian",
+      "shape": "correlated_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-gaussian-1d5f5e800294"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "correlated_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-e22884b30e48"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "correlated_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-754c845abdde"
+    },
+    {
+      "axis": "noise",
+      "data": "fitted_moons",
+      "shape": "correlated_det",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "noise-fitted_moons-6201bf79f893"
+    },
+    {
+      "axis": "data",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-gaussian-2c5a052357d6"
+    },
+    {
+      "axis": "data",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-gaussian-83a85def2c23"
+    },
+    {
+      "axis": "data",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-gaussian-ebb084efdd96"
+    },
+    {
+      "axis": "data",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-separated-311066e609d0"
+    },
+    {
+      "axis": "data",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-separated-6f64e084d340"
+    },
+    {
+      "axis": "data",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-separated-125195feb268"
+    },
+    {
+      "axis": "data",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-overlapping-ad352c3d9c81"
+    },
+    {
+      "axis": "data",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-overlapping-df2bc3cbca3b"
+    },
+    {
+      "axis": "data",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-overlapping-fddb8f75eed4"
+    },
+    {
+      "axis": "data",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-imbalanced-26c029636e2a"
+    },
+    {
+      "axis": "data",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-imbalanced-befeb49419ae"
+    },
+    {
+      "axis": "data",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-imbalanced-4a01096e9738"
+    },
+    {
+      "axis": "data",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-fitted_moons-800413f27e27"
+    },
+    {
+      "axis": "data",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-fitted_moons-814ed0df514b"
+    },
+    {
+      "axis": "data",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-fitted_moons-b12b211aac4c"
+    },
+    {
+      "axis": "data",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-raw_moons-eb3d748ac6cc"
+    },
+    {
+      "axis": "data",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-raw_moons-19931da79db8"
+    },
+    {
+      "axis": "data",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "data-raw_moons-893969336d9c"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-75a33600075b"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-21bc6746a57a"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-3d475faa7092"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-ca26cb34bc23"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-8db42595e9e8"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-a947a1c63fb8"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "estimated",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-5ddfcdf59f24"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "estimated",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-0620e1a94c13"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "estimated",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-071f89e8eecc"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "noise_only",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-8ef72b22c0ab"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "noise_only",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-e9ecc300537a"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "noise_only",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-66435a537267"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "shift",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-bebbf09da359"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "shift",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-879bb0b1f0c3"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "shift",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-40ecce998612"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "scale_0.8",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-bfd06996e1c7"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "scale_0.8",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-3db822398cbd"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "scale_0.8",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-754153aff2ba"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "scale_1.2",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-e3eb99bdf952"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "scale_1.2",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-6817b9771941"
+    },
+    {
+      "axis": "prior",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "scale_1.2",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-gaussian-75fc20b86dc3"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-f5b44c0cebfa"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-b24c7ee5aeb4"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-bbe9c7d26319"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-6bb307fa08c2"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-e85ab97e2027"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-d698b1b3c389"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "estimated",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-16e411d6817c"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "estimated",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-12743c748e80"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "estimated",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-bbedc91dfa3f"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "noise_only",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-493a8d32ee55"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "noise_only",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-a71eaeda1164"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "noise_only",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-f5f2c7fd600f"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "shift",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-91b6bb39e8fd"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "shift",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-b070e2b2e345"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "shift",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-ddc010d2d24b"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "scale_0.8",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-3a5e927e786e"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "scale_0.8",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-fe2b485f4bb5"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "scale_0.8",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-43dbe6f03b1f"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "scale_1.2",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-d1cf055a1b29"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "scale_1.2",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-659a901272a0"
+    },
+    {
+      "axis": "prior",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "scale_1.2",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "prior-separated-0b5f5da37a42"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "zero",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-c873ed98ccd7"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "zero",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-2e5c990379d5"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "zero",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-7af2e0302a88"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "bias",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-3ae2191cd96a"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "bias",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-fff1089f4f4f"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "bias",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-76922f01ce79"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "scale",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-828aad0cf8d6"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "scale",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-0e1629a4731f"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "scale",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-5c84b253245f"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "smooth",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-fda183e529c9"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "smooth",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-21399b320885"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "smooth",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-e36af5d8e328"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "independent_bias",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-d1b625c5b939"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "independent_bias",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-ba97cefa40f6"
+    },
+    {
+      "axis": "score",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "independent_bias",
+      "amplitude": 0.1,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "score-gaussian-f7de5a4a400a"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-gaussian-cf18e9ca247e"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-gaussian-913cb90e2147"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-gaussian-b26f4b559726"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-gaussian-933037d2de48"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-gaussian-e8ddea818e52"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-gaussian-1673d0f2af95"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-gaussian-e79e35ba8d94"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-gaussian-7cb8d85e5743"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-gaussian-9bb828347d2d"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-gaussian-172aad3a63f9"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-gaussian-de7b0b52c8ad"
+    },
+    {
+      "axis": "trained",
+      "data": "gaussian",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-gaussian-5f4693d37481"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-separated-a778b28c23d3"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-separated-1456179d1c95"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-separated-bcb580584bb3"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-separated-de77b4e437f1"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-separated-fcfd072e1d5a"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-separated-50fd2dadaaf5"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-separated-a64d3ce9535b"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-separated-e1b5b9f51090"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-separated-907d0559b750"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-separated-d8f900175a9c"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-separated-470f11b3a200"
+    },
+    {
+      "axis": "trained",
+      "data": "separated",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-separated-f081f3a9ae9f"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-overlapping-484b6929f415"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-overlapping-0057b41c1686"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-overlapping-915ec219a76e"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-overlapping-c1e947c951e3"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-overlapping-addfb21b5ab3"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-overlapping-edec7a6edb23"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-overlapping-9173de1c9a0e"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-overlapping-53b2b53ccea7"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-overlapping-ccb8491a6d12"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-overlapping-1201dbee3fd4"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-overlapping-a2a152e40968"
+    },
+    {
+      "axis": "trained",
+      "data": "overlapping",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-overlapping-0d3123ee14dd"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-imbalanced-6efc1da0aa63"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-imbalanced-19e94f20e94d"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-imbalanced-602e75415be6"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-imbalanced-6c74d7d7e6bc"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-imbalanced-3df03d1b2f50"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-imbalanced-768de68ff9be"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-imbalanced-36a3c5bfe301"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-imbalanced-5dbb0cf95403"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-imbalanced-ba74b3eec551"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-imbalanced-84e70eb701e8"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-imbalanced-d1331eb53edc"
+    },
+    {
+      "axis": "trained",
+      "data": "imbalanced",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-imbalanced-d2d595068c79"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-fitted_moons-063a3c86c93b"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-fitted_moons-da9180ea1670"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-fitted_moons-eba9c9173edb"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-fitted_moons-bbaa45ec9a64"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-fitted_moons-5e0d6037c47b"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-fitted_moons-c4410e902de3"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-fitted_moons-1ce45de1153e"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-fitted_moons-d104e5742b6e"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-fitted_moons-fc2617ec8cd0"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-fitted_moons-12ba64caa699"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-fitted_moons-82d77d791d78"
+    },
+    {
+      "axis": "trained",
+      "data": "fitted_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-fitted_moons-8cf64fff8b50"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-raw_moons-6339ec10d983"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-raw_moons-c21b1e5eac4b"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-raw_moons-46b80e223296"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-raw_moons-da25b53f6a83"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-raw_moons-93318dc2fc4a"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-raw_moons-d72b40878d57"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-raw_moons-6abf6f5dbc66"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-raw_moons-e5e21d837775"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-raw_moons-24bc40dfbc98"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "trained-raw_moons-248667f4cadd"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "trained-raw_moons-f79a84ffe598"
+    },
+    {
+      "axis": "trained",
+      "data": "raw_moons",
+      "shape": "isotropic",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "retrained_A",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "trained-raw_moons-f2c85a960a1e"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "interaction-imbalanced-7cc5ebc1fc2a"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "interaction-imbalanced-74034a9a83a8"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "interaction-imbalanced-4a3d21f6a388"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "interaction-imbalanced-0ce8568638fe"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "interaction-imbalanced-18fdc742312e"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "exact",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": null,
+      "id": "interaction-imbalanced-08a95a420f3c"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "interaction-imbalanced-1cd8a5022c3e"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "interaction-imbalanced-b85d59cea652"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "interaction-imbalanced-e5fcbf9e190f"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "interaction-imbalanced-386c83a44132"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "interaction-imbalanced-8ba12323a382"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "interaction-imbalanced-a501ef31040b"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "interaction-imbalanced-1413ef44ce7b"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "interaction-imbalanced-5c002fa82cd2"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "exact",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "interaction-imbalanced-42afb9de3764"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "interaction-imbalanced-199accbf8547"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "interaction-imbalanced-cd01b33b156f"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "baseline",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "interaction-imbalanced-3a8f95db15af"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "interaction-imbalanced-105fffc694e6"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "interaction-imbalanced-2753e4789f85"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "transported",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "interaction-imbalanced-86724fa94d04"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 0,
+      "id": "interaction-imbalanced-c454f4c9a1c3"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 1,
+      "id": "interaction-imbalanced-23ba2be36f58"
+    },
+    {
+      "axis": "interaction",
+      "data": "imbalanced",
+      "shape": "correlated_trace",
+      "prior": "moment",
+      "score": "learned",
+      "amplitude": 0.0,
+      "rate": 1.95,
+      "arm": "reisotropized",
+      "transform": "decisive",
+      "training_seed": 2,
+      "id": "interaction-imbalanced-8094b5059b7b"
+    }
+  ]
+}
