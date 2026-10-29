@@ -97,38 +97,6 @@ All experiments and the verification run used Python 3.13.16 with numpy 2.5.3, s
 Day-1 jobs: `python run_sweep.py ham <seed> <ratio>` for seeds 0, 1 and ratios 0.6, 0.8, 0.9, 1.0, 1.1, 1.3.
 Pure NumPy (score network with hand-written backpropagation and Adam).
 
-### Optional coordinate-generalization study
-
-Section 11 of [`coordinate_invariance_experiment_plan.md`](coordinate_invariance_experiment_plan.md)
-has a manifest-driven runner for fixed SPD noise shapes, alternative data laws,
-terminal priors, controlled score errors, trained scores, and selected interactions.
-It preserves the primary model and existing sampler defaults.
-
-```bash
-python verification/generalization.py --profile full --write-spec /tmp/generalization-full.json
-python verification/generalization.py --profile smoke --dry-run
-OPENBLAS_NUM_THREADS=1 python verification/generalization.py \
-  --profile smoke --output results/coordinate_invariance/generalization-new-smoke
-python generalization_analyze.py \
-  --input results/coordinate_invariance/generalization-new-smoke
-```
-
-The analyzer produces an evidence report, separate axis summaries and interaction
-appendix, paired effects, nested training/sampler uncertainty, an assumption ledger,
-and figures. Coarse smoke quality checks can fail and return a nonzero runner exit;
-analyzing those retained failures is intentional. Approximate-prior and learned-score
-quality is measured, not required to equal the exact-score target. Moment KL is
-only a Gaussian-moment proxy, and held-out raw-data metrics are population proxies.
-Neither a completed smoke manifest nor passing unit tests clears the outstanding
-core gates or establishes full empirical generalization. The 4224-case full profile
-is deliberately excluded from CI and requires prerequisite evidence and a compute
-budget before execution.
-
-The [213-case bounded analysis](results/coordinate_invariance/generalization-all-axes/analysis/report.md)
-completed all axes with three independent training seeds. All implementation
-checks passed, while 69 coarse-grid quality outcomes were `violated` and retained;
-these failures must not be interpreted as full-study generalization conclusions.
-
 ## How to cite
 
 If you use this code, please cite the paper,
