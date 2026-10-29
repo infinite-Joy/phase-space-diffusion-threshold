@@ -12,6 +12,7 @@ where s = grad log p_t.  Pure numpy (no torch).
 """
 import numpy as np
 from scipy.linalg import expm
+from scipy.special import expit
 
 # ---------------------------------------------------------------- dynamics
 def hamiltonian_B(omega, d=2):
@@ -58,9 +59,9 @@ def two_moons(n, rng, noise=0.05, vstd=0.25):
     return z
 
 # ---------------------------------------------------------------- MLP (manual backprop, Adam)
-def silu(a):  return a / (1 + np.exp(-a))
+def silu(a):  return a * expit(a)
 def dsilu(a):
-    sg = 1 / (1 + np.exp(-a)); return sg * (1 + a * (1 - sg))
+    sg = expit(a); return sg * (1 + a * (1 - sg))
 
 class MLP:
     def __init__(self, sizes, rng):

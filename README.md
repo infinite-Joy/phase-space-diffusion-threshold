@@ -71,8 +71,12 @@ No claim about sample quality on real data is made; the demo shows where the sta
 
 ## Reproduce
 
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then create and activate a virtual environment:
+
 ```bash
-pip install -r requirements.txt
+uv venv --python 3.13
+source .venv/bin/activate
+uv pip install -r requirements.txt
 python verification/run_all.py                                   # 113 checks: every analytical statement and number in the paper
 cat jobs.txt | xargs -P 2 -L 1 python run_sweep.py               # day-2 jobs (CPU, about 4 min each)
 python analyze.py                                                # paired analysis and figure

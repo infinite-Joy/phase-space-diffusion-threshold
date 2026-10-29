@@ -6,12 +6,29 @@ from scipy.linalg import expm
 from scipy.integrate import solve_ivp
 from scipy.special import logsumexp
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-from psdt import hamiltonian_B, cld_B, kappa_of, Process, batch_M
+from psdt import hamiltonian_B, cld_B, kappa_of, Process, batch_M, silu, dsilu
 
 results = []
 def check(name, ok, info=''):
     results.append(ok)
     print(f"[{'PASS' if ok else 'FAIL'}] {name} {info}")
+
+# Numerical stability of the score network's activation and gradient.
+for dtype in [np.float32, np.float64]:
+    limit = np.finfo(dtype).max
+    a = np.array([-limit, -1000, 0, 1000, limit], dtype=dtype)
+    with np.errstate(over='raise', invalid='raise'):
+        values, gradients = silu(a), dsilu(a)
+    check(f'SiLU finite at extreme {dtype.__name__} inputs',
+          np.all(np.isfinite(values)) and np.array_equal(values, [0, 0, 0, 1000, limit]))
+    check(f'SiLU derivative finite at extreme {dtype.__name__} inputs',
+          np.all(np.isfinite(gradients)) and np.array_equal(gradients, [0, 0, 0.5, 1, 1]))
+a = np.linspace(-20, 20, 401)
+sg = 1 / (1 + np.exp(-a))
+check('stable SiLU preserves ordinary-input values', np.allclose(silu(a), a * sg))
+h = 1e-5
+check('SiLU derivative matches finite differences',
+      np.allclose(dsilu(a), (silu(a + h) - silu(a - h)) / (2 * h), atol=1e-9))
 
 I4 = np.eye(4)
 Bh, Bc = hamiltonian_B(2.0), cld_B(beta=1.0)
