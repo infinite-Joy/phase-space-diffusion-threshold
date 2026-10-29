@@ -1,0 +1,132 @@
+2026-10-17 19:33:13,408 INFO Starting mixture sampling: mixture=/home/colligo/phase-space-diffusion-threshold/results/gmm_fit.npz, rates=[0.9], steps=[1000, 2000, 4000], samples=[128, 256], seeds=[0, 1, 2]
+2026-10-17 19:33:13,411 INFO Case 1/3: baseline_with_transported_Arm_A_recorded_squeeze r=0.9
+2026-10-17 19:33:13,412 INFO Calibrating target metrics: particle counts=[128, 256], controls per count=12
+2026-10-17 19:33:13,578 INFO Independent score/density checks: PASS
+2026-10-17 19:33:13,578 INFO Seed 0: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:33:13,821 INFO Seed 0: integrating all three samplers and transported paths
+2026-10-17 19:33:18,588 INFO Seed 0: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:33:23,385 INFO Seed 0: step 800/4000 (20%), elapsed 9.8s
+2026-10-17 19:33:28,178 INFO Seed 0: step 1200/4000 (30%), elapsed 14.6s
+2026-10-17 19:33:32,929 INFO Seed 0: step 1600/4000 (40%), elapsed 19.4s
+2026-10-17 19:33:37,680 INFO Seed 0: step 2000/4000 (50%), elapsed 24.1s
+2026-10-17 19:33:42,469 INFO Seed 0: step 2400/4000 (60%), elapsed 28.9s
+2026-10-17 19:33:47,352 INFO Seed 0: step 2800/4000 (70%), elapsed 33.8s
+2026-10-17 19:33:52,369 INFO Seed 0: step 3200/4000 (80%), elapsed 38.8s
+2026-10-17 19:33:57,574 INFO Seed 0: step 3600/4000 (90%), elapsed 44.0s
+2026-10-17 19:34:02,755 INFO Seed 0: step 4000/4000 (100%), elapsed 49.2s
+2026-10-17 19:34:02,801 INFO Seed 0: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:34:02,801 INFO Seed 1: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:34:03,035 INFO Seed 1: integrating all three samplers and transported paths
+2026-10-17 19:34:07,728 INFO Seed 1: step 400/4000 (10%), elapsed 4.9s
+2026-10-17 19:34:12,415 INFO Seed 1: step 800/4000 (20%), elapsed 9.6s
+2026-10-17 19:34:17,098 INFO Seed 1: step 1200/4000 (30%), elapsed 14.3s
+2026-10-17 19:34:21,765 INFO Seed 1: step 1600/4000 (40%), elapsed 19.0s
+2026-10-17 19:34:26,462 INFO Seed 1: step 2000/4000 (50%), elapsed 23.7s
+2026-10-17 19:34:31,312 INFO Seed 1: step 2400/4000 (60%), elapsed 28.5s
+2026-10-17 19:34:36,099 INFO Seed 1: step 2800/4000 (70%), elapsed 33.3s
+2026-10-17 19:34:41,151 INFO Seed 1: step 3200/4000 (80%), elapsed 38.3s
+2026-10-17 19:34:46,327 INFO Seed 1: step 3600/4000 (90%), elapsed 43.5s
+2026-10-17 19:34:51,565 INFO Seed 1: step 4000/4000 (100%), elapsed 48.8s
+2026-10-17 19:34:51,610 INFO Seed 1: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:34:51,610 INFO Seed 2: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:34:51,837 INFO Seed 2: integrating all three samplers and transported paths
+2026-10-17 19:34:56,566 INFO Seed 2: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:35:01,307 INFO Seed 2: step 800/4000 (20%), elapsed 9.7s
+2026-10-17 19:35:06,080 INFO Seed 2: step 1200/4000 (30%), elapsed 14.5s
+2026-10-17 19:35:10,810 INFO Seed 2: step 1600/4000 (40%), elapsed 19.2s
+2026-10-17 19:35:15,565 INFO Seed 2: step 2000/4000 (50%), elapsed 24.0s
+2026-10-17 19:35:20,330 INFO Seed 2: step 2400/4000 (60%), elapsed 28.7s
+2026-10-17 19:35:25,159 INFO Seed 2: step 2800/4000 (70%), elapsed 33.5s
+2026-10-17 19:35:30,279 INFO Seed 2: step 3200/4000 (80%), elapsed 38.7s
+2026-10-17 19:35:35,462 INFO Seed 2: step 3600/4000 (90%), elapsed 43.9s
+2026-10-17 19:35:40,682 INFO Seed 2: step 4000/4000 (100%), elapsed 49.1s
+2026-10-17 19:35:40,728 INFO Seed 2: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:35:40,729 INFO Case 1/3: baseline_with_transported_Arm_A_recorded_squeeze r=0.9 PASS, elapsed 147.3s
+2026-10-17 19:35:40,729 INFO Case 2/3: reisotropized_decisive_squeeze r=0.9
+2026-10-17 19:35:40,730 INFO Calibrating target metrics: particle counts=[128, 256], controls per count=12
+2026-10-17 19:35:40,891 INFO Independent score/density checks: PASS
+2026-10-17 19:35:40,891 INFO Seed 0: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:35:41,123 INFO Seed 0: integrating all three samplers and transported paths
+2026-10-17 19:35:45,851 INFO Seed 0: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:35:50,583 INFO Seed 0: step 800/4000 (20%), elapsed 9.7s
+2026-10-17 19:35:55,309 INFO Seed 0: step 1200/4000 (30%), elapsed 14.4s
+2026-10-17 19:36:00,084 INFO Seed 0: step 1600/4000 (40%), elapsed 19.2s
+2026-10-17 19:36:04,881 INFO Seed 0: step 2000/4000 (50%), elapsed 24.0s
+2026-10-17 19:36:09,642 INFO Seed 0: step 2400/4000 (60%), elapsed 28.8s
+2026-10-17 19:36:14,517 INFO Seed 0: step 2800/4000 (70%), elapsed 33.6s
+2026-10-17 19:36:19,611 INFO Seed 0: step 3200/4000 (80%), elapsed 38.7s
+2026-10-17 19:36:24,815 INFO Seed 0: step 3600/4000 (90%), elapsed 43.9s
+2026-10-17 19:36:30,069 INFO Seed 0: step 4000/4000 (100%), elapsed 49.2s
+2026-10-17 19:36:30,115 INFO Seed 0: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:36:30,115 INFO Seed 1: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:36:30,344 INFO Seed 1: integrating all three samplers and transported paths
+2026-10-17 19:36:35,149 INFO Seed 1: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:36:39,936 INFO Seed 1: step 800/4000 (20%), elapsed 9.8s
+2026-10-17 19:36:44,730 INFO Seed 1: step 1200/4000 (30%), elapsed 14.6s
+2026-10-17 19:36:49,531 INFO Seed 1: step 1600/4000 (40%), elapsed 19.4s
+2026-10-17 19:36:54,362 INFO Seed 1: step 2000/4000 (50%), elapsed 24.2s
+2026-10-17 19:36:59,240 INFO Seed 1: step 2400/4000 (60%), elapsed 29.1s
+2026-10-17 19:37:04,183 INFO Seed 1: step 2800/4000 (70%), elapsed 34.1s
+2026-10-17 19:37:09,328 INFO Seed 1: step 3200/4000 (80%), elapsed 39.2s
+2026-10-17 19:37:14,590 INFO Seed 1: step 3600/4000 (90%), elapsed 44.5s
+2026-10-17 19:37:19,888 INFO Seed 1: step 4000/4000 (100%), elapsed 49.8s
+2026-10-17 19:37:19,936 INFO Seed 1: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:37:19,936 INFO Seed 2: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:37:20,165 INFO Seed 2: integrating all three samplers and transported paths
+2026-10-17 19:37:24,922 INFO Seed 2: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:37:29,735 INFO Seed 2: step 800/4000 (20%), elapsed 9.8s
+2026-10-17 19:37:34,600 INFO Seed 2: step 1200/4000 (30%), elapsed 14.7s
+2026-10-17 19:37:39,455 INFO Seed 2: step 1600/4000 (40%), elapsed 19.5s
+2026-10-17 19:37:44,246 INFO Seed 2: step 2000/4000 (50%), elapsed 24.3s
+2026-10-17 19:37:49,001 INFO Seed 2: step 2400/4000 (60%), elapsed 29.1s
+2026-10-17 19:37:53,866 INFO Seed 2: step 2800/4000 (70%), elapsed 33.9s
+2026-10-17 19:37:59,097 INFO Seed 2: step 3200/4000 (80%), elapsed 39.2s
+2026-10-17 19:38:04,389 INFO Seed 2: step 3600/4000 (90%), elapsed 44.5s
+2026-10-17 19:38:09,650 INFO Seed 2: step 4000/4000 (100%), elapsed 49.7s
+2026-10-17 19:38:09,696 INFO Seed 2: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:38:09,696 INFO Case 2/3: reisotropized_decisive_squeeze r=0.9 PASS, elapsed 149.0s
+2026-10-17 19:38:09,697 INFO Case 3/3: reisotropized_recorded_squeeze r=0.9
+2026-10-17 19:38:09,697 INFO Calibrating target metrics: particle counts=[128, 256], controls per count=12
+2026-10-17 19:38:09,858 INFO Independent score/density checks: PASS
+2026-10-17 19:38:09,858 INFO Seed 0: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:38:10,089 INFO Seed 0: integrating all three samplers and transported paths
+2026-10-17 19:38:14,892 INFO Seed 0: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:38:19,653 INFO Seed 0: step 800/4000 (20%), elapsed 9.8s
+2026-10-17 19:38:24,442 INFO Seed 0: step 1200/4000 (30%), elapsed 14.6s
+2026-10-17 19:38:29,233 INFO Seed 0: step 1600/4000 (40%), elapsed 19.4s
+2026-10-17 19:38:34,083 INFO Seed 0: step 2000/4000 (50%), elapsed 24.2s
+2026-10-17 19:38:38,915 INFO Seed 0: step 2400/4000 (60%), elapsed 29.1s
+2026-10-17 19:38:43,843 INFO Seed 0: step 2800/4000 (70%), elapsed 34.0s
+2026-10-17 19:38:48,799 INFO Seed 0: step 3200/4000 (80%), elapsed 38.9s
+2026-10-17 19:38:54,126 INFO Seed 0: step 3600/4000 (90%), elapsed 44.3s
+2026-10-17 19:38:59,660 INFO Seed 0: step 4000/4000 (100%), elapsed 49.8s
+2026-10-17 19:38:59,705 INFO Seed 0: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:38:59,705 INFO Seed 1: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:38:59,932 INFO Seed 1: integrating all three samplers and transported paths
+2026-10-17 19:39:04,711 INFO Seed 1: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:39:09,491 INFO Seed 1: step 800/4000 (20%), elapsed 9.8s
+2026-10-17 19:39:14,275 INFO Seed 1: step 1200/4000 (30%), elapsed 14.6s
+2026-10-17 19:39:19,031 INFO Seed 1: step 1600/4000 (40%), elapsed 19.3s
+2026-10-17 19:39:23,779 INFO Seed 1: step 2000/4000 (50%), elapsed 24.1s
+2026-10-17 19:39:28,581 INFO Seed 1: step 2400/4000 (60%), elapsed 28.9s
+2026-10-17 19:39:33,544 INFO Seed 1: step 2800/4000 (70%), elapsed 33.8s
+2026-10-17 19:39:38,527 INFO Seed 1: step 3200/4000 (80%), elapsed 38.8s
+2026-10-17 19:39:43,738 INFO Seed 1: step 3600/4000 (90%), elapsed 44.0s
+2026-10-17 19:39:49,021 INFO Seed 1: step 4000/4000 (100%), elapsed 49.3s
+2026-10-17 19:39:49,069 INFO Seed 1: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:39:49,069 INFO Seed 2: preparing scores; particles=256, grids=[1000, 2000, 4000]
+2026-10-17 19:39:49,302 INFO Seed 2: integrating all three samplers and transported paths
+2026-10-17 19:39:54,034 INFO Seed 2: step 400/4000 (10%), elapsed 5.0s
+2026-10-17 19:39:58,799 INFO Seed 2: step 800/4000 (20%), elapsed 9.7s
+2026-10-17 19:40:03,610 INFO Seed 2: step 1200/4000 (30%), elapsed 14.5s
+2026-10-17 19:40:08,313 INFO Seed 2: step 1600/4000 (40%), elapsed 19.2s
+2026-10-17 19:40:13,089 INFO Seed 2: step 2000/4000 (50%), elapsed 24.0s
+2026-10-17 19:40:17,814 INFO Seed 2: step 2400/4000 (60%), elapsed 28.7s
+2026-10-17 19:40:22,690 INFO Seed 2: step 2800/4000 (70%), elapsed 33.6s
+2026-10-17 19:40:27,727 INFO Seed 2: step 3200/4000 (80%), elapsed 38.7s
+2026-10-17 19:40:32,951 INFO Seed 2: step 3600/4000 (90%), elapsed 43.9s
+2026-10-17 19:40:38,290 INFO Seed 2: step 4000/4000 (100%), elapsed 49.2s
+2026-10-17 19:40:38,336 INFO Seed 2: initialization/path checks PASS; diagnostics complete
+2026-10-17 19:40:38,337 INFO Case 3/3: reisotropized_recorded_squeeze r=0.9 PASS, elapsed 148.6s
+2026-10-17 19:40:38,344 INFO Evidence written: results/mixture_sampling.json
+2026-10-17 19:40:38,344 INFO Mixture sampling: PASS
