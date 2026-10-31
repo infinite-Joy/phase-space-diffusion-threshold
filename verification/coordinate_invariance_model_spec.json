@@ -1,0 +1,86 @@
+{
+  "units": {
+    "system": "dimensionless",
+    "reference_length": 1.0,
+    "reference_time": 1.0,
+    "reference_mass": 1.0,
+    "dimensionless_mass": 1.0,
+    "momentum_equals_velocity": true,
+    "reference_scales_fixed_across_arms": true,
+    "transform_acts_after_nondimensionalization": true,
+    "physical_calibration": "not established"
+  },
+  "coordinates": {
+    "dimension": 4,
+    "order": ["x1", "v1", "x2", "v2"],
+    "matrix_pilot_order": ["x1", "v1"],
+    "row_sample_transform": "Y = Z @ A.T",
+    "omega": 2.0,
+    "B": [[0, 1, 0, 0], [-4, 0, 0, 0], [0, 0, 0, 1], [0, 0, -4, 0]],
+    "J": [[0, 1, 0, 0], [-1, 0, 0, 0], [0, 0, 0, 1], [0, 0, -1, 0]]
+  },
+  "covariance": {
+    "Q_policy": "fixed symmetric positive definite",
+    "conditional": "C(t) = sigma(t)^2 Q",
+    "total": "M(t) Cov(X) M(t)^T + C(t)",
+    "propagator": "M(t) = exp(B t)",
+    "noise_independent_of_clean_state": true,
+    "marginals_alone_define_sde_transitions": false
+  },
+  "initial_smoothing": {
+    "schedule": "sigma(t) = sigma0 exp(r t)",
+    "sigma0": 0.01,
+    "r": 0.9,
+    "sigmaT": 40.0,
+    "horizon_policy": "T = log(sigmaT / sigma0) / r",
+    "shared_rate_and_horizon_within_comparison": true,
+    "target": "X + sigma0 L_Q epsilon",
+    "target_is_clean_law": false,
+    "terminal_initialization": "exact marginal",
+    "terminal_draw": "M(T) X + sigmaT L_Q epsilon",
+    "approximate_prior": "separately labeled control only",
+    "target_noise_independent_of_sampler_noise": true,
+    "clean_law_parameters": "must be recorded before sampling"
+  },
+  "arms": {
+    "example_scope": "representative nonorthogonal squeeze; not the full transform grid",
+    "A": [[2, 0, 0, 0], [0, 0.5, 0, 0], [0, 0, 2, 0], [0, 0, 0, 0.5]],
+    "baseline": {
+      "clean_transform": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
+      "B": [[0, 1, 0, 0], [-4, 0, 0, 0], [0, 0, 0, 1], [0, 0, -4, 0]],
+      "Q": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
+      "noise_factor": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
+      "initial_conditional_covariance": [[0.0001, 0, 0, 0], [0, 0.0001, 0, 0], [0, 0, 0.0001, 0], [0, 0, 0, 0.0001]],
+      "pulled_back_Q": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    },
+    "transported": {
+      "clean_transform": [[2, 0, 0, 0], [0, 0.5, 0, 0], [0, 0, 2, 0], [0, 0, 0, 0.5]],
+      "B": [[0, 4, 0, 0], [-1, 0, 0, 0], [0, 0, 0, 4], [0, 0, -1, 0]],
+      "Q": [[4, 0, 0, 0], [0, 0.25, 0, 0], [0, 0, 4, 0], [0, 0, 0, 0.25]],
+      "noise_factor": [[2, 0, 0, 0], [0, 0.5, 0, 0], [0, 0, 2, 0], [0, 0, 0, 0.5]],
+      "initial_conditional_covariance": [[0.0004, 0, 0, 0], [0, 0.000025, 0, 0], [0, 0, 0.0004, 0], [0, 0, 0, 0.000025]],
+      "pulled_back_Q": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
+    },
+    "reisotropized": {
+      "clean_transform": [[2, 0, 0, 0], [0, 0.5, 0, 0], [0, 0, 2, 0], [0, 0, 0, 0.5]],
+      "B": [[0, 4, 0, 0], [-1, 0, 0, 0], [0, 0, 0, 4], [0, 0, -1, 0]],
+      "Q": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
+      "noise_factor": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]],
+      "initial_conditional_covariance": [[0.0001, 0, 0, 0], [0, 0.0001, 0, 0], [0, 0, 0.0001, 0], [0, 0, 0, 0.0001]],
+      "pulled_back_Q": [[0.25, 0, 0, 0], [0, 4, 0, 0], [0, 0, 0.25, 0], [0, 0, 0, 4]]
+    }
+  },
+  "feasibility_scope": {
+    "drift": "B z",
+    "diffusion": "real state-independent",
+    "initial_law": "smoothed Z_0",
+    "G_definition": "dC/dt - B C - C B^T",
+    "exponential_G": "2 sigma(t)^2 (r Q - (B Q + Q B^T)/2)",
+    "criterion": "G(t) positive semidefinite iff r >= kappa_Q",
+    "threshold": "kappa_Q = lambda_max((B Q + Q B^T)/2, Q)",
+    "singular_psd_allowed": true,
+    "below_threshold_marginals_exist": true,
+    "rules_out_all_stochastic_dynamics": false,
+    "establishes_physical_validity": false
+  }
+}
