@@ -1,12 +1,14 @@
 """Verification suite: every analytical statement and every number in the paper is checked numerically.
 Run:  python verification/run_all.py      (exit code 0 iff all checks pass)"""
-import sys, os
+import sys, os, json
 import numpy as np
 from scipy.linalg import expm
 from scipy.integrate import solve_ivp
 from scipy.special import logsumexp
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 from psdt import hamiltonian_B, cld_B, kappa_of, Process, batch_M
+from verification.deterministic_foundations import run as run_deterministic_foundations
+from verification.model_specification import DEFAULT_SPEC
 
 results = []
 def check(name, ok, info=''):
@@ -409,6 +411,17 @@ for B, nm in [(Bh, 'ham'), (Bc, 'cld')]:
 ud = _json.load(open(os.path.join(R, 'elbo_gauss.json')))['u_direction']
 check('Proposition 7 / Fig. 2: J along u is > 0 for r > kappa, = 0 at r = kappa, < 0 below',
       all((x['J'] > 0) if x['ratio'] > 1 else (abs(x['J']) < 1e-12 if x['ratio'] == 1 else x['J'] < 0) for x in ud))
+
+try:
+    deterministic_report = run_deterministic_foundations(
+        json.loads(DEFAULT_SPEC.read_text()))
+except (OSError, ValueError, RuntimeError, np.linalg.LinAlgError) as error:
+    check('deterministic foundations: specification and transformation checks', False,
+          f'({error})')
+else:
+    for case in deterministic_report['cases'] + deterministic_report['negative_controls']:
+        check(f"deterministic foundations: {case['name']}",
+              case['outcome'] == 'supported')
 
 n_pass = sum(results)
 print(f"\n{n_pass}/{len(results)} checks passed")
