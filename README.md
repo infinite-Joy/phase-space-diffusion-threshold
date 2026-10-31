@@ -73,7 +73,7 @@ No claim about sample quality on real data is made; the demo shows where the sta
 
 ```bash
 pip install -r requirements.txt
-python verification/run_all.py                                   # 113 checks: every analytical statement and number in the paper
+python verification/run_all.py                                   # 166 checks: every analytical statement and number in the paper (113) and the coordinate-invariance foundations (53)
 cat jobs.txt | xargs -P 2 -L 1 python run_sweep.py               # day-2 jobs (CPU, about 4 min each)
 python analyze.py                                                # paired analysis and figure
 python elbo_gauss.py                                             # (a) exact Gaussian ELBO check
@@ -134,6 +134,7 @@ This work builds on T. Namba, *Sharp criterion for the coarse-grained arrow of t
 ## Acknowledgments
 
 The research was carried out with AI assistants: Google Gemini, OpenAI ChatGPT and Anthropic Claude. The code and experiments in this repository were written with Anthropic Claude.
+The coordinate-invariance checks in `verification/deterministic_foundations.py` and `verification/model_specification.py` were contributed by Joydeep Bhattacharjee (pull request #1).
 
 ## License
 
